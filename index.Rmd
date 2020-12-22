@@ -1,34 +1,60 @@
 ---
-title: "Article Long Title"
+title: "Rider Perceptions of an On-Demand Microtransit Service in Salt Lake County, Utah"
 author:
-  - name: Gregory Macfarlane
+  - name: Gregory. S Macfarlane
+    affil: 1, *
+    orcid: 0000-0003-3999-7584
+affiliation:
+  - num: 1
+    address: |
+      Brigham Young University
+      Civil and Environmental Engineering Department, 
+      430 Engineering Building, Provo, Utah 84602
     email: gregmacfarlane@byu.edu
-    affiliation: Brigham Young University
-    footnote: 1
-  - name: Bob Example
-    email: bob@example.com
-    affiliation: Brigham Young University
-  - name: Cat Example
-    email: cat@example.com
-    affiliation: Another University
-address:
-  - code: Brigham Young University
-    address: Civil and Environmental Engineering Department, 430 Engineering Building, Provo, Utah 84602
-  - code: Another University
-    address: Some Other Place
+correspondence: |
+  gregmacfarlane@byu.edu; Tel.: +01-801-422-8505
 footnote:
   - code: 1
     text: "Corresponding Author"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: article
-journal: "Submitted to Journal"
-bibliography: [book.bib]
-biblio-style: apalike
-link-citations: yes
+journal: smartcities
+status: submit
+type: article
+bibliography: [book.bib, citations.bib]
 abstract: |
-  This is where the abstract should go.
-description: "A short description"
+  On-demand microtransit services are frequently seen as an important tool in
+  supporting first and last mile operations surrounding fixed route high
+  frequency transit facilities, but questions remain surrounding who will use
+  these novel services and for what purposes. In November 2019, the Utah Transit
+  Authority launched an on-demand microtransit service in south Salt Lake County
+  in partnership with a private mobility operator. This paper reports the
+  results of a survey of 130 transit riders in the microtransit service area
+  collected before and immediately after the service launched. There is not a
+  clear relationship between current transit access mode and expressed
+  willingness to use microtransit, though some responses from new riders
+  indicate the novel service competes most directly with commercial
+  transportation network company operations. The survey responses also reveal
+  younger passengers express more than expected willingness to use microtransit,
+  middle-aged passengers a less than expected willingness, and older passengers
+  neutral or no expressed opinion. The effect of other user characteristics
+  including income and automobile availability is less statistically clear and
+  requires further research.
+keywords: |
+  on-demand transit; microtransit
+acknowledgement: |
+  This project was sponsored by UTA through the BYU Civil Engineering Capstone
+  Program. The authors would like to thank Jaron Robertson and Shaina Quinn of
+  UTA and Sahar Shirazi and Kenny Ferrel of WSP for oversight and input
+  throughout the project.
+conflictsofinterest: |
+  The authors declare no conflict of interest.
+abbreviations:
+  - short: TNC
+    long: Transportation Network Company, e.g. Uber, Lyft
+  - short: UTA
+    long: Utah Transit Authority
 ---
 
 # Introduction {#intro}
