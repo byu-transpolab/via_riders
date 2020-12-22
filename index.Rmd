@@ -42,6 +42,13 @@ abstract: |
   neutral or no expressed opinion. The effect of other user characteristics
   including income and automobile availability is less statistically clear and
   requires further research.
+authorcontributions: |
+  Data curation, Christian Hunter, Austin Martinez and Elizabeth Smith;
+  Investigation, Christian Hunter, Austin Martinez and Elizabeth Smith;
+  Methodology, Christian Hunter, Austin Martinez and Elizabeth Smith; Project
+  administration, Gregory S. Macfarlane; Supervision, Gregory S. Macfarlane;
+  Writing – original draft, Gregory S. Macfarlane; Writing – review \& editing,
+  Gregory S. Macfarlane, Christian Hunter and Elizabeth Smith
 keywords: |
   on-demand transit; microtransit
 acknowledgement: |
