@@ -22,7 +22,8 @@ documentclass: article
 journal: smartcities
 status: submit
 type: article
-bibliography: [book.bib, citations.bib]
+bibliography: book.bib
+link-citations: yes
 abstract: |
   On-demand microtransit services are frequently seen as an important tool in
   supporting first and last mile operations surrounding fixed route high
@@ -58,3 +59,99 @@ abbreviations:
 ---
 
 # Introduction {#intro}
+
+
+Transit ridership in the United States has been in decline over the last several
+years, with underlying causes ranging from service cuts to the advent of new
+mobility options [@Graehler2019; @Mallett2018]. These new mobility options –
+including bikeshare, e-scooters, and ridehailing through Transportation Network
+Companies (TNCs) – might also play an important role in supporting transit
+operations if the relative strengths of transit and modern mobility systems can
+be successfully partnered.
+
+One particular area where a partnership between high-capacity, fixed-route
+transit and TNC operations has been desired is in supporting first mile / last
+mile operations in low-density suburban regions [@Shaheen2016; @alonso2018;
+@Kang2020]. TNC operators are incentivized to operate in dense areas where many
+potential passengers are located [@Wong2020], meaning they compete with transit
+where transit can be most successful. But regulations or partnerships that
+changed this incentive pattern could be highly beneficial to many transit riders
+[@Ronald2017; @Deakin2010]. For example, a transit agency might partner with a
+TNC to offer shared rides at a subsidized fare in low-density areas where fixed
+route transit services are ineffective or expensive. As these partnerships to
+offer microtransit services materialize through demonstration projects or
+permanent offerings, there is an important opportunity to observe and evaluate
+who is using the service and for what reasons. It is also valuable to understand
+how users perceive the effectiveness and convenience of these systems.
+
+In this paper we report the results of a survey conducted immediately before and
+several weeks after the November 2019 launch of a microtransit service in south
+Salt Lake County, Utah by the Utah Transit Authority (UTA). The surveys were
+designed to understand first the awareness of the on-demand system in the
+transit passenger community. The surveys also consider the stated and revealed
+likeliness of individuals to use the microtransit service, and how the
+characteristics of these individuals – particularly age and household size –
+influence these preferences.
+
+The remainder of this section contains a brief review of previous and ongoing
+studies relevant to the question of demand for and use of microtransit services.
+We then describe the survey methodology for this study, including both the
+context of the UTA microtransit service as well as the survey instrument and
+collection strategy. The survey results in several dimensions are followed by a
+discussion of the limitations of the findings and associated opportunities for
+future research.
+
+
+## Findings from Other Systems
+
+In the last few years a number of on-demand microtransit services have begun
+operations in many cities around the world. Given the dynamic nature of this
+space, the literature is not mature and numerous projects are under evaluation
+at the moment. However, some findings from early systems are available and are
+worthy of discussion.
+
+A microtransit service in Helsinki, Finland known as “Kutsuplus” operated from
+2012 to 2015 and has been the subject of a number of studies. @weckstrom2018 and
+@Haglund2019 each conduct a comprehensive analysis of the system using rider
+questionnaires supplemented with GPS data points. The studies found that the
+system was used by a wide variety of individuals for a wide variety of trip
+purposes, and the typical trip length suggested it was being used less like a
+taxi service and more to supplement last-mile transit access. In many cases, it
+appeared as though Kutsuplus replaced walking and bicycle trips. The
+@weckstrom2018 research also asked respondents why they continued or
+discontinued using the service, revealing strong differences in response among
+different income groups. High-income individuals were more likely to cite long
+response times, while lower income groups were more likely to cite the fare or
+difficulties understanding the service, or even not being aware of its
+existence.
+
+@alonso2018 examined a microtransit system in the Arnhem-Nijmegen region in the
+Netherlands. They develop a methodology to calculate the accessibility
+contributed by the microtransit system above and beyond that provided by the
+fixed route transit system, and their findings suggest the microtransit
+service substantively enhances the mobility of people in the region. In this
+study the authors use GPS trip data from the service and do not have access to
+the actual riders to understand their preferences or characteristics.
+
+In 2016 Austin, Texas, introduced a TNC operated as a non-profit and called
+“RideAustin.” The unique corporate structure of this TNC encourages it to share
+data from the system with researchers, leading to a number of studies examining
+the trip patterns of its users. @Komanduri2018 show that a high proportion of
+trips (60\%) taken on RideAustin could have been completed with a single-seat
+transit ride. @Wenzel2019 additionally used the same dataset to estimate the
+level of deadheading and concomitant energy expenditure on the system. Though
+these findings are important in terms of understanding the risks of microtransit
+services, it should be stressed that the RideAustin was not explicitly designed
+to support transit operations. And although the RideAustin dataset does identify
+unique individual riders through a persistent mobile device ID, it does not
+disclose any demographic information on the riders and therefore cannot support
+an analysis of their characteristics or preferences.
+
+The literature to this point has been greatly aided by the use of so-called Big
+Data: GPS records, rider transaction data, and the like. These data are
+well-suited to important research questions such as where and when the services
+pick up and drop off riders, the wait times experienced by the riders, and in
+some cases even the ability to construct multiple trip tours. But the literature
+to this point is somewhat limited in its exploration of the actual users of
+these systems: who they are, why they are traveling, and why they chose to use
+this service.
