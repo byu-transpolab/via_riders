@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-12-22" />
+<meta name="date" content="2020-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -62,6 +62,8 @@ div.abstract{
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -153,7 +155,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a></li>
-<li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
+<li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
+<li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -181,12 +185,526 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 tranche; the second tranche consisted of 58 interviews on rail transit platforms
 and 17 interviews on the mictrotransit vehicles or at the microtransit pick-up
 point adjacent to the rail stations. A summary of the survey respondents in each
-tranche is given in Table ; as outlined in the
+tranche is given in Table <a href="results.html#tab:survey-respondents">3.1</a>; as outlined in the
 Methodology section, the decision to include income level in the survey was made
 between the tranches and therefore the “Before” tranche contains no income
 information. The number of respondents who declined to answer the other
 demographic questions is also relatively high.</p>
-
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="results.html#cb7-1"></a><span class="kw">datasummary_balance</span>(</span>
+<span id="cb7-2"><a href="results.html#cb7-2"></a>    <span class="op">~</span><span class="st"> </span>tranche, </span>
+<span id="cb7-3"><a href="results.html#cb7-3"></a>    survey_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-4"><a href="results.html#cb7-4"></a><span class="st">        </span><span class="kw">transmute</span>(</span>
+<span id="cb7-5"><a href="results.html#cb7-5"></a>            tranche, </span>
+<span id="cb7-6"><a href="results.html#cb7-6"></a>            <span class="dt">Smartphone =</span> <span class="kw">fct_explicit_na</span>(phone),</span>
+<span id="cb7-7"><a href="results.html#cb7-7"></a>            <span class="st">`</span><span class="dt">Household Size</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(size_cat),</span>
+<span id="cb7-8"><a href="results.html#cb7-8"></a>            <span class="dt">Age =</span> <span class="kw">fct_explicit_na</span>(age),</span>
+<span id="cb7-9"><a href="results.html#cb7-9"></a>            <span class="st">`</span><span class="dt">Auto availability</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(autos),</span>
+<span id="cb7-10"><a href="results.html#cb7-10"></a>            <span class="dt">Income =</span> <span class="kw">fct_explicit_na</span>(income)</span>
+<span id="cb7-11"><a href="results.html#cb7-11"></a>        ),</span>
+<span id="cb7-12"><a href="results.html#cb7-12"></a>    <span class="dt">title =</span> <span class="st">&quot;Demographic Characteristics of Survey Respondents&quot;</span></span>
+<span id="cb7-13"><a href="results.html#cb7-13"></a>)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:survey-respondents">Table 3.1: </span>Demographic Characteristics of Survey Respondents
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Before (N=55)
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+After (N=75)
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+N
+</th>
+<th style="text-align:left;">
+%
+</th>
+<th style="text-align:left;">
+N
+</th>
+<th style="text-align:left;">
+%
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Smartphone
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2.3
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+1.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+42
+</td>
+<td style="text-align:left;">
+32.3
+</td>
+<td style="text-align:left;">
+48
+</td>
+<td style="text-align:left;">
+36.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(Missing)
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+7.7
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Household Size
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+3.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+7.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+5.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+4+
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+29
+</td>
+<td style="text-align:left;">
+22.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(Missing)
+</td>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:left;">
+42.3
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Age
+</td>
+<td style="text-align:left;">
+Under 18
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+18-24
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+9.2
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+6.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+25-44
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+18.5
+</td>
+<td style="text-align:left;">
+28
+</td>
+<td style="text-align:left;">
+21.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+45-64
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+6.9
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+7.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Over 65
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(Missing)
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+7.7
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Auto availability
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+3.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:left;">
+13.8
+</td>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+14.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+10.0
+</td>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:left;">
+13.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+6.2
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+6.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+4+
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2.3
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+3.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(Missing)
+</td>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+10.0
+</td>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:left;">
+16.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Income
+</td>
+<td style="text-align:left;">
+Less than $44,999
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+6.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+$45,000 to $100,000
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+13.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Over $100,000
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+0.0
+</td>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+13.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+(Missing)
+</td>
+<td style="text-align:left;">
+55
+</td>
+<td style="text-align:left;">
+42.3
+</td>
+<td style="text-align:left;">
+33
+</td>
+<td style="text-align:left;">
+25.4
+</td>
+</tr>
+</tbody>
+</table>
 <p>A primary motivation for the survey was to understand awareness of the
 microtransit service among UTA transit riders. In the “Before” tranche, only 6
 of the 55 respondents (11%) stated they had previously heard of the system. Of
@@ -195,7 +713,7 @@ service, 34 (59%) had previously heard of the service. This increase in general
 awareness of the system indicates both that the UTA marketing efforts were
 effective, and also that the responses to the subsequent question of likeliness
 to use the service are based in some level of understanding.</p>
-<p>Figure  shows the reported likelihood of survey respondents
+<p>Figure <a href="results.html#fig:likelihood">3.1</a> shows the reported likelihood of survey respondents
 to download the necessary application and use the microtransit service,
 separated by access mode. Respondents who were already using the service
 selected “5: Extremely Likely.” The first result of this analysis is that there
@@ -225,23 +743,29 @@ at all. Additionally, the text responses to the access mode question in the
 “before” tranche revealed a number of individuals who used a TNC to access the
 system. This supplies anecdotal evidence that microtransit is competing more
 against commercial TNC offerings than against conventional transit services.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="results.html#cb2-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/access_mode.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="results.html#cb8-1"></a>survey_data <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="results.html#cb8-2"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(likeliness)) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="results.html#cb8-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> likeliness, <span class="dt">fill =</span> access)) <span class="op">+</span></span>
+<span id="cb8-4"><a href="results.html#cb8-4"></a><span class="st">    </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>tranche) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-5"><a href="results.html#cb8-5"></a><span class="st">    </span><span class="kw">scale_fill_discrete</span>(<span class="st">&quot;Access Mode&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-6"><a href="results.html#cb8-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;How likely are you to use UTA On Demand?&quot;</span>) <span class="op">+</span></span>
+<span id="cb8-7"><a href="results.html#cb8-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Number of Responses&quot;</span>) <span class="op">+</span></span>
+<span id="cb8-8"><a href="results.html#cb8-8"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span id="fig:likelihood"></span>
-<img src="images/access_mode.png" alt="Reported likelihood of using microtransit by transit access mode." width="80%" />
+<img src="via_riders_files/figure-html/likelihood-1.png" alt="Reported likelihood of using microtransit by transit access mode." width="80%" />
 <p class="caption">
 Figure 3.1: Reported likelihood of using microtransit by transit access mode.
 </p>
 </div>
-
 <p>The next consideration is whether the expressed or observed likeliness to use
 the microtransit service is related to the demographic characteristics of the
 respondents. Noting the low response rate to many of the demographic questions
-(see Table ), it is not possible to construct a model
+(see Table <a href="results.html#tab:survey-respondents">3.1</a>), it is not possible to construct a model
 that would predict the likeliness score as a function of these characteristics
 in combination. It is still valuable, however, to consider how the observed
 distribution of these characteristics differs between individuals who are or are
 not likely to use the service. These distributions are shown in Table
-, along with the result of a two-sided Fisher exact test of
+<a href="results.html#tab:fisher-table">3.2</a>, along with the result of a two-sided Fisher exact test of
 independence between the indicated characteristic distribution and the
 three-category likeliness response. In this test the null hypothesis is that the
 two distributions are independent with the alternative being there is some
@@ -250,16 +774,485 @@ given critical threshold indicates that the null hypothesis has a low
 probability and should be rejected. A conventional value of the critical value
 is <span class="math inline">\(\alpha=0.05\)</span>, though given the small sample sizes in this survey other
 critical values may be suggestive of the need for future evaluation.</p>
-\begin{table}[ht]
-
-
-<p>\end{table}</p>
-<p>Smartphone use appears to not be a contributing factor in the likeliness of using microtransit, as almost all respondents use a smartphone regardless of their reported likeliness. We also fail to reject the null hypothesis of independence between the likeliness to use microtransit and both auto availability and household income. The joint distribution of reported likeliness and household size suggests there could be some dependence, with members of smaller households more frequently expressing reluctance to use microtransit. This finding, if it could be verified, would be somewhat counter to the  expectations of UTA. A Fisher test of independence between these household size and expressed likeliness still fails to conclusively reject the null hypothesis but given the small sample size and counter-intuitive results, future investigation is warranted. This is particularly true given that automobile availability and household size go hand-in-hand: a household with more individuals, particularly driving-age individuals, will be more constrained in their driving behavior even with multiple household automobiles. Considering these two variables together will be important for future research but cannot be attempted here.</p>
-<p>A clear statistical result is shown, however, between the reported willingness to use microtransit and the age of the respondent. This significant result persists when we recombine the age categories as well as discard neutral responses. Table  shows the differences between the observed values in the joint distribution of these two variables and the expected values based on the marginal distributions were the two variables to be completely independent. The largest differences occur in three noticeable places. First, individuals in the 18-24 years old category are more likely to express willingness to use microtransit. Second, individuals between 45 and 64 are more likely to express a neutral opinion than a positive or strictly unlikely one. Finally, individuals between 25 and 44 are – perhaps surprisingly – substantially more likely to express a negative opinion than a neutral one; these individuals are also modestly more likely than expected to express positive willingness to use transit.</p>
-\begin{table}[ht]
-
-
-<p>\end{table}</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="results.html#cb9-1"></a>expected.table &lt;-<span class="st"> </span><span class="cf">function</span>(tab){</span>
+<span id="cb9-2"><a href="results.html#cb9-2"></a>  pt &lt;-<span class="st"> </span><span class="kw">prop.table</span>(tab)</span>
+<span id="cb9-3"><a href="results.html#cb9-3"></a>  </span>
+<span id="cb9-4"><a href="results.html#cb9-4"></a>  m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow =</span> <span class="kw">nrow</span>(pt), <span class="dt">ncol =</span> <span class="kw">ncol</span>(pt))</span>
+<span id="cb9-5"><a href="results.html#cb9-5"></a>  </span>
+<span id="cb9-6"><a href="results.html#cb9-6"></a>  m1 &lt;-<span class="st"> </span><span class="kw">sweep</span>(m, <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="kw">rowSums</span>(pt), <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</span>
+<span id="cb9-7"><a href="results.html#cb9-7"></a>  m2 &lt;-<span class="st"> </span><span class="kw">sweep</span>(m1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="kw">colSums</span>(pt), <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</span>
+<span id="cb9-8"><a href="results.html#cb9-8"></a>  out &lt;-<span class="st"> </span>m2 <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(tab)</span>
+<span id="cb9-9"><a href="results.html#cb9-9"></a>  <span class="kw">rownames</span>(out) &lt;-<span class="st"> </span><span class="kw">rownames</span>(tab)</span>
+<span id="cb9-10"><a href="results.html#cb9-10"></a>  <span class="kw">colnames</span>(out) &lt;-<span class="st"> </span><span class="kw">colnames</span>(tab)</span>
+<span id="cb9-11"><a href="results.html#cb9-11"></a>  out</span>
+<span id="cb9-12"><a href="results.html#cb9-12"></a>}</span>
+<span id="cb9-13"><a href="results.html#cb9-13"></a></span>
+<span id="cb9-14"><a href="results.html#cb9-14"></a>fisher_tests &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb9-15"><a href="results.html#cb9-15"></a>  <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&quot;Smartphone&quot;</span>, <span class="st">&quot;Household Size&quot;</span>, <span class="st">&quot;Auto Availablity&quot;</span>, <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Age&quot;</span>),</span>
+<span id="cb9-16"><a href="results.html#cb9-16"></a>  <span class="dt">sl_table =</span> <span class="kw">list</span>(</span>
+<span id="cb9-17"><a href="results.html#cb9-17"></a>    <span class="st">&quot;smartphone&quot;</span> =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>phone,   survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb9-18"><a href="results.html#cb9-18"></a>    <span class="st">&quot;size&quot;</span>       =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>size_cat,survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb9-19"><a href="results.html#cb9-19"></a>    <span class="st">&quot;auto&quot;</span>       =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>autos,   survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb9-20"><a href="results.html#cb9-20"></a>    <span class="st">&quot;income&quot;</span>     =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>income,  survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb9-21"><a href="results.html#cb9-21"></a>    <span class="st">&quot;age&quot;</span>        =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>age,     survey_data<span class="op">$</span>likeliness_f)</span>
+<span id="cb9-22"><a href="results.html#cb9-22"></a>  )</span>
+<span id="cb9-23"><a href="results.html#cb9-23"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb9-24"><a href="results.html#cb9-24"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb9-25"><a href="results.html#cb9-25"></a>    <span class="dt">prop =</span> <span class="kw">map</span>(sl_table, prop.table),</span>
+<span id="cb9-26"><a href="results.html#cb9-26"></a>    <span class="dt">expected =</span> <span class="kw">map</span>(sl_table, expected.table),</span>
+<span id="cb9-27"><a href="results.html#cb9-27"></a>    <span class="dt">diff =</span> <span class="kw">map2</span>(sl_table, expected, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>),</span>
+<span id="cb9-28"><a href="results.html#cb9-28"></a>    <span class="dt">fisher =</span> <span class="kw">map</span>(sl_table, fisher.test),</span>
+<span id="cb9-29"><a href="results.html#cb9-29"></a>    <span class="dt">results =</span> <span class="kw">map</span>(fisher, glance),</span>
+<span id="cb9-30"><a href="results.html#cb9-30"></a>    <span class="dt">n =</span> <span class="kw">map_int</span>(sl_table, nrow)</span>
+<span id="cb9-31"><a href="results.html#cb9-31"></a>  )  <span class="op">%&gt;%</span></span>
+<span id="cb9-32"><a href="results.html#cb9-32"></a><span class="st">  </span><span class="kw">unnest</span>(<span class="dt">cols =</span> results)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="results.html#cb10-1"></a>group_names &lt;-<span class="st">  </span><span class="kw">str_c</span>(fisher_tests<span class="op">$</span>variable, <span class="st">&quot;; Fisher p-value: &quot;</span>, </span>
+<span id="cb10-2"><a href="results.html#cb10-2"></a>                      <span class="kw">round</span>(fisher_tests<span class="op">$</span>p.value, <span class="dv">4</span>))</span>
+<span id="cb10-3"><a href="results.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="results.html#cb10-4"></a>fisher_table &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, fisher_tests<span class="op">$</span>sl_table) <span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="results.html#cb10-5"></a><span class="st">    </span><span class="kw">as_tibble</span>(<span class="dt">rownames =</span> <span class="ot">NA</span>)  <span class="op">%&gt;%</span></span>
+<span id="cb10-6"><a href="results.html#cb10-6"></a><span class="st">    </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;Demographic&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-7"><a href="results.html#cb10-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="kw">rep</span>(group_names, <span class="dt">times =</span> fisher_tests<span class="op">$</span>n)) <span class="op">%&gt;%</span></span>
+<span id="cb10-8"><a href="results.html#cb10-8"></a><span class="st">    </span><span class="kw">relocate</span>(group) </span>
+<span id="cb10-9"><a href="results.html#cb10-9"></a></span>
+<span id="cb10-10"><a href="results.html#cb10-10"></a></span>
+<span id="cb10-11"><a href="results.html#cb10-11"></a><span class="kw">kbl</span>(fisher_table, <span class="dt">caption =</span> <span class="st">&quot;Distribution of Rider Characteristics by Reported Likeliness&quot;</span>,</span>
+<span id="cb10-12"><a href="results.html#cb10-12"></a>    <span class="dt">booktabs =</span> T) <span class="op">%&gt;%</span></span>
+<span id="cb10-13"><a href="results.html#cb10-13"></a><span class="st">    </span><span class="kw">kable_styling</span>()  <span class="op">%&gt;%</span></span>
+<span id="cb10-14"><a href="results.html#cb10-14"></a><span class="st">    </span><span class="kw">collapse_rows</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">row_group_label_position =</span> <span class="st">&quot;stack&quot;</span>, <span class="dt">latex_hline =</span> <span class="st">&#39;none&#39;</span>,</span>
+<span id="cb10-15"><a href="results.html#cb10-15"></a>                  <span class="dt">row_group_label_fonts =</span> <span class="kw">list</span>(<span class="dt">italic =</span> <span class="ot">TRUE</span>, <span class="dt">bold =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:fisher-table">Table 3.2: </span>Distribution of Rider Characteristics by Reported Likeliness
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:left;">
+Demographic
+</th>
+<th style="text-align:right;">
+Not Likely
+</th>
+<th style="text-align:right;">
+Neutral
+</th>
+<th style="text-align:right;">
+Likely
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="2">
+Smartphone; Fisher p-value: 0.5633
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="4">
+Household Size; Fisher p-value: 0.2068
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4+
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+Auto Availablity; Fisher p-value: 0.6593
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4+
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="3">
+Income; Fisher p-value: 0.6873
+</td>
+<td style="text-align:left;">
+Less than $44,999
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$45,000 to $100,000
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Over $100,000
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+Age; Fisher p-value: 0.0036
+</td>
+<td style="text-align:left;">
+Under 18
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18-24
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+25-44
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+45-64
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Over 65
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p>Smartphone use appears to not be a contributing factor in the likeliness of
+using microtransit, as almost all respondents use a smartphone regardless of
+their reported likeliness. We also fail to reject the null hypothesis of
+independence between the likeliness to use microtransit and both auto
+availability and household income. The joint distribution of reported likeliness
+and household size suggests there could be some dependence, with members of
+smaller households more frequently expressing reluctance to use microtransit.
+This finding, if it could be verified, would be somewhat counter to the  expectations of UTA. A Fisher test of independence between these
+household size and expressed likeliness still fails to conclusively reject the
+null hypothesis but given the small sample size and counter-intuitive results,
+future investigation is warranted. This is particularly true given that
+automobile availability and household size go hand-in-hand: a household with
+more individuals, particularly driving-age individuals, will be more constrained
+in their driving behavior even with multiple household automobiles. Considering
+these two variables together will be important for future research but cannot be
+attempted here.</p>
+<p>A clear statistical result is shown, however, between the reported willingness
+to use microtransit and the age of the respondent. This significant result
+persists when we recombine the age categories as well as discard neutral
+responses. Table <a href="results.html#tab:age-difference">3.3</a> shows the differences between the
+observed values in the joint distribution of these two variables and the
+expected values based on the marginal distributions were the two variables to be
+completely independent. The largest differences occur in three noticeable
+places. First, individuals in the 18-24 years old category are more likely to
+express willingness to use microtransit. Second, individuals between 45 and 64
+are more likely to express a neutral opinion than a positive or strictly
+unlikely one. Finally, individuals between 25 and 44 are – perhaps surprisingly
+– substantially more likely to express a negative opinion than a neutral one;
+these individuals are also modestly more likely than expected to express
+positive willingness to use transit.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="results.html#cb11-1"></a><span class="kw">kbl</span>(fisher_tests<span class="op">$</span>diff[[<span class="dv">5</span>]], <span class="dt">digits =</span> <span class="dv">4</span>, <span class="dt">booktabs =</span> T,</span>
+<span id="cb11-2"><a href="results.html#cb11-2"></a>    <span class="dt">caption =</span> <span class="st">&quot;Difference of observed and expected frequencies for age and likeliness&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-3"><a href="results.html#cb11-3"></a><span class="st">    </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:age-difference">Table 3.3: </span>Difference of observed and expected frequencies for age and likeliness
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Not Likely
+</th>
+<th style="text-align:right;">
+Neutral
+</th>
+<th style="text-align:right;">
+Likely
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Under 18
+</td>
+<td style="text-align:right;">
+-0.5904
+</td>
+<td style="text-align:right;">
+1.6386
+</td>
+<td style="text-align:right;">
+-1.0482
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18-24
+</td>
+<td style="text-align:right;">
+-2.5422
+</td>
+<td style="text-align:right;">
+-0.1687
+</td>
+<td style="text-align:right;">
+2.7108
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+25-44
+</td>
+<td style="text-align:right;">
+3.6145
+</td>
+<td style="text-align:right;">
+-4.5422
+</td>
+<td style="text-align:right;">
+0.9277
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+45-64
+</td>
+<td style="text-align:right;">
+-0.9518
+</td>
+<td style="text-align:right;">
+3.1928
+</td>
+<td style="text-align:right;">
+-2.2410
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Over 65
+</td>
+<td style="text-align:right;">
+0.4699
+</td>
+<td style="text-align:right;">
+-0.1205
+</td>
+<td style="text-align:right;">
+-0.3494
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
             </section>

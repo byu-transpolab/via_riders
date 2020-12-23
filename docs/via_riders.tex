@@ -15,46 +15,6 @@
 \usepackage{longtable}
 
 % see https://stackoverflow.com/a/47122900
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 %--------------------
 % Class Options:
@@ -318,12 +278,6 @@ and ride facilities at most rail stations. UTA is interested in improving the
 quality of service for passengers in the region as well as reducing
 per-passenger operating costs.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"images/service_area.png"}\NormalTok{, }\DataTypeTok{auto_pdf =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \includegraphics[width=1\linewidth]{images/service_area} \caption{UTA on-demand microtransit service area. Image by the authors}\label{fig:via-map}
 \end{figure}
@@ -362,28 +316,30 @@ were conducted throughout the day, but with a focus on the PM peak commute
 period. The number of interviews conducted during each time period for each
 tranche is shown in Table \ref{tab:survey-times}.
 
-\begin{table}[ht]
-    \centering
-    \caption{Surveys Collected by Time of Day}
-    \label{tab:survey-times}
-    \begin{tabular}{lcc}
-    \toprule
-    Day Period           & Before   Launch & After   Launch \\
-    \midrule
-    AM (6-10)            & 7               & 6              \\
-    Mid-Day (10-4)       & 13              & 26             \\
-    PM (4-7)             & 33              & 43             \\
-    Evening (7-Midnight) & 2               & 0              \\
-    TOTAL                & 55              & 75            \\
-    \bottomrule
-    \end{tabular}
+\begin{table}
+
+\caption{\label{tab:survey-times}Distribution of Surveys by Time of Day}
+\centering
+\begin{tabular}[t]{llllll}
+\toprule
+\multicolumn{2}{c}{ } & \multicolumn{2}{c}{Before (N=55)} & \multicolumn{2}{c}{After (N=75)} \\
+\cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
+  &    & N & \% & N  & \% \\
+\midrule
+Period & Night & 0 & 0.0 & 0 & 0.0\\
+ & AM (6-10) & 7 & 5.4 & 6 & 4.6\\
+ & Mid-Day (10-4) & 13 & 10.0 & 26 & 20.0\\
+ & PM (4-7) & 33 & 25.4 & 43 & 33.1\\
+ & Evening (7-Midnight) & 2 & 1.5 & 0 & 0.0\\
+\bottomrule
+\end{tabular}
 \end{table}
 
 The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
 with the help of UTA staff and an external consulting team. The relevant
 variables and source questions for this study are shown in Table
-\ref{tab:survey-summary}, in the order in which the questions were asked. After
+\ref{tab:survey-questions}, in the order in which the questions were asked. After
 asking the respondent about their awareness of the system, the interviewer would
 give a brief explanation of the service before asking about the respondent's
 likeliness to use the system. The questionnaire for the second tranche included
@@ -395,47 +351,345 @@ service had slightly different wording to reflect the separate contexts. There
 was also a set of questions requesting general feedback on the UTA service that
 is not included in this study.
 
-\begin{table}[ht]
-\renewcommand{\arraystretch}{1.5}
-    \centering
-    \caption{Survey Questionnaire Summary}
-    \label{tab:survey-summary}
-\begin{tabular}{l p{0.4\textwidth}p{0.3\textwidth}}
+\begin{table}
+
+\caption{\label{tab:survey-questions}Survey Questionnaire Summary}
+\centering
+\begin{tabular}[t]{lp{0.4\textwidth}p{0.4\textwidth}}
 \toprule
-Variable          & Question Text                                                                                    & Response Type                                     \\
+Variable & Question Text & Response Type\\
 \midrule
-Frequency         & How often do you ride UTA?                                                                       & Multiple choice with days   per week              \\
-Purpose           & Where are you headed today?                                                                      & Multiple choice with   purposes plus text "other" \\
-Access Mode       & How did you travel to your   UTA stop/station today?                                             & Multiple choice with modes   plus text "other"    \\
-Awareness         & Had you heard about UTA On   Demand before today?                                                & Yes / No                                          \\
-Likeliness        & How likely are you to   download the VIA app and use UTA On Demand?                              & Likert scale with five   "likely" levels          \\
-Why Likely        & Why did you choose that   ranking?                                                               & Text response                                     \\
-Use Purpose       & What types of trips do you   think you could use it for?                                         & Multiple choice with   purposes plus text "other" \\
-Auto Availability & How many vehicles (cars,   trucks or motorcycles) are available in your household?               & Multiple choice with 0   through 4+               \\
-Household Size    & Including you, how many   people live in your household?                                         & Numeric                                           \\
-Race              & What is your race /   ethnicity?                                                                 & Mutiple choice allowing   multiple selection      \\
-Income            & Which of the following BEST   describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes? & Multiple choice in ranges                         \\
-Smartphone        & Do you have a smartphone?                                                                        & Yes / No                                          \\
-Age               & What is your age?                                                                                & Multiple choice in ranges    \\                    
+Frequency & How often do you ride UTA? & Multiple choice with days per week\\
+Purpose & Where are you headed today? & Multiple choice with purposes plus text "other"\\
+Access Mode & How did you travel to your UTA stop/station today? & Multiple choice with modes plus text "other"\\
+Awareness & Had you heard about UTA On Demand before today? & Yes / No\\
+Likeliness & How likely are you to download the VIA app and use UTA On Demand? & Likert scale with five "likely" levels\\
+\addlinespace
+Why Likely & Why did you choose that ranking? & Text response\\
+Use Purpose & What types of trips do you think you could use it for? & Multiple choice with purposes plus text "other"\\
+Auto Availability & How many vehicles (cars, trucks or motorcycles) are available in your household? & Multiple choice with 0 through 4+\\
+Household Size & Including you, how many people live in your household? & Multiple choice with 0 through 4+\\
+Race & What is your race / ethnicity? & Mutiple choice allowing multiple selection\\
+\addlinespace
+Income & Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes? & Multiple choice in ranges\\
+Smartphone & Do you have a smartphone? & Yes / No\\
+Age & What is your age? & Multiple choice in ranges\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\hypertarget{applications}{%
-\section{Applications}\label{applications}}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
-Some \emph{significant} applications are demonstrated in this chapter.
+The surveyors conducted 55 interviews in the first tranche and 75 in the second
+tranche; the second tranche consisted of 58 interviews on rail transit platforms
+and 17 interviews on the mictrotransit vehicles or at the microtransit pick-up
+point adjacent to the rail stations. A summary of the survey respondents in each
+tranche is given in Table \ref{tab:survey-respondents}; as outlined in the
+Methodology section, the decision to include income level in the survey was made
+between the tranches and therefore the ``Before'' tranche contains no income
+information. The number of respondents who declined to answer the other
+demographic questions is also relatively high.
 
-\hypertarget{example-one}{%
-\subsection{Example one}\label{example-one}}
+\begin{table}
 
-\hypertarget{example-two}{%
-\subsection{Example two}\label{example-two}}
+\caption{\label{tab:survey-respondents}Demographic Characteristics of Survey Respondents}
+\centering
+\begin{tabular}[t]{llllll}
+\toprule
+\multicolumn{2}{c}{ } & \multicolumn{2}{c}{Before (N=55)} & \multicolumn{2}{c}{After (N=75)} \\
+\cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
+  &    & N & \% & N  & \% \\
+\midrule
+Smartphone & No & 3 & 2.3 & 2 & 1.5\\
+ & Yes & 42 & 32.3 & 48 & 36.9\\
+ & (Missing) & 10 & 7.7 & 25 & 19.2\\
+Household Size & 1 & 0 & 0.0 & 4 & 3.1\\
+ & 2 & 0 & 0.0 & 10 & 7.7\\
+ & 3 & 0 & 0.0 & 7 & 5.4\\
+ & 4+ & 0 & 0.0 & 29 & 22.3\\
+ & (Missing) & 55 & 42.3 & 25 & 19.2\\
+Age & Under 18 & 0 & 0.0 & 3 & 2.3\\
+ & 18-24 & 12 & 9.2 & 8 & 6.2\\
+ & 25-44 & 24 & 18.5 & 28 & 21.5\\
+ & 45-64 & 9 & 6.9 & 10 & 7.7\\
+ & Over 65 & 0 & 0.0 & 1 & 0.8\\
+ & (Missing) & 10 & 7.7 & 25 & 19.2\\
+Auto availability & 0 & 0 & 0.0 & 4 & 3.1\\
+ & 1 & 18 & 13.8 & 19 & 14.6\\
+ & 2 & 13 & 10.0 & 18 & 13.8\\
+ & 3 & 8 & 6.2 & 8 & 6.2\\
+ & 4+ & 3 & 2.3 & 5 & 3.8\\
+ & (Missing) & 13 & 10.0 & 21 & 16.2\\
+Income & Less than \textbackslash{}\$44,999 & 0 & 0.0 & 8 & 6.2\\
+ & \textbackslash{}\$45,000 to \textbackslash{}\$100,000 & 0 & 0.0 & 17 & 13.1\\
+ & Over \textbackslash{}\$100,000 & 0 & 0.0 & 17 & 13.1\\
+ & (Missing) & 55 & 42.3 & 33 & 25.4\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\hypertarget{final-words}{%
-\section{Final Words}\label{final-words}}
+A primary motivation for the survey was to understand awareness of the
+microtransit service among UTA transit riders. In the ``Before'' tranche, only 6
+of the 55 respondents (11\%) stated they had previously heard of the system. Of
+the 58 interviews in the ``After'' tranche not conducted on the microtransit
+service, 34 (59\%) had previously heard of the service. This increase in general
+awareness of the system indicates both that the UTA marketing efforts were
+effective, and also that the responses to the subsequent question of likeliness
+to use the service are based in some level of understanding.
 
-We have finished a nice book.
+Figure \ref{fig:likelihood} shows the reported likelihood of survey respondents
+to download the necessary application and use the microtransit service,
+separated by access mode. Respondents who were already using the service
+selected ``5: Extremely Likely.'' The first result of this analysis is that there
+appears to be a polarization in opinions after the service commenced operations.
+Although there are some strong feelings against and for the service in the
+``Before'' tranche, the neutral opinions have comparatively disappeared in the
+``After'' tranche. This likely reflects the increasing awareness of the service
+discussed above and a hardening of engrained or newly learned habits. It is
+important also to stress that the question will not necessarily elicit an
+opinion as to whether the service should exist, merely whether the particular
+respondent is willing to use it.
+
+The sample is too small to conduct meaningful statistical inference on the role
+that access mode plays in these opinions, but some discussion of these
+observations is still worthwhile. The apparent turning of bicycle users against
+the service is likely statistical noise, though it should also be noted that the
+``After'' tranche was collected in January and February, when Utah is typically
+cold with snow on the ground. Perhaps individuals who are still cycling at those
+times will persist in doing so. It is also interesting to note that there
+appears to be little overall correlation between access mode and expressed
+willingness to use the service, unless the UTA On Demand service attracts people
+who would not have used the service otherwise. Of these individuals who
+responded to a question about their hypothetical alternative mode, four reported
+that they would have used a Transportation Network Company (TNC; e.g.~Uber,
+Lyft, etc.), two would have used regular UTA services, two would have driven to
+the transit station, one would have walked, and one would not have used transit
+at all. Additionally, the text responses to the access mode question in the
+``before'' tranche revealed a number of individuals who used a TNC to access the
+system. This supplies anecdotal evidence that microtransit is competing more
+against commercial TNC offerings than against conventional transit services.
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{via_riders_files/figure-latex/likelihood-1} \caption{Reported likelihood of using microtransit by transit access mode.}\label{fig:likelihood}
+\end{figure}
+
+The next consideration is whether the expressed or observed likeliness to use
+the microtransit service is related to the demographic characteristics of the
+respondents. Noting the low response rate to many of the demographic questions
+(see Table \ref{tab:survey-respondents}), it is not possible to construct a model
+that would predict the likeliness score as a function of these characteristics
+in combination. It is still valuable, however, to consider how the observed
+distribution of these characteristics differs between individuals who are or are
+not likely to use the service. These distributions are shown in Table
+\ref{tab:fisher-table}, along with the result of a two-sided Fisher exact test of
+independence between the indicated characteristic distribution and the
+three-category likeliness response. In this test the null hypothesis is that the
+two distributions are independent with the alternative being there is some
+dependence between the characteristic and the response. A \(p\)-value less than a
+given critical threshold indicates that the null hypothesis has a low
+probability and should be rejected. A conventional value of the critical value
+is \(\alpha=0.05\), though given the small sample sizes in this survey other
+critical values may be suggestive of the need for future evaluation.
+
+\begin{table}
+
+\caption{\label{tab:fisher-table}Distribution of Rider Characteristics by Reported Likeliness}
+\centering
+\begin{tabular}[t]{llrrr}
+\toprule
+ & Demographic & Not Likely & Neutral & Likely\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Smartphone; Fisher p-value: 0.5633}}\\
+\hspace{1em} & No & 2 & 1 & 1\\
+
+\hspace{1em} & Yes & 41 & 8 & 30\\
+
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Household Size; Fisher p-value: 0.2068}}\\
+\hspace{1em} & 1 & 2 & 0 & 2\\
+
+\hspace{1em} & 2 & 8 & 0 & 1\\
+
+\hspace{1em} & 3 & 4 & 1 & 0\\
+
+\hspace{1em} & 4+ & 14 & 3 & 11\\
+
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Auto Availablity; Fisher p-value: 0.6593}}\\
+\hspace{1em} & 0 & 1 & 0 & 3\\
+
+\hspace{1em} & 1 & 22 & 3 & 10\\
+
+\hspace{1em} & 2 & 12 & 3 & 9\\
+
+\hspace{1em} & 3 & 7 & 1 & 5\\
+
+\hspace{1em} & 4+ & 3 & 2 & 3\\
+
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Income; Fisher p-value: 0.6873}}\\
+\hspace{1em} & Less than \textbackslash{}\$44,999 & 4 & 1 & 3\\
+
+\hspace{1em} & \textbackslash{}\$45,000 to \textbackslash{}\$100,000 & 10 & 2 & 5\\
+
+\hspace{1em} & Over \textbackslash{}\$100,000 & 9 & 0 & 6\\
+
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Age; Fisher p-value: 0.0036}}\\
+\hspace{1em} & Under 18 & 1 & 2 & 0\\
+
+\hspace{1em} & 18-24 & 7 & 2 & 9\\
+
+\hspace{1em} & 25-44 & 28 & 1 & 17\\
+
+\hspace{1em} & 45-64 & 7 & 5 & 3\\
+
+\hspace{1em} & Over 65 & 1 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Smartphone use appears to not be a contributing factor in the likeliness of
+using microtransit, as almost all respondents use a smartphone regardless of
+their reported likeliness. We also fail to reject the null hypothesis of
+independence between the likeliness to use microtransit and both auto
+availability and household income. The joint distribution of reported likeliness
+and household size suggests there could be some dependence, with members of
+smaller households more frequently expressing reluctance to use microtransit.
+This finding, if it could be verified, would be somewhat counter to the \emph{a
+priori} expectations of UTA. A Fisher test of independence between these
+household size and expressed likeliness still fails to conclusively reject the
+null hypothesis but given the small sample size and counter-intuitive results,
+future investigation is warranted. This is particularly true given that
+automobile availability and household size go hand-in-hand: a household with
+more individuals, particularly driving-age individuals, will be more constrained
+in their driving behavior even with multiple household automobiles. Considering
+these two variables together will be important for future research but cannot be
+attempted here.
+
+A clear statistical result is shown, however, between the reported willingness
+to use microtransit and the age of the respondent. This significant result
+persists when we recombine the age categories as well as discard neutral
+responses. Table \ref{tab:age-difference} shows the differences between the
+observed values in the joint distribution of these two variables and the
+expected values based on the marginal distributions were the two variables to be
+completely independent. The largest differences occur in three noticeable
+places. First, individuals in the 18-24 years old category are more likely to
+express willingness to use microtransit. Second, individuals between 45 and 64
+are more likely to express a neutral opinion than a positive or strictly
+unlikely one. Finally, individuals between 25 and 44 are -- perhaps surprisingly
+-- substantially more likely to express a negative opinion than a neutral one;
+these individuals are also modestly more likely than expected to express
+positive willingness to use transit.
+
+\begin{table}
+
+\caption{\label{tab:age-difference}Difference of observed and expected frequencies for age and likeliness}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+  & Not Likely & Neutral & Likely\\
+\midrule
+Under 18 & -0.5904 & 1.6386 & -1.0482\\
+18-24 & -2.5422 & -0.1687 & 2.7108\\
+25-44 & 3.6145 & -4.5422 & 0.9277\\
+45-64 & -0.9518 & 3.1928 & -2.2410\\
+Over 65 & 0.4699 & -0.1205 & -0.3494\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+We readily acknowledge several limitations of this study, particularly in the
+survey design and methodology. The interviews were conducted as a convenience
+sample rather than with a rigorous sampling strategy, with the statistical
+caveats resulting from that design decision. The sample is also too small to
+have substantial statistical power, particularly in statistics calculated on
+multiple grouping dimensions. Finally, the survey collected self-reported
+responses with no verification or validation of any kind.
+
+Most survey responses were collected on fixed rail transit station platforms.
+Passengers waiting for UTA trains were expected to be both more available to
+respond to survey questions, as well as more likely to use the microtransit
+service than the general population. Additionally, UTA is interested in
+supporting its fixed rail transit investments in the service area. There is,
+however, no requirement that microtransit passengers use other UTA services;
+data supplied by the microtransit provider but not included in this study
+suggest that only 58\% percent of microtransit trips began or ended within 500
+feet of a UTA rail transit station. This population might have preferences or
+patterns that either match or contradict the initial findings of this research.
+
+In discussing the responses to the question of what mode microtransit passengers
+would have used were the service not available, we suggested there is anecdotal
+evidence that commercial TNC rides are the primary competition. There are still
+questions, however, of how use of this service might affect conventional transit
+services. Table \ref{tab:uta-ridership} shows the average weekday ridership
+during November, December, and January for the period the microtransit service
+was operating as well as the same three months in the two prior years
+\citet{uta2020boardings}. Total system ridership was remarkably stable during
+these three periods. The microtransit service area -- in this case defined by
+ridership on routes F514, 218, 526, F504, F518, F534, F546, and F547 -- was
+declining before the microtransit service began, though the decline accelerated
+during the first three months of the service's operation. By comparison, the
+microtransit service carried approximately 316 passengers per day during its
+first three months, more than compensating for the recent observed decline in
+transit ridership were this to be identified as a major contributing factor.
+
+\begin{table}
+
+\caption{\label{tab:uta-ridership}Average Weekday Ridership, November through January}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{2}{c}{Microtransit Service Area} & \multicolumn{2}{c}{Other UTA Services} \\
+\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-5}
+Year & Avg. Weekday Boardings & \% Change & Avg. Weekday Boardings & \% Change\\
+\midrule
+2017-2018 & 1179.33 &  & 147410.0 & \\
+2018-2019 & 1125.00 & -4.61 & 146743.0 & -0.45\\
+2019-2020 & 970.33 & -13.75 & 147009.8 & 0.18\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Another limitation of these findings that is particularly relevant is the onset
+of the COVID-19 pandemic. Government-imposed shutdowns and voluntary work
+stoppages related to the pandemic did not begin in Utah until the week of March
+15th, after data collection for this project had completed. As such, the survey
+responses are likely unaffected by changes in behavior related to the pandemic.
+However, the pandemic has drastically affected the subsequent operations of both
+UTA and Via and is likely to change many of the stated behaviors and attitudes
+reported in this study. Many findings of this study will need to be reconsidered
+should ``normal'' operations resume.
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+Microtransit services are regularly put forward as means to support last-mile /
+first-mile trips on fixed route transit systems, and several such systems have
+been deployed in the recent past. This paper presented initial findings from a
+quick response survey aimed at learning who was most willing to use the new
+service within weeks of the system launch. These initial findings suggest first
+that younger adults are most willing to consider using microtransit services,
+and that these services compete most directly with commercial TNC ridehail
+offerings rather than conventional transit.
+
+Transit passenger intercept surveys are an important method to determine who is
+and who is not using a microtransit service, paired with demographic
+characteristics and trip purpose information. To understand the rider
+characteristics and trip purposes specifically of microtransit users, by
+contrast, better survey methods are needed. In particular, a survey pushed
+through the smartphone application used by the passengers would help in reaching
+a considerably larger sample. It would also be theoretically possible in that
+case for the researchers to pair the survey responses with actual observed trip
+patterns for distinct users including origin, destination, and route GPS points,
+regularity of use and variance in use patterns, and many other data variables.
+Obtaining these data and conducting responsible research with them should be a
+priority for the service operators and their agency partners.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% optional
@@ -454,6 +708,12 @@ UTA and Sahar Shirazi and Kenny Ferrel of WSP for oversight and input
 throughout the project.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{Data curation, Christian Hunter, Austin Martinez and Elizabeth Smith;
+Investigation, Christian Hunter, Austin Martinez and Elizabeth Smith;
+Methodology, Christian Hunter, Austin Martinez and Elizabeth Smith; Project
+administration, Gregory S. Macfarlane; Supervision, Gregory S. Macfarlane;
+Writing -- original draft, Gregory S. Macfarlane; Writing -- review \& editing,
+Gregory S. Macfarlane, Christian Hunter and Elizabeth Smith}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \conflictsofinterest{The authors declare no conflict of interest.}
