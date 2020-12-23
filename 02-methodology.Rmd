@@ -1,5 +1,23 @@
 # Study Methodology
 
+```{r setup, cache = FALSE, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+library(modelsummary)
+library(tidyverse)
+library(lubridate)
+library(qwraps2)
+library(broom)
+library(kableExtra)
+
+options(kableExtra.latex.load_packages = FALSE)
+options(dplyr.summarise.inform = FALSE)
+
+if(knitr::is_latex_output()){
+  knitr::opts_chunk$set(echo = FALSE)
+}
+```
+
+
 ## System Description
 In November 2019, the Utah Transit Authority (UTA) launched an on-demand
 microtransit service in the southern part of Salt Lake County. This region –
@@ -32,9 +50,57 @@ By the end of February 2020, the microtransit system was carrying about 316
 passenger trips per weekday with an average wait time of 11 minutes per trip
 @uta2020.
 
-
-
 ## Survey Design
+
+```{r loaddata, message=FALSE}
+#' Function to read a qualtrics CSV file
+#' 
+#' Qualtrics files are a little bit messy. This helps bring things 
+#' in with the right data types and descriptive column names
+#'
+read_qtrics_file <- function(file){
+   headers <- read_csv(file, skip = 1, n_max = 0) 
+   csv <- read_csv(file, skip = 3, col_names = names(headers))
+
+   namekey <- c(
+     "Start Date" = "Start",
+     "How often do you ride UTA?" = "Frequency",
+     "Where are you headed today? - Selected Choice" = "Purpose",
+     "How did you travel to your UTA stop/station today? - Selected Choice" = "Access Mode",
+     "Had you heard about UTA On Demand before today?" = "Awareness",
+     "How likely are you to download the VIA app and use UTA On Demand? - 1" = "Likeliness",
+     "Why did you choose that ranking?" = "Why Likely",
+     "What types of trips do you think you could use it for? - Selected Choice" = "Use Purpose",
+     "How many vehicles (cars, trucks or motorcycles) are available in your household?" = "Auto Availability",
+     "Including YOU, how many people live in your household?" = "Household Size",
+     "What is your race / ethnicity? (check all that apply)" = "Race",
+     "Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes?" = "Income",
+     "Do you have a smartphone?" = "Smartphone",
+     "What is your age?" = "Age"
+   )
+   
+   plyr::rename(
+     csv,
+     replace = namekey,
+     warn_missing = FALSE
+   )
+}
+
+# read files ==============
+baseline <- read_qtrics_file("data/UTA+Baseline+Survey_July+21,+2020_16.23.zip")
+q1_platform <- read_qtrics_file("data/UTA+January+Survey++-+Platform_March+16,+2020_14.07.zip")
+q1_viastop  <- read_qtrics_file("data/UTA+January+Survey++-+VIA+Stop_March+16,+2020_14.07.zip")
+  
+
+# join and save
+survey_data <- tibble(
+  tranche = c("baseline", "q1_platform", "q1_viastop"),
+  data = list(baseline, q1_platform, q1_viastop)
+)  
+
+```
+
+
 UTA’s primary goal in executing this survey was to understand the effectiveness
 of its marketing campaign to raise awareness and information of the new service.
 This survey also provided an opportunity to inform additional riders and to
@@ -50,24 +116,40 @@ pick-up points near the aforementioned rail stations; a limited number of
 interviews were also conducted on board the microtransit vehicles. Interviews
 were conducted throughout the day, but with a focus on the PM peak commute
 period. The number of interviews conducted during each time period for each
-tranche is shown in Table \ref{tab:survey-times}.
+tranche is shown in Table \@ref(tab:survey-times).
 
-\begin{table}[ht]
-    \centering
-    \caption{Surveys Collected by Time of Day}
-    \label{tab:survey-times}
-    \begin{tabular}{lcc}
-    \toprule
-    Day Period           & Before   Launch & After   Launch \\
-    \midrule
-    AM (6-10)            & 7               & 6              \\
-    Mid-Day (10-4)       & 13              & 26             \\
-    PM (4-7)             & 33              & 43             \\
-    Evening (7-Midnight) & 2               & 0              \\
-    TOTAL                & 55              & 75            \\
-    \bottomrule
-    \end{tabular}
-\end{table}
+
+```{r survey-times}
+min_date <- function(df){min(df$Start)}
+max_date <- function(df){max(df$Start)}
+mean_date <- function(df){mean(df$Start)}
+weekday <- function(df){
+  df %>%
+    transmute(
+      weekday = weekdays(Start),
+      hour = lubridate::hour(Start),
+      period = cut(hour, breaks = c(0, 6, 10, 15, 18, 24 ), 
+                   labels = c("Night", "AM (6-10)", "Mid-Day (10-4)", "PM (4-7)", "Evening (7-Midnight)"))) %>%
+    group_by(period, weekday) %>% tally()}
+
+out <- survey_data %>%
+  mutate(
+    n = map_int(data, nrow),
+    min_date = as_datetime(map_dbl(data, min_date)),
+    max_date = as_datetime(map_dbl(data, max_date)),
+    mean_date = as_datetime(map_dbl(data, mean_date)),
+    weekdays = map(data, weekday)
+  )
+
+out$weekdays %>%
+  bind_rows(.id = "tranche") %>%
+  mutate(tranche = ifelse(tranche == 1, "Before", "After")) %>%
+  group_by(tranche, period) %>%
+  summarise(n = sum(n)) %>%
+  spread(tranche, n, fill = 0) %>%
+  knitr::kable(caption = "Surveys Collected by Time of Day")
+```
+
 
 The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
@@ -85,28 +167,52 @@ service had slightly different wording to reflect the separate contexts. There
 was also a set of questions requesting general feedback on the UTA service that
 is not included in this study.
 
-\begin{table}[ht]
-\renewcommand{\arraystretch}{1.5}
-    \centering
-    \caption{Survey Questionnaire Summary}
-    \label{tab:survey-summary}
-\begin{tabular}{l p{0.4\textwidth}p{0.3\textwidth}}
-\toprule
-Variable          & Question Text                                                                                    & Response Type                                     \\
-\midrule
-Frequency         & How often do you ride UTA?                                                                       & Multiple choice with days   per week              \\
-Purpose           & Where are you headed today?                                                                      & Multiple choice with   purposes plus text "other" \\
-Access Mode       & How did you travel to your   UTA stop/station today?                                             & Multiple choice with modes   plus text "other"    \\
-Awareness         & Had you heard about UTA On   Demand before today?                                                & Yes / No                                          \\
-Likeliness        & How likely are you to   download the VIA app and use UTA On Demand?                              & Likert scale with five   "likely" levels          \\
-Why Likely        & Why did you choose that   ranking?                                                               & Text response                                     \\
-Use Purpose       & What types of trips do you   think you could use it for?                                         & Multiple choice with   purposes plus text "other" \\
-Auto Availability & How many vehicles (cars,   trucks or motorcycles) are available in your household?               & Multiple choice with 0   through 4+               \\
-Household Size    & Including you, how many   people live in your household?                                         & Numeric                                           \\
-Race              & What is your race /   ethnicity?                                                                 & Mutiple choice allowing   multiple selection      \\
-Income            & Which of the following BEST   describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes? & Multiple choice in ranges                         \\
-Smartphone        & Do you have a smartphone?                                                                        & Yes / No                                          \\
-Age               & What is your age?                                                                                & Multiple choice in ranges    \\                    
-\bottomrule
-\end{tabular}
-\end{table}
+
+```{r survey-questions}
+questions <- tibble(
+"Variable" =  c("Frequency", "Purpose",  "Access Mode", "Awareness",  "Likeliness",
+                "Why Likely",  "Use Purpose", "Auto Availability",  "Household Size", 
+                "Race",  "Income", "Smartphone", "Age"),
+"Question Text" = c(
+  "How often do you ride UTA?",
+  "Where are you headed today? ",
+  "How did you travel to your UTA stop/station today?", 
+  "Had you heard about UTA On Demand before today? ", 
+  "How likely are you to download the VIA app and use UTA On Demand? ",
+  "Why did you choose that ranking?",
+  "What types of trips do you think you could use it for?", 
+  "How many vehicles (cars, trucks or motorcycles) are available in your household?",
+  "Including you, how many people live in your household?", 
+  "What is your race / ethnicity?", 
+  "Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes?",
+  "Do you have a smartphone? ", 
+  "What is your age?"),
+"Response Type" = c(
+  'Multiple choice with days per week ',
+  'Multiple choice with purposes plus text "other"',
+  'Multiple choice with modes plus text "other" ',
+  'Yes / No ',
+  'Likert scale with five "likely" levels ',
+  'Text response',
+  'Multiple choice with purposes plus text "other"',
+  'Multiple choice with 0 through 4+',
+  'Multiple choice with 0 through 4+',
+  'Mutiple choice allowing multiple selection ',
+  'Multiple choice in ranges',
+  'Yes / No ',
+  'Multiple choice in ranges')
+) 
+
+if(knitr::is_latex_output()){
+  questions %>%
+    kable(caption = "Survey Questionnaire Summary", booktabs = TRUE, format = "latex")  %>%
+    kable_styling() %>%
+    column_spec(2:3, latex_column_spec = "p{0.4\\\\textwidth}")
+} else {
+  questions %>%
+    kable(caption = "Survey Questionnaire Summary")  %>%
+    kable_styling()
+}
+
+```
+
