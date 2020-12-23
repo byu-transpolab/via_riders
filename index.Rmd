@@ -4,6 +4,12 @@ author:
   - name: Gregory. S Macfarlane
     affil: 1, *
     orcid: 0000-0003-3999-7584
+  - name: Christian Hunter
+    affil: 1, \dagger
+  - name: Austin Martinez
+    affil: 1
+  - name: Elizabeth Smith
+    affil: 1, \ddagger
 affiliation:
   - num: 1
     address: |
@@ -13,9 +19,10 @@ affiliation:
     email: gregmacfarlane@byu.edu
 correspondence: |
   gregmacfarlane@byu.edu; Tel.: +01-801-422-8505
-footnote:
-  - code: 1
-    text: "Corresponding Author"
+firstnote: |
+  Current affiliation:  University of Texas at Austin
+secondnote: |
+  Current affiliation: Imperial College London
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: article
