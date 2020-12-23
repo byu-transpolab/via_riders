@@ -9,11 +9,12 @@ library(qwraps2)
 library(broom)
 library(kableExtra)
 
+options(knitr.kable.NA = '')
 options(kableExtra.latex.load_packages = FALSE)
 options(dplyr.summarise.inform = FALSE)
 
 if(knitr::is_latex_output()){
-  knitr::opts_chunk$set(echo = FALSE)
+  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 }
 ```
 
@@ -63,20 +64,20 @@ read_qtrics_file <- function(file){
    csv <- read_csv(file, skip = 3, col_names = names(headers))
 
    namekey <- c(
-     "Start Date" = "Start",
-     "How often do you ride UTA?" = "Frequency",
-     "Where are you headed today? - Selected Choice" = "Purpose",
-     "How did you travel to your UTA stop/station today? - Selected Choice" = "Access Mode",
-     "Had you heard about UTA On Demand before today?" = "Awareness",
-     "How likely are you to download the VIA app and use UTA On Demand? - 1" = "Likeliness",
-     "Why did you choose that ranking?" = "Why Likely",
-     "What types of trips do you think you could use it for? - Selected Choice" = "Use Purpose",
-     "How many vehicles (cars, trucks or motorcycles) are available in your household?" = "Auto Availability",
-     "Including YOU, how many people live in your household?" = "Household Size",
-     "What is your race / ethnicity? (check all that apply)" = "Race",
-     "Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes?" = "Income",
-     "Do you have a smartphone?" = "Smartphone",
-     "What is your age?" = "Age"
+     "Start Date" = "start",
+     "How often do you ride UTA?" = "frequency",
+     "Where are you headed today? - Selected Choice" = "purpose",
+     "How did you travel to your UTA stop/station today? - Selected Choice" = "access",
+     "Had you heard about UTA On Demand before today?" = "awareness",
+     "How likely are you to download the VIA app and use UTA On Demand? - 1" = "likeliness",
+     "Why did you choose that ranking?" = "likely_why",
+     "What types of trips do you think you could use it for? - Selected Choice" = "use_purpose",
+     "How many vehicles (cars, trucks or motorcycles) are available in your household?" = "autos",
+     "Including YOU, how many people live in your household?" = "size",
+     "What is your race / ethnicity? (check all that apply)" = "r",
+     "Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes?" = "income",
+     "Do you have a smartphone?" = "phone",
+     "What is your age?" = "age"
    )
    
    plyr::rename(
@@ -90,14 +91,66 @@ read_qtrics_file <- function(file){
 baseline <- read_qtrics_file("data/UTA+Baseline+Survey_July+21,+2020_16.23.zip")
 q1_platform <- read_qtrics_file("data/UTA+January+Survey++-+Platform_March+16,+2020_14.07.zip")
 q1_viastop  <- read_qtrics_file("data/UTA+January+Survey++-+VIA+Stop_March+16,+2020_14.07.zip")
-  
 
-# join and save
+# function to filter out the variables we care about
+filter_data <- function(df){
+  df %>% select(any_of(c(
+   "start", "likeliness", "size", "autos", "income", "phone", "purpose", 
+   "frequency", "age", "access")))
+}
+
+get_period <- function(start){
+  hour <- lubridate::hour(start)
+  cut(hour, breaks = c(0, 6, 10, 15, 18, 24 ),  
+      labels = c("Night", "AM (6-10)", "Mid-Day (10-4)", "PM (4-7)", "Evening (7-Midnight)"))
+}
+
+# Bind tranches together and clean up
 survey_data <- tibble(
-  tranche = c("baseline", "q1_platform", "q1_viastop"),
+  tranche = c("Before", "After", "After"),
+  collection = c("baseline", "platform", "via stop"),
   data = list(baseline, q1_platform, q1_viastop)
-)  
-
+)  %>%
+  mutate( data = map(data, filter_data) ) %>%
+  unnest(cols = data) %>%
+  mutate(
+    likeliness = ifelse(collection == "via stop", 5, likeliness),
+    likeliness_f = factor(likeliness, labels = c(
+      rep("Not Likely", 2), "Neutral", rep("Likely", 2))
+    ),
+    access = ifelse(collection == "via stop", "UTA on Demand", access),
+    tranche = factor(tranche, levels = c("Before", "After")),
+    period = get_period(start) ,
+    income = case_when(
+      income %in% c(
+        "Less than $18,000", "$18,000 - $24,999", "$25,000 - $31,999", 
+        "$32,000 - $39,999", "$40,000 - $44,999") ~ "Less than \\$44,999",
+      income %in% c(
+         "$45,000 - $59,999",  "$60,000 - $74,999",  "$75,000 - $99,999") ~ 
+        "\\$45,000 to \\$100,000",
+      income %in% c(
+        "$100,000 - $149,999", "$150,000 - $199,999", "$200,000 - $249,999", 
+        "$250,000 or above")  ~ "Over \\$100,000",
+      TRUE ~ as.character(NA)
+    ),
+    income = factor(income, levels = c("Less than \\$44,999", "\\$45,000 to \\$100,000", 
+                                       "Over \\$100,000")),
+    age = case_when(
+      age %in% c("Under 16", "16-17") ~ "Under 18",
+      age %in% c("18-24") ~ "18-24",
+      age %in% c("25-34", "35-44") ~ "25-44",
+      age %in% c("45-54", "55-64") ~ "45-64",
+      age %in% c("65+") ~ "Over 65",
+      TRUE ~ as.character(NA)
+    ),
+    age = factor(age, levels = c("Under 18", "18-24", "25-44", "45-64", "Over 65")),
+    size_cat = factor(ifelse(size >= 4, '4+', size)),
+    frequency_n = case_when(
+      is.na(frequency) ~ as.numeric(NA),
+      substr(frequency, 1, 1) %in% c("F", "N", "L") ~ 0,
+      TRUE ~ as.numeric(substr(frequency, 1, 1))
+    )
+  )
 ```
 
 
@@ -120,34 +173,8 @@ tranche is shown in Table \@ref(tab:survey-times).
 
 
 ```{r survey-times}
-min_date <- function(df){min(df$Start)}
-max_date <- function(df){max(df$Start)}
-mean_date <- function(df){mean(df$Start)}
-weekday <- function(df){
-  df %>%
-    transmute(
-      weekday = weekdays(Start),
-      hour = lubridate::hour(Start),
-      period = cut(hour, breaks = c(0, 6, 10, 15, 18, 24 ), 
-                   labels = c("Night", "AM (6-10)", "Mid-Day (10-4)", "PM (4-7)", "Evening (7-Midnight)"))) %>%
-    group_by(period, weekday) %>% tally()}
-
-out <- survey_data %>%
-  mutate(
-    n = map_int(data, nrow),
-    min_date = as_datetime(map_dbl(data, min_date)),
-    max_date = as_datetime(map_dbl(data, max_date)),
-    mean_date = as_datetime(map_dbl(data, mean_date)),
-    weekdays = map(data, weekday)
-  )
-
-out$weekdays %>%
-  bind_rows(.id = "tranche") %>%
-  mutate(tranche = ifelse(tranche == 1, "Before", "After")) %>%
-  group_by(tranche, period) %>%
-  summarise(n = sum(n)) %>%
-  spread(tranche, n, fill = 0) %>%
-  knitr::kable(caption = "Surveys Collected by Time of Day")
+datasummary_balance(~ tranche, survey_data %>% select(tranche, Period = period), 
+                    title = "Distribution of Surveys by Time of Day")
 ```
 
 
@@ -155,7 +182,7 @@ The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
 with the help of UTA staff and an external consulting team. The relevant
 variables and source questions for this study are shown in Table
-\ref{tab:survey-summary}, in the order in which the questions were asked. After
+\@ref(tab:survey-questions), in the order in which the questions were asked. After
 asking the respondent about their awareness of the system, the interviewer would
 give a brief explanation of the service before asking about the respondent’s
 likeliness to use the system. The questionnaire for the second tranche included

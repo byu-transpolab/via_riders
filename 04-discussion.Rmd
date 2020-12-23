@@ -23,7 +23,7 @@ In discussing the responses to the question of what mode microtransit passengers
 would have used were the service not available, we suggested there is anecdotal
 evidence that commercial TNC rides are the primary competition. There are still
 questions, however, of how use of this service might affect conventional transit
-services. Table \ref{tab:uta-ridership} shows the average weekday ridership
+services. Table \@ref(tab:uta-ridership) shows the average weekday ridership
 during November, December, and January for the period the microtransit service
 was operating as well as the same three months in the two prior years
 \citet{uta2020boardings}. Total system ridership was remarkably stable during
@@ -35,23 +35,47 @@ microtransit service carried approximately 316 passengers per day during its
 first three months, more than compensating for the recent observed decline in
 transit ridership were this to be identified as a major contributing factor.
 
-\begin{table}[ht]
-    \centering
-    \renewcommand{\arraystretch}{1.5}
-    \caption{Average Weekday Ridership, November through January}
-    \label{tab:uta-ridership}
-    \begin{tabular}{@{}lcccc@{}}
-\toprule
-          & \multicolumn{2}{c}{All   Other UTA Services} & \multicolumn{2}{c}{Microtransit   Service Region} \\
-          \cmidrule(l){2-3} \cmidrule(l){4-5}
-Year      & Average   Weekday Riders    & \%   Change    & Average   Weekday Riders    & \%   Change\\
-\midrule
-2019-2018 & 147,410                     &                & 1,179                       &            \\
-2018-2019 & 146,743                     & –   0.452\%    & 1,125                       & –   4.61\% \\
-2019-2020 & 147,010                     & 0.182          & 970                         & –   13.7\% \\
-\bottomrule
-\end{tabular}
-\end{table}
+```{r uta-ridership}
+ridership <- read_csv("data/UTA_Route-Level_Boardings%2C_Monthly_Counts.csv") 
+lines <- c("F514", "218", "526", "F504", "F518", "F534", "F546", "F547")
+
+rdf <- ridership %>% 
+  mutate(
+    date = lubridate::as_date(str_c(Year, Month, "01", sep = "-")),
+    area = ifelse(LineAbbr %in% lines, "area", "other")
+  ) %>%
+  filter(ServiceType == "WKD") %>%
+  filter(Month %in% c("November", "December", "January")) %>%
+  mutate(
+    period = ifelse( Month %in% c("November", "December"),  Year + 1, Year )
+  ) %>%
+  filter(period >= 2018) %>%
+  group_by(period, area, LineAbbr) %>%
+  summarise(AvgBoardings = mean(AvgBoardings)) %>%
+  group_by(area, period) %>%
+  summarise(br = sum(AvgBoardings)) %>%
+  mutate(ch = (br - lag(br)) / lag(br) * 100) 
+
+uta_ridership <- rdf %>%
+    gather(key = count, value = value, -area, -period) %>%
+    unite("key", area, count) %>%
+    spread(key, value) %>%
+    mutate(period =  c("2017-2018", "2018-2019", "2019-2020"))
+
+if(knitr::is_latex_output()){
+    kable(uta_ridership,
+          col.names = c("Year", rep(c("Avg. Weekday Boardings", "% Change"), 2)), 
+          digits = 2, caption = "Average Weekday Ridership, November through January",
+          booktabs = TRUE, format = "latex") %>%
+    add_header_above(c(" ", "Microtransit Service Area" = 2, "Other UTA Services" = 2))
+} else {
+    kable(uta_ridership,
+          col.names = c("Year", rep(c("Avg. Weekday Boardings", "% Change"), 2)), 
+          digits = 2, caption = "Average Weekday Ridership, November through January") %>%
+    add_header_above(c(" ", "Microtransit Service Area" = 2, "Other UTA Services" = 2)) %>%
+    kable_styling() 
+}
+```
 
 Another limitation of these findings that is particularly relevant is the onset
 of the COVID-19 pandemic. Government-imposed shutdowns and voluntary work
@@ -63,7 +87,6 @@ UTA and Via and is likely to change many of the stated behaviors and attitudes
 reported in this study. Many findings of this study will need to be reconsidered
 should “normal” operations resume.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ## Conclusion
 
 Microtransit services are regularly put forward as means to support last-mile /

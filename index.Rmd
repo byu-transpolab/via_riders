@@ -23,6 +23,7 @@ journal: smartcities
 status: submit
 type: article
 bibliography: book.bib
+always_allow_html: true
 link-citations: yes
 abstract: |
   On-demand microtransit services are frequently seen as an important tool in
