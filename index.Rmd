@@ -169,4 +169,8 @@ pick up and drop off riders, the wait times experienced by the riders, and in
 some cases even the ability to construct multiple trip tours. But the literature
 to this point is somewhat limited in its exploration of the actual users of
 these systems: who they are, why they are traveling, and why they chose to use
-this service.
+this service. \DIFadd{This information is critical when planning and forecasting the
+potential success or failure of these systems, in contrast to reporting observed
+service characteristics in a service already in operation. In this paper, we
+present the results of a rider survey designed to answer these questions in the
+periods immediately before and after the launch of this kind of system.}
