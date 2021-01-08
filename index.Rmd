@@ -82,7 +82,7 @@ mobility options [@Graehler2019; @Mallett2018]. These new mobility options –
 including bikeshare, e-scooters, and ridehailing through Transportation Network
 Companies (TNCs) – might also play an important role in supporting transit
 operations if the relative strengths of transit and modern mobility systems can
-be successfully partnered.
+be successfully partnered \DIFadd{[@Shaheen2016; @OOSTENDORP201872; @ShivThesis]}.
 
 One particular area where a partnership between high-capacity, fixed-route
 transit and TNC operations has been desired is in supporting first mile / last
@@ -161,6 +161,17 @@ to support transit operations. And although the RideAustin dataset does identify
 unique individual riders through a persistent mobile device ID, it does not
 disclose any demographic information on the riders and therefore cannot support
 an analysis of their characteristics or preferences.
+
+\DIFadd{@KONIG2020954 present a survey focused on determining preferences and
+attitudes towards demand-responsive transit use in two  rural regions in
+Germany. A structural equations model of expressed preferences  suggests that
+users' attitudes are most powerfully driven by the expected  performance of the
+system in terms of wait and travel time, and less materially by  attitudes
+towards other public transit systems or social perspectives. This is valuable
+insight, but attitudes such as these are difficult to forecast for a population,
+and therefore difficult to incorporate into service planning exercises. The
+authors collected demographic characteristics of the survey respondents, but did
+not consider these characteristics in the statistical models.}
 
 The literature to this point has been greatly aided by the use of so-called Big
 Data: GPS records, rider transaction data, and the like. These data are
