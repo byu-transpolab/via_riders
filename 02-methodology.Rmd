@@ -168,15 +168,9 @@ addition to the Daybreak Parkway TRAX station and at designated microtransit
 pick-up points near the aforementioned rail stations; a limited number of
 interviews were also conducted on board the microtransit vehicles. Interviews
 were conducted throughout the day, but with a focus on the PM peak commute
-period. The number of interviews conducted during each time period for each
-tranche is shown in Table \@ref(tab:survey-times).
+period \DIFadd{; approximately 60\% of the surveys in both tranches were collected between 4 and 7 PM.} \DIFdel{The number of interviews conducted during each time period for each tranche is shown in Table 1.}
 
-
-```{r survey-times}
-datasummary_balance(~ tranche, survey_data %>% select(tranche, Period = period), 
-                    title = "Distribution of Surveys by Time of Day")
-```
-
+\DIFdel{Previous Table 1}
 
 The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
