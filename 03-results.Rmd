@@ -196,3 +196,101 @@ kbl(fisher_tests$diff[[5]], digits = 4, booktabs = T,
     kable_styling()
 ```
 
+### Multiple Imputation
+
+The attitudinal survey analysis presented by @KONIG2020954 included an
+unreported  fraction of incomplete records that were filled via hot-deck
+imputation. The applicability of missing variable imputation to the present situation
+is potentially inappropriate, given both the degree of missingness in some 
+variables as well as the potential for these variables to not be missing at
+random. Nevertheless, the suggestive results on the age and household size 
+variable indicates that such an analysis might be instructive, if not conclusive.
+
+```{r sd_mice}
+set.seed(42)
+n_imputations <- 20
+
+sd_mice <- survey_data %>%
+  transmute(tranche, likeliness, likeliness_f,
+            autos = as_factor(autos), age, size_cat, income, frequency_cat) %>%
+  mice(m = n_imputations, method = "cart", printFlag = FALSE)
+```
+
+We generated `r n_imputations` multiple imputed complete datasets with the following
+variables: 
+
+  - Available autos
+  - Age
+  - Household Size
+  - Income
+  - Frequency of Using UTA (as categories)
+
+The datasets were generated via chained equations using classification and
+regression tree methods encoded in the `mice` package for R [@mice; @R-base]. We
+are primarily interested in exploring the validity of the results we had already
+that had been suggested with the incomplete dataset: specifically, the relationship
+between reported likeliness and age, household size, and frequency of using UTA.
+We computed the Fisher exact test of an independent relationship between these
+variables on each imputed dataset. The Fisher test does not have a test
+statistic and generates $p$-values via simulation; we therefore pool the
+$p$-values from the `r n_imputations` tests using a methodology proposed by
+@LichtThesis.
+
+```{r mi_fishers}
+# methods in Christine Licht's dissertation, coded by Stef Van Buuren:
+# https://stats.stackexchange.com/a/73573/10026
+lichtrubin <- function(fit){
+    ## pools the p-values of a one-sided test according to the Licht-Rubin method
+    ## this method pools p-values in the z-score scale, and then transforms back 
+    ## the result to the 0-1 scale
+    ## Licht C, Rubin DB (2011) unpublished
+    if (!is.mira(fit)) stop("Argument 'fit' is not an object of class 'mira'.")
+    fitlist <- fit$analyses
+        if (!inherits(fitlist[[1]], "htest")) stop("Object fit$analyses[[1]] is not an object of class 'htest'.")
+    m <- length(fitlist)
+    p <- rep(NA, length = m)
+    for (i in 1:m) p[i] <- fitlist[[i]]$p.value
+    z <- qnorm(p)  # transform to z-scale
+    num <- mean(z)
+    den <- sqrt(1 + var(z))
+    pnorm( num / den) # average and transform back
+}
+
+size_fishers  <- with(sd_mice, fisher.test(table(size_cat, likeliness_f)))
+age_fishers   <- with(sd_mice, fisher.test(table(age, likeliness_f)))
+freq_fishers  <- with(sd_mice, fisher.test(table(frequency_cat, likeliness_f)))
+
+lr_size <- lichtrubin(size_fishers)
+lr_age <- lichtrubin(age_fishers)
+lr_freq <- lichtrubin(freq_fishers)
+```
+
+The pooled $p$-values obtained through the multiply imputed data sets are give
+in Table \@ref(tab:mi-fishers-table) alongside the original, non-imputed
+$p$-values. In the imputed data, there appears to be a clearer relationship
+between likeliness and household size, sufficient to reject the null hypothesis
+of independence at a standard significance level. The relationship between age
+and likeliness is weakened, but still would be considered significant. There
+remains no evidence that expressed likeliness to use microtransit is correlated
+in any way with the frequency of using transit. 
+
+```{r mi-fishers-table}
+tibble(
+  "Variable" = fisher_tests$variable,
+  "Original p" = fisher_tests$p.value,
+  "Imputed p" = c(NA, lr_size, NA, NA, lr_age, lr_freq)
+) %>%
+  filter(!is.na(`Imputed p`)) %>%
+  kbl(caption = "") %>%
+  kable_styling()
+```
+
+With a multiply imputed dataset, it is possible to evaluate some of the corss
+
+```{r mi_models}
+mi_models <- with(sd_mice, lm(likeliness ~ age + size_cat + frequency_cat))
+pool(mi_models)
+```
+
+
+
