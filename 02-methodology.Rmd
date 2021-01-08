@@ -9,6 +9,8 @@ library(qwraps2)
 library(broom)
 library(kableExtra)
 
+library(mice)
+
 options(knitr.kable.NA = '')
 options(kableExtra.latex.load_packages = FALSE)
 options(dplyr.summarise.inform = FALSE)
@@ -149,6 +151,11 @@ survey_data <- tibble(
       is.na(frequency) ~ as.numeric(NA),
       substr(frequency, 1, 1) %in% c("F", "N", "L") ~ 0,
       TRUE ~ as.numeric(substr(frequency, 1, 1))
+    ),
+    frequency_cat = case_when(
+      frequency_n >= 5 ~ "Five days or more", 
+      frequency_n <= 1 ~ "One day or less frequently", 
+      TRUE ~ "Two to four days", 
     )
   )
 ```

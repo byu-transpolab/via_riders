@@ -17,10 +17,11 @@ datasummary_balance(
         transmute(
             tranche, 
             Smartphone = fct_explicit_na(phone),
-            `Household Size` = fct_explicit_na(size_cat),
+            `Household size` = fct_explicit_na(size_cat),
             Age = fct_explicit_na(age),
             `Auto availability` = fct_explicit_na(autos),
-            Income = fct_explicit_na(income)
+            Income = fct_explicit_na(income),
+            `Weekly transit use` = fct_explicit_na(frequency_cat)
         ),
     title = "Demographic Characteristics of Survey Respondents"
 )
@@ -113,13 +114,15 @@ expected.table <- function(tab){
 }
 
 fisher_tests <- tibble(
-  variable = c("Smartphone", "Household Size", "Auto Availablity", "Income", "Age"),
+  variable = c("Smartphone", "Household size", "Auto availablity", "Income", 
+               "Age", "Weekly transit use"),
   sl_table = list(
     "smartphone" = table(survey_data$phone,   survey_data$likeliness_f),
     "size"       = table(survey_data$size_cat,survey_data$likeliness_f),
     "auto"       = table(survey_data$autos,   survey_data$likeliness_f),
     "income"     = table(survey_data$income,  survey_data$likeliness_f),
-    "age"        = table(survey_data$age,     survey_data$likeliness_f)
+    "age"        = table(survey_data$age,     survey_data$likeliness_f),
+    "frequency"  = table(survey_data$frequency_cat, survey_data$likeliness_f)
   )
 ) %>%
   mutate(
