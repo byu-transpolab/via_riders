@@ -29,7 +29,7 @@ documentclass: article
 journal: smartcities
 status: submit
 type: article
-bibliography: book.bib
+bibliography: ["book.bib", "packages.bib"]
 always_allow_html: true
 link-citations: yes
 abstract: |
@@ -82,7 +82,7 @@ mobility options [@Graehler2019; @Mallett2018]. These new mobility options –
 including bikeshare, e-scooters, and ridehailing through Transportation Network
 Companies (TNCs) – might also play an important role in supporting transit
 operations if the relative strengths of transit and modern mobility systems can
-be successfully partnered \DIFadd{[@Shaheen2016; @OOSTENDORP201872; @ShivThesis]}.
+be successfully partnered [@Shaheen2016; @OOSTENDORP201872; @ShivThesis].
 
 One particular area where a partnership between high-capacity, fixed-route
 transit and TNC operations has been desired is in supporting first mile / last
@@ -162,7 +162,7 @@ unique individual riders through a persistent mobile device ID, it does not
 disclose any demographic information on the riders and therefore cannot support
 an analysis of their characteristics or preferences.
 
-\DIFadd{@KONIG2020954 present a survey focused on determining preferences and
+@KONIG2020954 present a survey focused on determining preferences and
 attitudes towards demand-responsive transit use in two  rural regions in
 Germany. A structural equations model of expressed preferences  suggests that
 users' attitudes are most powerfully driven by the expected  performance of the
@@ -171,7 +171,7 @@ towards other public transit systems or social perspectives. This is valuable
 insight, but attitudes such as these are difficult to forecast for a population,
 and therefore difficult to incorporate into service planning exercises. The
 authors collected demographic characteristics of the survey respondents, but did
-not consider these characteristics in the statistical models.}
+not consider these characteristics in the statistical models.
 
 The literature to this point has been greatly aided by the use of so-called Big
 Data: GPS records, rider transaction data, and the like. These data are
@@ -180,8 +180,8 @@ pick up and drop off riders, the wait times experienced by the riders, and in
 some cases even the ability to construct multiple trip tours. But the literature
 to this point is somewhat limited in its exploration of the actual users of
 these systems: who they are, why they are traveling, and why they chose to use
-this service. \DIFadd{This information is critical when planning and forecasting the
+this service. This information is critical when planning and forecasting the
 potential success or failure of these systems, in contrast to reporting observed
 service characteristics in a service already in operation. In this paper, we
 present the results of a rider survey designed to answer these questions in the
-periods immediately before and after the launch of this kind of system.}
+periods immediately before and after the launch of this kind of system.
