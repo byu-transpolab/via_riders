@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-12-23" />
+<meta name="date" content="2021-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="study-methodology.html"><a href="study-methodology.html#system-description"><i class="fa fa-check"></i><b>2.1</b> System Description</a></li>
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.0.1</b> Multiple Imputation</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
 <li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
 </ul></li>
@@ -213,7 +215,7 @@ during the first three months of the service’s operation. By comparison, the
 microtransit service carried approximately 316 passengers per day during its
 first three months, more than compensating for the recent observed decline in
 transit ridership were this to be identified as a major contributing factor.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="discussion.html#cb12-1"></a>ridership &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/UTA_Route-Level_Boardings%2C_Monthly_Counts.csv&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="discussion.html#cb17-1"></a>ridership &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/UTA_Route-Level_Boardings%2C_Monthly_Counts.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Mode = col_character(),
@@ -226,44 +228,44 @@ transit ridership were this to be identified as a major contributing factor.</p>
 ##   County = col_character(),
 ##   ObjectId = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="discussion.html#cb14-1"></a>lines &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F514&quot;</span>, <span class="st">&quot;218&quot;</span>, <span class="st">&quot;526&quot;</span>, <span class="st">&quot;F504&quot;</span>, <span class="st">&quot;F518&quot;</span>, <span class="st">&quot;F534&quot;</span>, <span class="st">&quot;F546&quot;</span>, <span class="st">&quot;F547&quot;</span>)</span>
-<span id="cb14-2"><a href="discussion.html#cb14-2"></a></span>
-<span id="cb14-3"><a href="discussion.html#cb14-3"></a>rdf &lt;-<span class="st"> </span>ridership <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb14-4"><a href="discussion.html#cb14-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb14-5"><a href="discussion.html#cb14-5"></a>    <span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">as_date</span>(<span class="kw">str_c</span>(Year, Month, <span class="st">&quot;01&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)),</span>
-<span id="cb14-6"><a href="discussion.html#cb14-6"></a>    <span class="dt">area =</span> <span class="kw">ifelse</span>(LineAbbr <span class="op">%in%</span><span class="st"> </span>lines, <span class="st">&quot;area&quot;</span>, <span class="st">&quot;other&quot;</span>)</span>
-<span id="cb14-7"><a href="discussion.html#cb14-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb14-8"><a href="discussion.html#cb14-8"></a><span class="st">  </span><span class="kw">filter</span>(ServiceType <span class="op">==</span><span class="st"> &quot;WKD&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-9"><a href="discussion.html#cb14-9"></a><span class="st">  </span><span class="kw">filter</span>(Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>, <span class="st">&quot;January&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb14-10"><a href="discussion.html#cb14-10"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb14-11"><a href="discussion.html#cb14-11"></a>    <span class="dt">period =</span> <span class="kw">ifelse</span>( Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>),  Year <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, Year )</span>
-<span id="cb14-12"><a href="discussion.html#cb14-12"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb14-13"><a href="discussion.html#cb14-13"></a><span class="st">  </span><span class="kw">filter</span>(period <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-14"><a href="discussion.html#cb14-14"></a><span class="st">  </span><span class="kw">group_by</span>(period, area, LineAbbr) <span class="op">%&gt;%</span></span>
-<span id="cb14-15"><a href="discussion.html#cb14-15"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AvgBoardings =</span> <span class="kw">mean</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
-<span id="cb14-16"><a href="discussion.html#cb14-16"></a><span class="st">  </span><span class="kw">group_by</span>(area, period) <span class="op">%&gt;%</span></span>
-<span id="cb14-17"><a href="discussion.html#cb14-17"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">br =</span> <span class="kw">sum</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
-<span id="cb14-18"><a href="discussion.html#cb14-18"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ch =</span> (br <span class="op">-</span><span class="st"> </span><span class="kw">lag</span>(br)) <span class="op">/</span><span class="st"> </span><span class="kw">lag</span>(br) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) </span>
-<span id="cb14-19"><a href="discussion.html#cb14-19"></a></span>
-<span id="cb14-20"><a href="discussion.html#cb14-20"></a>uta_ridership &lt;-<span class="st"> </span>rdf <span class="op">%&gt;%</span></span>
-<span id="cb14-21"><a href="discussion.html#cb14-21"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> count, <span class="dt">value =</span> value, <span class="op">-</span>area, <span class="op">-</span>period) <span class="op">%&gt;%</span></span>
-<span id="cb14-22"><a href="discussion.html#cb14-22"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;key&quot;</span>, area, count) <span class="op">%&gt;%</span></span>
-<span id="cb14-23"><a href="discussion.html#cb14-23"></a><span class="st">    </span><span class="kw">spread</span>(key, value) <span class="op">%&gt;%</span></span>
-<span id="cb14-24"><a href="discussion.html#cb14-24"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">period =</span>  <span class="kw">c</span>(<span class="st">&quot;2017-2018&quot;</span>, <span class="st">&quot;2018-2019&quot;</span>, <span class="st">&quot;2019-2020&quot;</span>))</span>
-<span id="cb14-25"><a href="discussion.html#cb14-25"></a></span>
-<span id="cb14-26"><a href="discussion.html#cb14-26"></a><span class="cf">if</span>(knitr<span class="op">::</span><span class="kw">is_latex_output</span>()){</span>
-<span id="cb14-27"><a href="discussion.html#cb14-27"></a>    <span class="kw">kable</span>(uta_ridership,</span>
-<span id="cb14-28"><a href="discussion.html#cb14-28"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
-<span id="cb14-29"><a href="discussion.html#cb14-29"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>,</span>
-<span id="cb14-30"><a href="discussion.html#cb14-30"></a>          <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;latex&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-31"><a href="discussion.html#cb14-31"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</span>
-<span id="cb14-32"><a href="discussion.html#cb14-32"></a>} <span class="cf">else</span> {</span>
-<span id="cb14-33"><a href="discussion.html#cb14-33"></a>    <span class="kw">kable</span>(uta_ridership,</span>
-<span id="cb14-34"><a href="discussion.html#cb14-34"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
-<span id="cb14-35"><a href="discussion.html#cb14-35"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-36"><a href="discussion.html#cb14-36"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb14-37"><a href="discussion.html#cb14-37"></a><span class="st">    </span><span class="kw">kable_styling</span>() </span>
-<span id="cb14-38"><a href="discussion.html#cb14-38"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="discussion.html#cb19-1"></a>lines &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F514&quot;</span>, <span class="st">&quot;218&quot;</span>, <span class="st">&quot;526&quot;</span>, <span class="st">&quot;F504&quot;</span>, <span class="st">&quot;F518&quot;</span>, <span class="st">&quot;F534&quot;</span>, <span class="st">&quot;F546&quot;</span>, <span class="st">&quot;F547&quot;</span>)</span>
+<span id="cb19-2"><a href="discussion.html#cb19-2"></a></span>
+<span id="cb19-3"><a href="discussion.html#cb19-3"></a>rdf &lt;-<span class="st"> </span>ridership <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-4"><a href="discussion.html#cb19-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb19-5"><a href="discussion.html#cb19-5"></a>    <span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">as_date</span>(<span class="kw">str_c</span>(Year, Month, <span class="st">&quot;01&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)),</span>
+<span id="cb19-6"><a href="discussion.html#cb19-6"></a>    <span class="dt">area =</span> <span class="kw">ifelse</span>(LineAbbr <span class="op">%in%</span><span class="st"> </span>lines, <span class="st">&quot;area&quot;</span>, <span class="st">&quot;other&quot;</span>)</span>
+<span id="cb19-7"><a href="discussion.html#cb19-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb19-8"><a href="discussion.html#cb19-8"></a><span class="st">  </span><span class="kw">filter</span>(ServiceType <span class="op">==</span><span class="st"> &quot;WKD&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb19-9"><a href="discussion.html#cb19-9"></a><span class="st">  </span><span class="kw">filter</span>(Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>, <span class="st">&quot;January&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb19-10"><a href="discussion.html#cb19-10"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb19-11"><a href="discussion.html#cb19-11"></a>    <span class="dt">period =</span> <span class="kw">ifelse</span>( Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>),  Year <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, Year )</span>
+<span id="cb19-12"><a href="discussion.html#cb19-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb19-13"><a href="discussion.html#cb19-13"></a><span class="st">  </span><span class="kw">filter</span>(period <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
+<span id="cb19-14"><a href="discussion.html#cb19-14"></a><span class="st">  </span><span class="kw">group_by</span>(period, area, LineAbbr) <span class="op">%&gt;%</span></span>
+<span id="cb19-15"><a href="discussion.html#cb19-15"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AvgBoardings =</span> <span class="kw">mean</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
+<span id="cb19-16"><a href="discussion.html#cb19-16"></a><span class="st">  </span><span class="kw">group_by</span>(area, period) <span class="op">%&gt;%</span></span>
+<span id="cb19-17"><a href="discussion.html#cb19-17"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">br =</span> <span class="kw">sum</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
+<span id="cb19-18"><a href="discussion.html#cb19-18"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ch =</span> (br <span class="op">-</span><span class="st"> </span><span class="kw">lag</span>(br)) <span class="op">/</span><span class="st"> </span><span class="kw">lag</span>(br) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) </span>
+<span id="cb19-19"><a href="discussion.html#cb19-19"></a></span>
+<span id="cb19-20"><a href="discussion.html#cb19-20"></a>uta_ridership &lt;-<span class="st"> </span>rdf <span class="op">%&gt;%</span></span>
+<span id="cb19-21"><a href="discussion.html#cb19-21"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> count, <span class="dt">value =</span> value, <span class="op">-</span>area, <span class="op">-</span>period) <span class="op">%&gt;%</span></span>
+<span id="cb19-22"><a href="discussion.html#cb19-22"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;key&quot;</span>, area, count) <span class="op">%&gt;%</span></span>
+<span id="cb19-23"><a href="discussion.html#cb19-23"></a><span class="st">    </span><span class="kw">spread</span>(key, value) <span class="op">%&gt;%</span></span>
+<span id="cb19-24"><a href="discussion.html#cb19-24"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">period =</span>  <span class="kw">c</span>(<span class="st">&quot;2017-2018&quot;</span>, <span class="st">&quot;2018-2019&quot;</span>, <span class="st">&quot;2019-2020&quot;</span>))</span>
+<span id="cb19-25"><a href="discussion.html#cb19-25"></a></span>
+<span id="cb19-26"><a href="discussion.html#cb19-26"></a><span class="cf">if</span>(knitr<span class="op">::</span><span class="kw">is_latex_output</span>()){</span>
+<span id="cb19-27"><a href="discussion.html#cb19-27"></a>    <span class="kw">kable</span>(uta_ridership,</span>
+<span id="cb19-28"><a href="discussion.html#cb19-28"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
+<span id="cb19-29"><a href="discussion.html#cb19-29"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>,</span>
+<span id="cb19-30"><a href="discussion.html#cb19-30"></a>          <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;latex&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb19-31"><a href="discussion.html#cb19-31"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</span>
+<span id="cb19-32"><a href="discussion.html#cb19-32"></a>} <span class="cf">else</span> {</span>
+<span id="cb19-33"><a href="discussion.html#cb19-33"></a>    <span class="kw">kable</span>(uta_ridership,</span>
+<span id="cb19-34"><a href="discussion.html#cb19-34"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
+<span id="cb19-35"><a href="discussion.html#cb19-35"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb19-36"><a href="discussion.html#cb19-36"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb19-37"><a href="discussion.html#cb19-37"></a><span class="st">    </span><span class="kw">kable_styling</span>() </span>
+<span id="cb19-38"><a href="discussion.html#cb19-38"></a>}</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:uta-ridership">Table 4.1: </span>Average Weekday Ridership, November through January

@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-12-23" />
+<meta name="date" content="2021-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="study-methodology.html"><a href="study-methodology.html#system-description"><i class="fa fa-check"></i><b>2.1</b> System Description</a></li>
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.0.1</b> Multiple Imputation</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
 <li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
 </ul></li>
@@ -190,19 +192,20 @@ Methodology section, the decision to include income level in the survey was made
 between the tranches and therefore the “Before” tranche contains no income
 information. The number of respondents who declined to answer the other
 demographic questions is also relatively high.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="results.html#cb7-1"></a><span class="kw">datasummary_balance</span>(</span>
-<span id="cb7-2"><a href="results.html#cb7-2"></a>    <span class="op">~</span><span class="st"> </span>tranche, </span>
-<span id="cb7-3"><a href="results.html#cb7-3"></a>    survey_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-4"><a href="results.html#cb7-4"></a><span class="st">        </span><span class="kw">transmute</span>(</span>
-<span id="cb7-5"><a href="results.html#cb7-5"></a>            tranche, </span>
-<span id="cb7-6"><a href="results.html#cb7-6"></a>            <span class="dt">Smartphone =</span> <span class="kw">fct_explicit_na</span>(phone),</span>
-<span id="cb7-7"><a href="results.html#cb7-7"></a>            <span class="st">`</span><span class="dt">Household Size</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(size_cat),</span>
-<span id="cb7-8"><a href="results.html#cb7-8"></a>            <span class="dt">Age =</span> <span class="kw">fct_explicit_na</span>(age),</span>
-<span id="cb7-9"><a href="results.html#cb7-9"></a>            <span class="st">`</span><span class="dt">Auto availability</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(autos),</span>
-<span id="cb7-10"><a href="results.html#cb7-10"></a>            <span class="dt">Income =</span> <span class="kw">fct_explicit_na</span>(income)</span>
-<span id="cb7-11"><a href="results.html#cb7-11"></a>        ),</span>
-<span id="cb7-12"><a href="results.html#cb7-12"></a>    <span class="dt">title =</span> <span class="st">&quot;Demographic Characteristics of Survey Respondents&quot;</span></span>
-<span id="cb7-13"><a href="results.html#cb7-13"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="results.html#cb6-1"></a><span class="kw">datasummary_balance</span>(</span>
+<span id="cb6-2"><a href="results.html#cb6-2"></a>    <span class="op">~</span><span class="st"> </span>tranche, </span>
+<span id="cb6-3"><a href="results.html#cb6-3"></a>    survey_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-4"><a href="results.html#cb6-4"></a><span class="st">        </span><span class="kw">transmute</span>(</span>
+<span id="cb6-5"><a href="results.html#cb6-5"></a>            tranche, </span>
+<span id="cb6-6"><a href="results.html#cb6-6"></a>            <span class="dt">Smartphone =</span> <span class="kw">fct_explicit_na</span>(phone),</span>
+<span id="cb6-7"><a href="results.html#cb6-7"></a>            <span class="st">`</span><span class="dt">Household size</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(size_cat),</span>
+<span id="cb6-8"><a href="results.html#cb6-8"></a>            <span class="dt">Age =</span> <span class="kw">fct_explicit_na</span>(age),</span>
+<span id="cb6-9"><a href="results.html#cb6-9"></a>            <span class="st">`</span><span class="dt">Auto availability</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(autos),</span>
+<span id="cb6-10"><a href="results.html#cb6-10"></a>            <span class="dt">Income =</span> <span class="kw">fct_explicit_na</span>(income),</span>
+<span id="cb6-11"><a href="results.html#cb6-11"></a>            <span class="st">`</span><span class="dt">Weekly transit use</span><span class="st">`</span> =<span class="st"> </span><span class="kw">fct_explicit_na</span>(frequency_cat)</span>
+<span id="cb6-12"><a href="results.html#cb6-12"></a>        ),</span>
+<span id="cb6-13"><a href="results.html#cb6-13"></a>    <span class="dt">title =</span> <span class="st">&quot;Demographic Characteristics of Survey Respondents&quot;</span></span>
+<span id="cb6-14"><a href="results.html#cb6-14"></a>)</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:survey-respondents">Table 3.1: </span>Demographic Characteristics of Survey Respondents
@@ -302,7 +305,7 @@ Yes
 </tr>
 <tr>
 <td style="text-align:left;">
-Household Size
+Household size
 </td>
 <td style="text-align:left;">
 1
@@ -703,6 +706,64 @@ Over $100,000
 25.4
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Weekly transit use
+</td>
+<td style="text-align:left;">
+Five days or more
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+One day or less frequently
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+6.2
+</td>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+10.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Two to four days
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:left;">
+16.9
+</td>
+<td style="text-align:left;">
+37
+</td>
+<td style="text-align:left;">
+28.5
+</td>
+</tr>
 </tbody>
 </table>
 <p>A primary motivation for the survey was to understand awareness of the
@@ -743,14 +804,14 @@ at all. Additionally, the text responses to the access mode question in the
 “before” tranche revealed a number of individuals who used a TNC to access the
 system. This supplies anecdotal evidence that microtransit is competing more
 against commercial TNC offerings than against conventional transit services.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="results.html#cb8-1"></a>survey_data <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="results.html#cb8-2"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(likeliness)) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="results.html#cb8-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> likeliness, <span class="dt">fill =</span> access)) <span class="op">+</span></span>
-<span id="cb8-4"><a href="results.html#cb8-4"></a><span class="st">    </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>tranche) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb8-5"><a href="results.html#cb8-5"></a><span class="st">    </span><span class="kw">scale_fill_discrete</span>(<span class="st">&quot;Access Mode&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb8-6"><a href="results.html#cb8-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;How likely are you to use UTA On Demand?&quot;</span>) <span class="op">+</span></span>
-<span id="cb8-7"><a href="results.html#cb8-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Number of Responses&quot;</span>) <span class="op">+</span></span>
-<span id="cb8-8"><a href="results.html#cb8-8"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="results.html#cb7-1"></a>survey_data <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="results.html#cb7-2"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(likeliness)) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="results.html#cb7-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> likeliness, <span class="dt">fill =</span> access)) <span class="op">+</span></span>
+<span id="cb7-4"><a href="results.html#cb7-4"></a><span class="st">    </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>tranche) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-5"><a href="results.html#cb7-5"></a><span class="st">    </span><span class="kw">scale_fill_discrete</span>(<span class="st">&quot;Access Mode&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-6"><a href="results.html#cb7-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;How likely are you to use UTA On Demand?&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-7"><a href="results.html#cb7-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Number of Responses&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-8"><a href="results.html#cb7-8"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span id="fig:likelihood"></span>
 <img src="via_riders_files/figure-html/likelihood-1.png" alt="Reported likelihood of using microtransit by transit access mode." width="80%" />
 <p class="caption">
@@ -774,53 +835,55 @@ given critical threshold indicates that the null hypothesis has a low
 probability and should be rejected. A conventional value of the critical value
 is <span class="math inline">\(\alpha=0.05\)</span>, though given the small sample sizes in this survey other
 critical values may be suggestive of the need for future evaluation.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="results.html#cb9-1"></a>expected.table &lt;-<span class="st"> </span><span class="cf">function</span>(tab){</span>
-<span id="cb9-2"><a href="results.html#cb9-2"></a>  pt &lt;-<span class="st"> </span><span class="kw">prop.table</span>(tab)</span>
-<span id="cb9-3"><a href="results.html#cb9-3"></a>  </span>
-<span id="cb9-4"><a href="results.html#cb9-4"></a>  m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow =</span> <span class="kw">nrow</span>(pt), <span class="dt">ncol =</span> <span class="kw">ncol</span>(pt))</span>
-<span id="cb9-5"><a href="results.html#cb9-5"></a>  </span>
-<span id="cb9-6"><a href="results.html#cb9-6"></a>  m1 &lt;-<span class="st"> </span><span class="kw">sweep</span>(m, <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="kw">rowSums</span>(pt), <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</span>
-<span id="cb9-7"><a href="results.html#cb9-7"></a>  m2 &lt;-<span class="st"> </span><span class="kw">sweep</span>(m1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="kw">colSums</span>(pt), <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</span>
-<span id="cb9-8"><a href="results.html#cb9-8"></a>  out &lt;-<span class="st"> </span>m2 <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(tab)</span>
-<span id="cb9-9"><a href="results.html#cb9-9"></a>  <span class="kw">rownames</span>(out) &lt;-<span class="st"> </span><span class="kw">rownames</span>(tab)</span>
-<span id="cb9-10"><a href="results.html#cb9-10"></a>  <span class="kw">colnames</span>(out) &lt;-<span class="st"> </span><span class="kw">colnames</span>(tab)</span>
-<span id="cb9-11"><a href="results.html#cb9-11"></a>  out</span>
-<span id="cb9-12"><a href="results.html#cb9-12"></a>}</span>
-<span id="cb9-13"><a href="results.html#cb9-13"></a></span>
-<span id="cb9-14"><a href="results.html#cb9-14"></a>fisher_tests &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb9-15"><a href="results.html#cb9-15"></a>  <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&quot;Smartphone&quot;</span>, <span class="st">&quot;Household Size&quot;</span>, <span class="st">&quot;Auto Availablity&quot;</span>, <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Age&quot;</span>),</span>
-<span id="cb9-16"><a href="results.html#cb9-16"></a>  <span class="dt">sl_table =</span> <span class="kw">list</span>(</span>
-<span id="cb9-17"><a href="results.html#cb9-17"></a>    <span class="st">&quot;smartphone&quot;</span> =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>phone,   survey_data<span class="op">$</span>likeliness_f),</span>
-<span id="cb9-18"><a href="results.html#cb9-18"></a>    <span class="st">&quot;size&quot;</span>       =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>size_cat,survey_data<span class="op">$</span>likeliness_f),</span>
-<span id="cb9-19"><a href="results.html#cb9-19"></a>    <span class="st">&quot;auto&quot;</span>       =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>autos,   survey_data<span class="op">$</span>likeliness_f),</span>
-<span id="cb9-20"><a href="results.html#cb9-20"></a>    <span class="st">&quot;income&quot;</span>     =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>income,  survey_data<span class="op">$</span>likeliness_f),</span>
-<span id="cb9-21"><a href="results.html#cb9-21"></a>    <span class="st">&quot;age&quot;</span>        =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>age,     survey_data<span class="op">$</span>likeliness_f)</span>
-<span id="cb9-22"><a href="results.html#cb9-22"></a>  )</span>
-<span id="cb9-23"><a href="results.html#cb9-23"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb9-24"><a href="results.html#cb9-24"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb9-25"><a href="results.html#cb9-25"></a>    <span class="dt">prop =</span> <span class="kw">map</span>(sl_table, prop.table),</span>
-<span id="cb9-26"><a href="results.html#cb9-26"></a>    <span class="dt">expected =</span> <span class="kw">map</span>(sl_table, expected.table),</span>
-<span id="cb9-27"><a href="results.html#cb9-27"></a>    <span class="dt">diff =</span> <span class="kw">map2</span>(sl_table, expected, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>),</span>
-<span id="cb9-28"><a href="results.html#cb9-28"></a>    <span class="dt">fisher =</span> <span class="kw">map</span>(sl_table, fisher.test),</span>
-<span id="cb9-29"><a href="results.html#cb9-29"></a>    <span class="dt">results =</span> <span class="kw">map</span>(fisher, glance),</span>
-<span id="cb9-30"><a href="results.html#cb9-30"></a>    <span class="dt">n =</span> <span class="kw">map_int</span>(sl_table, nrow)</span>
-<span id="cb9-31"><a href="results.html#cb9-31"></a>  )  <span class="op">%&gt;%</span></span>
-<span id="cb9-32"><a href="results.html#cb9-32"></a><span class="st">  </span><span class="kw">unnest</span>(<span class="dt">cols =</span> results)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="results.html#cb10-1"></a>group_names &lt;-<span class="st">  </span><span class="kw">str_c</span>(fisher_tests<span class="op">$</span>variable, <span class="st">&quot;; Fisher p-value: &quot;</span>, </span>
-<span id="cb10-2"><a href="results.html#cb10-2"></a>                      <span class="kw">round</span>(fisher_tests<span class="op">$</span>p.value, <span class="dv">4</span>))</span>
-<span id="cb10-3"><a href="results.html#cb10-3"></a></span>
-<span id="cb10-4"><a href="results.html#cb10-4"></a>fisher_table &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, fisher_tests<span class="op">$</span>sl_table) <span class="op">%&gt;%</span></span>
-<span id="cb10-5"><a href="results.html#cb10-5"></a><span class="st">    </span><span class="kw">as_tibble</span>(<span class="dt">rownames =</span> <span class="ot">NA</span>)  <span class="op">%&gt;%</span></span>
-<span id="cb10-6"><a href="results.html#cb10-6"></a><span class="st">    </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;Demographic&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb10-7"><a href="results.html#cb10-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="kw">rep</span>(group_names, <span class="dt">times =</span> fisher_tests<span class="op">$</span>n)) <span class="op">%&gt;%</span></span>
-<span id="cb10-8"><a href="results.html#cb10-8"></a><span class="st">    </span><span class="kw">relocate</span>(group) </span>
-<span id="cb10-9"><a href="results.html#cb10-9"></a></span>
-<span id="cb10-10"><a href="results.html#cb10-10"></a></span>
-<span id="cb10-11"><a href="results.html#cb10-11"></a><span class="kw">kbl</span>(fisher_table, <span class="dt">caption =</span> <span class="st">&quot;Distribution of Rider Characteristics by Reported Likeliness&quot;</span>,</span>
-<span id="cb10-12"><a href="results.html#cb10-12"></a>    <span class="dt">booktabs =</span> T) <span class="op">%&gt;%</span></span>
-<span id="cb10-13"><a href="results.html#cb10-13"></a><span class="st">    </span><span class="kw">kable_styling</span>()  <span class="op">%&gt;%</span></span>
-<span id="cb10-14"><a href="results.html#cb10-14"></a><span class="st">    </span><span class="kw">collapse_rows</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">row_group_label_position =</span> <span class="st">&quot;stack&quot;</span>, <span class="dt">latex_hline =</span> <span class="st">&#39;none&#39;</span>,</span>
-<span id="cb10-15"><a href="results.html#cb10-15"></a>                  <span class="dt">row_group_label_fonts =</span> <span class="kw">list</span>(<span class="dt">italic =</span> <span class="ot">TRUE</span>, <span class="dt">bold =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="results.html#cb8-1"></a>expected.table &lt;-<span class="st"> </span><span class="cf">function</span>(tab){</span>
+<span id="cb8-2"><a href="results.html#cb8-2"></a>  pt &lt;-<span class="st"> </span><span class="kw">prop.table</span>(tab)</span>
+<span id="cb8-3"><a href="results.html#cb8-3"></a>  </span>
+<span id="cb8-4"><a href="results.html#cb8-4"></a>  m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow =</span> <span class="kw">nrow</span>(pt), <span class="dt">ncol =</span> <span class="kw">ncol</span>(pt))</span>
+<span id="cb8-5"><a href="results.html#cb8-5"></a>  </span>
+<span id="cb8-6"><a href="results.html#cb8-6"></a>  m1 &lt;-<span class="st"> </span><span class="kw">sweep</span>(m, <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="kw">rowSums</span>(pt), <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</span>
+<span id="cb8-7"><a href="results.html#cb8-7"></a>  m2 &lt;-<span class="st"> </span><span class="kw">sweep</span>(m1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="kw">colSums</span>(pt), <span class="st">`</span><span class="dt">*</span><span class="st">`</span>)</span>
+<span id="cb8-8"><a href="results.html#cb8-8"></a>  out &lt;-<span class="st"> </span>m2 <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(tab)</span>
+<span id="cb8-9"><a href="results.html#cb8-9"></a>  <span class="kw">rownames</span>(out) &lt;-<span class="st"> </span><span class="kw">rownames</span>(tab)</span>
+<span id="cb8-10"><a href="results.html#cb8-10"></a>  <span class="kw">colnames</span>(out) &lt;-<span class="st"> </span><span class="kw">colnames</span>(tab)</span>
+<span id="cb8-11"><a href="results.html#cb8-11"></a>  out</span>
+<span id="cb8-12"><a href="results.html#cb8-12"></a>}</span>
+<span id="cb8-13"><a href="results.html#cb8-13"></a></span>
+<span id="cb8-14"><a href="results.html#cb8-14"></a>fisher_tests &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb8-15"><a href="results.html#cb8-15"></a>  <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&quot;Smartphone&quot;</span>, <span class="st">&quot;Household size&quot;</span>, <span class="st">&quot;Auto availablity&quot;</span>, <span class="st">&quot;Income&quot;</span>, </span>
+<span id="cb8-16"><a href="results.html#cb8-16"></a>               <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Weekly transit use&quot;</span>),</span>
+<span id="cb8-17"><a href="results.html#cb8-17"></a>  <span class="dt">sl_table =</span> <span class="kw">list</span>(</span>
+<span id="cb8-18"><a href="results.html#cb8-18"></a>    <span class="st">&quot;smartphone&quot;</span> =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>phone,   survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb8-19"><a href="results.html#cb8-19"></a>    <span class="st">&quot;size&quot;</span>       =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>size_cat,survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb8-20"><a href="results.html#cb8-20"></a>    <span class="st">&quot;auto&quot;</span>       =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>autos,   survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb8-21"><a href="results.html#cb8-21"></a>    <span class="st">&quot;income&quot;</span>     =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>income,  survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb8-22"><a href="results.html#cb8-22"></a>    <span class="st">&quot;age&quot;</span>        =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>age,     survey_data<span class="op">$</span>likeliness_f),</span>
+<span id="cb8-23"><a href="results.html#cb8-23"></a>    <span class="st">&quot;frequency&quot;</span>  =<span class="st"> </span><span class="kw">table</span>(survey_data<span class="op">$</span>frequency_cat, survey_data<span class="op">$</span>likeliness_f)</span>
+<span id="cb8-24"><a href="results.html#cb8-24"></a>  )</span>
+<span id="cb8-25"><a href="results.html#cb8-25"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb8-26"><a href="results.html#cb8-26"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb8-27"><a href="results.html#cb8-27"></a>    <span class="dt">prop =</span> <span class="kw">map</span>(sl_table, prop.table),</span>
+<span id="cb8-28"><a href="results.html#cb8-28"></a>    <span class="dt">expected =</span> <span class="kw">map</span>(sl_table, expected.table),</span>
+<span id="cb8-29"><a href="results.html#cb8-29"></a>    <span class="dt">diff =</span> <span class="kw">map2</span>(sl_table, expected, <span class="st">`</span><span class="dt">-</span><span class="st">`</span>),</span>
+<span id="cb8-30"><a href="results.html#cb8-30"></a>    <span class="dt">fisher =</span> <span class="kw">map</span>(sl_table, fisher.test),</span>
+<span id="cb8-31"><a href="results.html#cb8-31"></a>    <span class="dt">results =</span> <span class="kw">map</span>(fisher, glance),</span>
+<span id="cb8-32"><a href="results.html#cb8-32"></a>    <span class="dt">n =</span> <span class="kw">map_int</span>(sl_table, nrow)</span>
+<span id="cb8-33"><a href="results.html#cb8-33"></a>  )  <span class="op">%&gt;%</span></span>
+<span id="cb8-34"><a href="results.html#cb8-34"></a><span class="st">  </span><span class="kw">unnest</span>(<span class="dt">cols =</span> results)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="results.html#cb9-1"></a>group_names &lt;-<span class="st">  </span><span class="kw">str_c</span>(fisher_tests<span class="op">$</span>variable, <span class="st">&quot;; Fisher p-value: &quot;</span>, </span>
+<span id="cb9-2"><a href="results.html#cb9-2"></a>                      <span class="kw">round</span>(fisher_tests<span class="op">$</span>p.value, <span class="dv">4</span>))</span>
+<span id="cb9-3"><a href="results.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="results.html#cb9-4"></a>fisher_table &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, fisher_tests<span class="op">$</span>sl_table) <span class="op">%&gt;%</span></span>
+<span id="cb9-5"><a href="results.html#cb9-5"></a><span class="st">    </span><span class="kw">as_tibble</span>(<span class="dt">rownames =</span> <span class="ot">NA</span>)  <span class="op">%&gt;%</span></span>
+<span id="cb9-6"><a href="results.html#cb9-6"></a><span class="st">    </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;Demographic&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb9-7"><a href="results.html#cb9-7"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="kw">rep</span>(group_names, <span class="dt">times =</span> fisher_tests<span class="op">$</span>n)) <span class="op">%&gt;%</span></span>
+<span id="cb9-8"><a href="results.html#cb9-8"></a><span class="st">    </span><span class="kw">relocate</span>(group) </span>
+<span id="cb9-9"><a href="results.html#cb9-9"></a></span>
+<span id="cb9-10"><a href="results.html#cb9-10"></a></span>
+<span id="cb9-11"><a href="results.html#cb9-11"></a><span class="kw">kbl</span>(fisher_table, <span class="dt">caption =</span> <span class="st">&quot;Distribution of Rider Characteristics by Reported Likeliness&quot;</span>,</span>
+<span id="cb9-12"><a href="results.html#cb9-12"></a>    <span class="dt">booktabs =</span> T) <span class="op">%&gt;%</span></span>
+<span id="cb9-13"><a href="results.html#cb9-13"></a><span class="st">    </span><span class="kw">kable_styling</span>()  <span class="op">%&gt;%</span></span>
+<span id="cb9-14"><a href="results.html#cb9-14"></a><span class="st">    </span><span class="kw">collapse_rows</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">row_group_label_position =</span> <span class="st">&quot;stack&quot;</span>, <span class="dt">latex_hline =</span> <span class="st">&#39;none&#39;</span>,</span>
+<span id="cb9-15"><a href="results.html#cb9-15"></a>                  <span class="dt">row_group_label_fonts =</span> <span class="kw">list</span>(<span class="dt">italic =</span> <span class="ot">TRUE</span>, <span class="dt">bold =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:fisher-table">Table 3.2: </span>Distribution of Rider Characteristics by Reported Likeliness
@@ -1158,9 +1221,9 @@ unlikely one. Finally, individuals between 25 and 44 are – perhaps surprisingl
 – substantially more likely to express a negative opinion than a neutral one;
 these individuals are also modestly more likely than expected to express
 positive willingness to use transit.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="results.html#cb11-1"></a><span class="kw">kbl</span>(fisher_tests<span class="op">$</span>diff[[<span class="dv">5</span>]], <span class="dt">digits =</span> <span class="dv">4</span>, <span class="dt">booktabs =</span> T,</span>
-<span id="cb11-2"><a href="results.html#cb11-2"></a>    <span class="dt">caption =</span> <span class="st">&quot;Difference of observed and expected frequencies for age and likeliness&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="results.html#cb11-3"></a><span class="st">    </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="results.html#cb10-1"></a><span class="kw">kbl</span>(fisher_tests<span class="op">$</span>diff[[<span class="dv">5</span>]], <span class="dt">digits =</span> <span class="dv">4</span>, <span class="dt">booktabs =</span> T,</span>
+<span id="cb10-2"><a href="results.html#cb10-2"></a>    <span class="dt">caption =</span> <span class="st">&quot;Difference of observed and expected frequencies for age and likeliness&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-3"><a href="results.html#cb10-3"></a><span class="st">    </span><span class="kw">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:age-difference">Table 3.3: </span>Difference of observed and expected frequencies for age and likeliness
@@ -1253,7 +1316,179 @@ Over 65
 </tr>
 </tbody>
 </table>
+<div id="multiple-imputation" class="section level3">
+<h3><span class="header-section-number">3.0.1</span> Multiple Imputation</h3>
+<p>The attitudinal survey analysis presented by <span class="citation">König and Grippenkoven (<a href="#ref-KONIG2020954" role="doc-biblioref">2020</a>)</span> included an
+unreported fraction of incomplete records that were filled via hot-deck
+imputation. The applicability of missing variable imputation to the present situation
+is potentially inappropriate, given both the degree of missingness in some
+variables as well as the potential for these variables to not be missing at
+random. Nevertheless, the suggestive results on the age and household size
+variable indicates that such an analysis might be instructive, if not conclusive.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="results.html#cb11-1"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb11-2"><a href="results.html#cb11-2"></a>n_imputations &lt;-<span class="st"> </span><span class="dv">20</span></span>
+<span id="cb11-3"><a href="results.html#cb11-3"></a></span>
+<span id="cb11-4"><a href="results.html#cb11-4"></a>sd_mice &lt;-<span class="st"> </span>survey_data <span class="op">%&gt;%</span></span>
+<span id="cb11-5"><a href="results.html#cb11-5"></a><span class="st">  </span><span class="kw">transmute</span>(tranche, likeliness, likeliness_f,</span>
+<span id="cb11-6"><a href="results.html#cb11-6"></a>            <span class="dt">autos =</span> <span class="kw">as_factor</span>(autos), age, size_cat, income, frequency_cat) <span class="op">%&gt;%</span></span>
+<span id="cb11-7"><a href="results.html#cb11-7"></a><span class="st">  </span><span class="kw">mice</span>(<span class="dt">m =</span> n_imputations, <span class="dt">method =</span> <span class="st">&quot;cart&quot;</span>, <span class="dt">printFlag =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning: Number of logged events: 201</code></pre>
+<p>We generated 20 multiple imputed complete datasets with the following
+variables:</p>
+<ul>
+<li>Available autos
+<ul>
+<li>Age</li>
+<li>Household Size</li>
+<li>Income</li>
+<li>Frequency of Using UTA (as categories)</li>
+</ul></li>
+</ul>
+<p>The datasets were generated via chained equations using classification and
+regression tree methods encoded in the <code>mice</code> package for R <span class="citation">(<span class="citeproc-not-found" data-reference-id="mice"><strong>???</strong></span>; R Core Team <a href="#ref-R-base" role="doc-biblioref">2020</a>)</span>. We
+are primarily interested in exploring the validity of the results we had already
+that had been suggested with the incomplete dataset: specifically, the relationship
+between reported likeliness and age, household size, and frequency of using UTA.
+We computed the Fisher exact test of an independent relationship between these
+variables on each imputed dataset. The Fisher test does not have a test
+statistic and generates <span class="math inline">\(p\)</span>-values via simulation; we therefore pool the
+<span class="math inline">\(p\)</span>-values from the 20 tests using a methodology proposed by
+<span class="citation">Licht (<a href="#ref-LichtThesis" role="doc-biblioref">2010</a>)</span>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="results.html#cb13-1"></a><span class="co"># methods in Christine Licht&#39;s dissertation, coded by Stef Van Buuren:</span></span>
+<span id="cb13-2"><a href="results.html#cb13-2"></a><span class="co"># https://stats.stackexchange.com/a/73573/10026</span></span>
+<span id="cb13-3"><a href="results.html#cb13-3"></a>lichtrubin &lt;-<span class="st"> </span><span class="cf">function</span>(fit){</span>
+<span id="cb13-4"><a href="results.html#cb13-4"></a>    <span class="co">## pools the p-values of a one-sided test according to the Licht-Rubin method</span></span>
+<span id="cb13-5"><a href="results.html#cb13-5"></a>    <span class="co">## this method pools p-values in the z-score scale, and then transforms back </span></span>
+<span id="cb13-6"><a href="results.html#cb13-6"></a>    <span class="co">## the result to the 0-1 scale</span></span>
+<span id="cb13-7"><a href="results.html#cb13-7"></a>    <span class="co">## Licht C, Rubin DB (2011) unpublished</span></span>
+<span id="cb13-8"><a href="results.html#cb13-8"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.mira</span>(fit)) <span class="kw">stop</span>(<span class="st">&quot;Argument &#39;fit&#39; is not an object of class &#39;mira&#39;.&quot;</span>)</span>
+<span id="cb13-9"><a href="results.html#cb13-9"></a>    fitlist &lt;-<span class="st"> </span>fit<span class="op">$</span>analyses</span>
+<span id="cb13-10"><a href="results.html#cb13-10"></a>        <span class="cf">if</span> (<span class="op">!</span><span class="kw">inherits</span>(fitlist[[<span class="dv">1</span>]], <span class="st">&quot;htest&quot;</span>)) <span class="kw">stop</span>(<span class="st">&quot;Object fit$analyses[[1]] is not an object of class &#39;htest&#39;.&quot;</span>)</span>
+<span id="cb13-11"><a href="results.html#cb13-11"></a>    m &lt;-<span class="st"> </span><span class="kw">length</span>(fitlist)</span>
+<span id="cb13-12"><a href="results.html#cb13-12"></a>    p &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dt">length =</span> m)</span>
+<span id="cb13-13"><a href="results.html#cb13-13"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m) p[i] &lt;-<span class="st"> </span>fitlist[[i]]<span class="op">$</span>p.value</span>
+<span id="cb13-14"><a href="results.html#cb13-14"></a>    z &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p)  <span class="co"># transform to z-scale</span></span>
+<span id="cb13-15"><a href="results.html#cb13-15"></a>    num &lt;-<span class="st"> </span><span class="kw">mean</span>(z)</span>
+<span id="cb13-16"><a href="results.html#cb13-16"></a>    den &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">var</span>(z))</span>
+<span id="cb13-17"><a href="results.html#cb13-17"></a>    <span class="kw">pnorm</span>( num <span class="op">/</span><span class="st"> </span>den) <span class="co"># average and transform back</span></span>
+<span id="cb13-18"><a href="results.html#cb13-18"></a>}</span>
+<span id="cb13-19"><a href="results.html#cb13-19"></a></span>
+<span id="cb13-20"><a href="results.html#cb13-20"></a>size_fishers  &lt;-<span class="st"> </span><span class="kw">with</span>(sd_mice, <span class="kw">fisher.test</span>(<span class="kw">table</span>(size_cat, likeliness_f)))</span>
+<span id="cb13-21"><a href="results.html#cb13-21"></a>age_fishers   &lt;-<span class="st"> </span><span class="kw">with</span>(sd_mice, <span class="kw">fisher.test</span>(<span class="kw">table</span>(age, likeliness_f)))</span>
+<span id="cb13-22"><a href="results.html#cb13-22"></a>freq_fishers  &lt;-<span class="st"> </span><span class="kw">with</span>(sd_mice, <span class="kw">fisher.test</span>(<span class="kw">table</span>(frequency_cat, likeliness_f)))</span>
+<span id="cb13-23"><a href="results.html#cb13-23"></a></span>
+<span id="cb13-24"><a href="results.html#cb13-24"></a>lr_size &lt;-<span class="st"> </span><span class="kw">lichtrubin</span>(size_fishers)</span>
+<span id="cb13-25"><a href="results.html#cb13-25"></a>lr_age &lt;-<span class="st"> </span><span class="kw">lichtrubin</span>(age_fishers)</span>
+<span id="cb13-26"><a href="results.html#cb13-26"></a>lr_freq &lt;-<span class="st"> </span><span class="kw">lichtrubin</span>(freq_fishers)</span></code></pre></div>
+<p>The pooled <span class="math inline">\(p\)</span>-values obtained through the multiply imputed data sets are give
+in Table <a href="results.html#tab:mi-fishers-table">3.4</a> alongside the original, non-imputed
+<span class="math inline">\(p\)</span>-values. In the imputed data, there appears to be a clearer relationship
+between likeliness and household size, sufficient to reject the null hypothesis
+of independence at a standard significance level. The relationship between age
+and likeliness is weakened, but still would be considered significant. There
+remains no evidence that expressed likeliness to use microtransit is correlated
+in any way with the frequency of using transit.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="results.html#cb14-1"></a><span class="kw">tibble</span>(</span>
+<span id="cb14-2"><a href="results.html#cb14-2"></a>  <span class="st">&quot;Variable&quot;</span> =<span class="st"> </span>fisher_tests<span class="op">$</span>variable,</span>
+<span id="cb14-3"><a href="results.html#cb14-3"></a>  <span class="st">&quot;Original p&quot;</span> =<span class="st"> </span>fisher_tests<span class="op">$</span>p.value,</span>
+<span id="cb14-4"><a href="results.html#cb14-4"></a>  <span class="st">&quot;Imputed p&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, lr_size, <span class="ot">NA</span>, <span class="ot">NA</span>, lr_age, lr_freq)</span>
+<span id="cb14-5"><a href="results.html#cb14-5"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb14-6"><a href="results.html#cb14-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(<span class="st">`</span><span class="dt">Imputed p</span><span class="st">`</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb14-7"><a href="results.html#cb14-7"></a><span class="st">  </span><span class="kw">kbl</span>(<span class="dt">caption =</span> <span class="st">&quot;Fisher Exact p-value with Imputation&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb14-8"><a href="results.html#cb14-8"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:mi-fishers-table">Table 3.4: </span>Fisher Exact p-value with Imputation
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+Original p
+</th>
+<th style="text-align:right;">
+Imputed p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Household size
+</td>
+<td style="text-align:right;">
+0.2068077
+</td>
+<td style="text-align:right;">
+0.0374068
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Age
+</td>
+<td style="text-align:right;">
+0.0036430
+</td>
+<td style="text-align:right;">
+0.0131557
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Weekly transit use
+</td>
+<td style="text-align:right;">
+0.2937006
+</td>
+<td style="text-align:right;">
+0.3454466
+</td>
+</tr>
+</tbody>
+</table>
+<p>With a multiply imputed dataset, it is possible to evaluate some of the corss</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="results.html#cb15-1"></a>mi_models &lt;-<span class="st"> </span><span class="kw">with</span>(sd_mice, <span class="kw">lm</span>(likeliness <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>size_cat <span class="op">+</span><span class="st"> </span>frequency_cat))</span>
+<span id="cb15-2"><a href="results.html#cb15-2"></a><span class="kw">pool</span>(mi_models)</span></code></pre></div>
+<pre><code>## Class: mipo    m = 20 
+##                                       term  m   estimate       ubar          b
+## 1                              (Intercept) 20  2.6207494 0.94613873 0.51085450
+## 2                                 age18-24 20  0.8577208 0.76352112 0.24328810
+## 3                                 age25-44 20  0.6506297 0.70497800 0.21395920
+## 4                                 age45-64 20  0.6881297 0.78057856 0.11477719
+## 5                               ageOver 65 20 -0.9904314 2.87116549 0.61794943
+## 6                                size_cat2 20 -1.1601036 0.33279003 0.30872640
+## 7                                size_cat3 20 -0.9455102 0.38790440 0.56957952
+## 8                               size_cat4+ 20 -0.1072315 0.25505709 0.20513735
+## 9  frequency_catOne day or less frequently 20 -0.2829342 0.17242226 0.03402026
+## 10           frequency_catTwo to four days 20  0.2998938 0.09520344 0.02794277
+##            t dfcom       df       riv    lambda       fmi
+## 1  1.4825359   120 49.59470 0.5669330 0.3618106 0.3860788
+## 2  1.0189736   120 68.43190 0.3345716 0.2506959 0.2716754
+## 3  0.9296352   120 70.20364 0.3186726 0.2416616 0.2623802
+## 4  0.9010946   120 93.28013 0.1543932 0.1337441 0.1517385
+## 5  3.5200124   120 82.14404 0.2259873 0.1843309 0.2034906
+## 6  0.6569528   120 33.85570 0.9740758 0.4934338 0.5209230
+## 7  0.9859629   120 24.45210 1.5417678 0.6065730 0.6352358
+## 8  0.4704513   120 37.51271 0.8444942 0.4578459 0.4846106
+## 9  0.2081435   120 84.91699 0.2071732 0.1716185 0.1904631
+## 10 0.1245433   120 71.41510 0.3081812 0.2355799 0.2561247</code></pre>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-KONIG2020954">
+<p>König, Alexandra, and Jan Grippenkoven. 2020. “The Actual Demand Behind Demand-Responsive Transport: Assessing Behavioral Intention to Use Drt Systems in Two Rural Areas in Germany.” <em>Case Studies on Transport Policy</em> 8 (3): 954–62. <a href="https://doi.org/https://doi.org/10.1016/j.cstp.2020.04.011">https://doi.org/https://doi.org/10.1016/j.cstp.2020.04.011</a>.</p>
+</div>
+<div id="ref-LichtThesis">
+<p>Licht, Christine. 2010. “New Methods for Generating Significance Levels from Multiply-Imputed Data.” Ph.D. Dissertation, University of Bamberg. <a href="https://d-nb.info/101104966X/34">https://d-nb.info/101104966X/34</a>.</p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
 </div>
             </section>
 

@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-12-23" />
+<meta name="date" content="2021-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="study-methodology.html"><a href="study-methodology.html#system-description"><i class="fa fa-check"></i><b>2.1</b> System Description</a></li>
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.0.1</b> Multiple Imputation</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
 <li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
 </ul></li>
@@ -313,8 +315,13 @@ passenger trips per weekday with an average wait time of 11 minutes per trip
 <span id="cb2-93"><a href="study-methodology.html#cb2-93"></a>      <span class="kw">is.na</span>(frequency) <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="ot">NA</span>),</span>
 <span id="cb2-94"><a href="study-methodology.html#cb2-94"></a>      <span class="kw">substr</span>(frequency, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;L&quot;</span>) <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,</span>
 <span id="cb2-95"><a href="study-methodology.html#cb2-95"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">substr</span>(frequency, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb2-96"><a href="study-methodology.html#cb2-96"></a>    )</span>
-<span id="cb2-97"><a href="study-methodology.html#cb2-97"></a>  )</span></code></pre></div>
+<span id="cb2-96"><a href="study-methodology.html#cb2-96"></a>    ),</span>
+<span id="cb2-97"><a href="study-methodology.html#cb2-97"></a>    <span class="dt">frequency_cat =</span> <span class="kw">case_when</span>(</span>
+<span id="cb2-98"><a href="study-methodology.html#cb2-98"></a>      frequency_n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Five days or more&quot;</span>, </span>
+<span id="cb2-99"><a href="study-methodology.html#cb2-99"></a>      frequency_n <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;One day or less frequently&quot;</span>, </span>
+<span id="cb2-100"><a href="study-methodology.html#cb2-100"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Two to four days&quot;</span>, </span>
+<span id="cb2-101"><a href="study-methodology.html#cb2-101"></a>    )</span>
+<span id="cb2-102"><a href="study-methodology.html#cb2-102"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Problem with `mutate()` input `frequency_n`.
 ## ℹ NAs introduced by coercion
 ## ℹ Input `frequency_n` is `case_when(...)`.</code></pre>
@@ -333,152 +340,13 @@ addition to the Daybreak Parkway TRAX station and at designated microtransit
 pick-up points near the aforementioned rail stations; a limited number of
 interviews were also conducted on board the microtransit vehicles. Interviews
 were conducted throughout the day, but with a focus on the PM peak commute
-period. The number of interviews conducted during each time period for each
-tranche is shown in Table <a href="study-methodology.html#tab:survey-times">2.1</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="study-methodology.html#cb5-1"></a><span class="kw">datasummary_balance</span>(<span class="op">~</span><span class="st"> </span>tranche, survey_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(tranche, <span class="dt">Period =</span> period), </span>
-<span id="cb5-2"><a href="study-methodology.html#cb5-2"></a>                    <span class="dt">title =</span> <span class="st">&quot;Distribution of Surveys by Time of Day&quot;</span>)</span></code></pre></div>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:survey-times">Table 2.1: </span>Distribution of Surveys by Time of Day
-</caption>
-<thead>
-<tr>
-<th style="empty-cells: hide;border-bottom:hidden;" colspan="2">
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Before (N=55)
-</div>
-</th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-After (N=75)
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-N
-</th>
-<th style="text-align:left;">
-%
-</th>
-<th style="text-align:left;">
-N
-</th>
-<th style="text-align:left;">
-%
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Period
-</td>
-<td style="text-align:left;">
-Night
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-0.0
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-0.0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-AM (6-10)
-</td>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-5.4
-</td>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-4.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Mid-Day (10-4)
-</td>
-<td style="text-align:left;">
-13
-</td>
-<td style="text-align:left;">
-10.0
-</td>
-<td style="text-align:left;">
-26
-</td>
-<td style="text-align:left;">
-20.0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-PM (4-7)
-</td>
-<td style="text-align:left;">
-33
-</td>
-<td style="text-align:left;">
-25.4
-</td>
-<td style="text-align:left;">
-43
-</td>
-<td style="text-align:left;">
-33.1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Evening (7-Midnight)
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-1.5
-</td>
-<td style="text-align:left;">
-0
-</td>
-<td style="text-align:left;">
-0.0
-</td>
-</tr>
-</tbody>
-</table>
+period  </p>
+
 <p>The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
 with the help of UTA staff and an external consulting team. The relevant
 variables and source questions for this study are shown in Table
-<a href="study-methodology.html#tab:survey-questions">2.2</a>, in the order in which the questions were asked. After
+<a href="study-methodology.html#tab:survey-questions">2.1</a>, in the order in which the questions were asked. After
 asking the respondent about their awareness of the system, the interviewer would
 give a brief explanation of the service before asking about the respondent’s
 likeliness to use the system. The questionnaire for the second tranche included
@@ -489,53 +357,53 @@ for respondents on train platforms and either at or on board the microtransit
 service had slightly different wording to reflect the separate contexts. There
 was also a set of questions requesting general feedback on the UTA service that
 is not included in this study.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="study-methodology.html#cb6-1"></a>questions &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb6-2"><a href="study-methodology.html#cb6-2"></a><span class="st">&quot;Variable&quot;</span> =<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;Frequency&quot;</span>, <span class="st">&quot;Purpose&quot;</span>,  <span class="st">&quot;Access Mode&quot;</span>, <span class="st">&quot;Awareness&quot;</span>,  <span class="st">&quot;Likeliness&quot;</span>,</span>
-<span id="cb6-3"><a href="study-methodology.html#cb6-3"></a>                <span class="st">&quot;Why Likely&quot;</span>,  <span class="st">&quot;Use Purpose&quot;</span>, <span class="st">&quot;Auto Availability&quot;</span>,  <span class="st">&quot;Household Size&quot;</span>, </span>
-<span id="cb6-4"><a href="study-methodology.html#cb6-4"></a>                <span class="st">&quot;Race&quot;</span>,  <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Smartphone&quot;</span>, <span class="st">&quot;Age&quot;</span>),</span>
-<span id="cb6-5"><a href="study-methodology.html#cb6-5"></a><span class="st">&quot;Question Text&quot;</span> =<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb6-6"><a href="study-methodology.html#cb6-6"></a>  <span class="st">&quot;How often do you ride UTA?&quot;</span>,</span>
-<span id="cb6-7"><a href="study-methodology.html#cb6-7"></a>  <span class="st">&quot;Where are you headed today? &quot;</span>,</span>
-<span id="cb6-8"><a href="study-methodology.html#cb6-8"></a>  <span class="st">&quot;How did you travel to your UTA stop/station today?&quot;</span>, </span>
-<span id="cb6-9"><a href="study-methodology.html#cb6-9"></a>  <span class="st">&quot;Had you heard about UTA On Demand before today? &quot;</span>, </span>
-<span id="cb6-10"><a href="study-methodology.html#cb6-10"></a>  <span class="st">&quot;How likely are you to download the VIA app and use UTA On Demand? &quot;</span>,</span>
-<span id="cb6-11"><a href="study-methodology.html#cb6-11"></a>  <span class="st">&quot;Why did you choose that ranking?&quot;</span>,</span>
-<span id="cb6-12"><a href="study-methodology.html#cb6-12"></a>  <span class="st">&quot;What types of trips do you think you could use it for?&quot;</span>, </span>
-<span id="cb6-13"><a href="study-methodology.html#cb6-13"></a>  <span class="st">&quot;How many vehicles (cars, trucks or motorcycles) are available in your household?&quot;</span>,</span>
-<span id="cb6-14"><a href="study-methodology.html#cb6-14"></a>  <span class="st">&quot;Including you, how many people live in your household?&quot;</span>, </span>
-<span id="cb6-15"><a href="study-methodology.html#cb6-15"></a>  <span class="st">&quot;What is your race / ethnicity?&quot;</span>, </span>
-<span id="cb6-16"><a href="study-methodology.html#cb6-16"></a>  <span class="st">&quot;Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes?&quot;</span>,</span>
-<span id="cb6-17"><a href="study-methodology.html#cb6-17"></a>  <span class="st">&quot;Do you have a smartphone? &quot;</span>, </span>
-<span id="cb6-18"><a href="study-methodology.html#cb6-18"></a>  <span class="st">&quot;What is your age?&quot;</span>),</span>
-<span id="cb6-19"><a href="study-methodology.html#cb6-19"></a><span class="st">&quot;Response Type&quot;</span> =<span class="st"> </span><span class="kw">c</span>(</span>
-<span id="cb6-20"><a href="study-methodology.html#cb6-20"></a>  <span class="st">&#39;Multiple choice with days per week &#39;</span>,</span>
-<span id="cb6-21"><a href="study-methodology.html#cb6-21"></a>  <span class="st">&#39;Multiple choice with purposes plus text &quot;other&quot;&#39;</span>,</span>
-<span id="cb6-22"><a href="study-methodology.html#cb6-22"></a>  <span class="st">&#39;Multiple choice with modes plus text &quot;other&quot; &#39;</span>,</span>
-<span id="cb6-23"><a href="study-methodology.html#cb6-23"></a>  <span class="st">&#39;Yes / No &#39;</span>,</span>
-<span id="cb6-24"><a href="study-methodology.html#cb6-24"></a>  <span class="st">&#39;Likert scale with five &quot;likely&quot; levels &#39;</span>,</span>
-<span id="cb6-25"><a href="study-methodology.html#cb6-25"></a>  <span class="st">&#39;Text response&#39;</span>,</span>
-<span id="cb6-26"><a href="study-methodology.html#cb6-26"></a>  <span class="st">&#39;Multiple choice with purposes plus text &quot;other&quot;&#39;</span>,</span>
-<span id="cb6-27"><a href="study-methodology.html#cb6-27"></a>  <span class="st">&#39;Multiple choice with 0 through 4+&#39;</span>,</span>
-<span id="cb6-28"><a href="study-methodology.html#cb6-28"></a>  <span class="st">&#39;Multiple choice with 0 through 4+&#39;</span>,</span>
-<span id="cb6-29"><a href="study-methodology.html#cb6-29"></a>  <span class="st">&#39;Mutiple choice allowing multiple selection &#39;</span>,</span>
-<span id="cb6-30"><a href="study-methodology.html#cb6-30"></a>  <span class="st">&#39;Multiple choice in ranges&#39;</span>,</span>
-<span id="cb6-31"><a href="study-methodology.html#cb6-31"></a>  <span class="st">&#39;Yes / No &#39;</span>,</span>
-<span id="cb6-32"><a href="study-methodology.html#cb6-32"></a>  <span class="st">&#39;Multiple choice in ranges&#39;</span>)</span>
-<span id="cb6-33"><a href="study-methodology.html#cb6-33"></a>) </span>
-<span id="cb6-34"><a href="study-methodology.html#cb6-34"></a></span>
-<span id="cb6-35"><a href="study-methodology.html#cb6-35"></a><span class="cf">if</span>(knitr<span class="op">::</span><span class="kw">is_latex_output</span>()){</span>
-<span id="cb6-36"><a href="study-methodology.html#cb6-36"></a>  questions <span class="op">%&gt;%</span></span>
-<span id="cb6-37"><a href="study-methodology.html#cb6-37"></a><span class="st">    </span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Survey Questionnaire Summary&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;latex&quot;</span>)  <span class="op">%&gt;%</span></span>
-<span id="cb6-38"><a href="study-methodology.html#cb6-38"></a><span class="st">    </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span></span>
-<span id="cb6-39"><a href="study-methodology.html#cb6-39"></a><span class="st">    </span><span class="kw">column_spec</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">latex_column_spec =</span> <span class="st">&quot;p{0.4</span><span class="ch">\\\\</span><span class="st">textwidth}&quot;</span>)</span>
-<span id="cb6-40"><a href="study-methodology.html#cb6-40"></a>} <span class="cf">else</span> {</span>
-<span id="cb6-41"><a href="study-methodology.html#cb6-41"></a>  questions <span class="op">%&gt;%</span></span>
-<span id="cb6-42"><a href="study-methodology.html#cb6-42"></a><span class="st">    </span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Survey Questionnaire Summary&quot;</span>)  <span class="op">%&gt;%</span></span>
-<span id="cb6-43"><a href="study-methodology.html#cb6-43"></a><span class="st">    </span><span class="kw">kable_styling</span>()</span>
-<span id="cb6-44"><a href="study-methodology.html#cb6-44"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="study-methodology.html#cb5-1"></a>questions &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb5-2"><a href="study-methodology.html#cb5-2"></a><span class="st">&quot;Variable&quot;</span> =<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;Frequency&quot;</span>, <span class="st">&quot;Purpose&quot;</span>,  <span class="st">&quot;Access Mode&quot;</span>, <span class="st">&quot;Awareness&quot;</span>,  <span class="st">&quot;Likeliness&quot;</span>,</span>
+<span id="cb5-3"><a href="study-methodology.html#cb5-3"></a>                <span class="st">&quot;Why Likely&quot;</span>,  <span class="st">&quot;Use Purpose&quot;</span>, <span class="st">&quot;Auto Availability&quot;</span>,  <span class="st">&quot;Household Size&quot;</span>, </span>
+<span id="cb5-4"><a href="study-methodology.html#cb5-4"></a>                <span class="st">&quot;Race&quot;</span>,  <span class="st">&quot;Income&quot;</span>, <span class="st">&quot;Smartphone&quot;</span>, <span class="st">&quot;Age&quot;</span>),</span>
+<span id="cb5-5"><a href="study-methodology.html#cb5-5"></a><span class="st">&quot;Question Text&quot;</span> =<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb5-6"><a href="study-methodology.html#cb5-6"></a>  <span class="st">&quot;How often do you ride UTA?&quot;</span>,</span>
+<span id="cb5-7"><a href="study-methodology.html#cb5-7"></a>  <span class="st">&quot;Where are you headed today? &quot;</span>,</span>
+<span id="cb5-8"><a href="study-methodology.html#cb5-8"></a>  <span class="st">&quot;How did you travel to your UTA stop/station today?&quot;</span>, </span>
+<span id="cb5-9"><a href="study-methodology.html#cb5-9"></a>  <span class="st">&quot;Had you heard about UTA On Demand before today? &quot;</span>, </span>
+<span id="cb5-10"><a href="study-methodology.html#cb5-10"></a>  <span class="st">&quot;How likely are you to download the VIA app and use UTA On Demand? &quot;</span>,</span>
+<span id="cb5-11"><a href="study-methodology.html#cb5-11"></a>  <span class="st">&quot;Why did you choose that ranking?&quot;</span>,</span>
+<span id="cb5-12"><a href="study-methodology.html#cb5-12"></a>  <span class="st">&quot;What types of trips do you think you could use it for?&quot;</span>, </span>
+<span id="cb5-13"><a href="study-methodology.html#cb5-13"></a>  <span class="st">&quot;How many vehicles (cars, trucks or motorcycles) are available in your household?&quot;</span>,</span>
+<span id="cb5-14"><a href="study-methodology.html#cb5-14"></a>  <span class="st">&quot;Including you, how many people live in your household?&quot;</span>, </span>
+<span id="cb5-15"><a href="study-methodology.html#cb5-15"></a>  <span class="st">&quot;What is your race / ethnicity?&quot;</span>, </span>
+<span id="cb5-16"><a href="study-methodology.html#cb5-16"></a>  <span class="st">&quot;Which of the following BEST describes your TOTAL ANNUAL HOUSEHOLD INCOME in 2019 before taxes?&quot;</span>,</span>
+<span id="cb5-17"><a href="study-methodology.html#cb5-17"></a>  <span class="st">&quot;Do you have a smartphone? &quot;</span>, </span>
+<span id="cb5-18"><a href="study-methodology.html#cb5-18"></a>  <span class="st">&quot;What is your age?&quot;</span>),</span>
+<span id="cb5-19"><a href="study-methodology.html#cb5-19"></a><span class="st">&quot;Response Type&quot;</span> =<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb5-20"><a href="study-methodology.html#cb5-20"></a>  <span class="st">&#39;Multiple choice with days per week &#39;</span>,</span>
+<span id="cb5-21"><a href="study-methodology.html#cb5-21"></a>  <span class="st">&#39;Multiple choice with purposes plus text &quot;other&quot;&#39;</span>,</span>
+<span id="cb5-22"><a href="study-methodology.html#cb5-22"></a>  <span class="st">&#39;Multiple choice with modes plus text &quot;other&quot; &#39;</span>,</span>
+<span id="cb5-23"><a href="study-methodology.html#cb5-23"></a>  <span class="st">&#39;Yes / No &#39;</span>,</span>
+<span id="cb5-24"><a href="study-methodology.html#cb5-24"></a>  <span class="st">&#39;Likert scale with five &quot;likely&quot; levels &#39;</span>,</span>
+<span id="cb5-25"><a href="study-methodology.html#cb5-25"></a>  <span class="st">&#39;Text response&#39;</span>,</span>
+<span id="cb5-26"><a href="study-methodology.html#cb5-26"></a>  <span class="st">&#39;Multiple choice with purposes plus text &quot;other&quot;&#39;</span>,</span>
+<span id="cb5-27"><a href="study-methodology.html#cb5-27"></a>  <span class="st">&#39;Multiple choice with 0 through 4+&#39;</span>,</span>
+<span id="cb5-28"><a href="study-methodology.html#cb5-28"></a>  <span class="st">&#39;Multiple choice with 0 through 4+&#39;</span>,</span>
+<span id="cb5-29"><a href="study-methodology.html#cb5-29"></a>  <span class="st">&#39;Mutiple choice allowing multiple selection &#39;</span>,</span>
+<span id="cb5-30"><a href="study-methodology.html#cb5-30"></a>  <span class="st">&#39;Multiple choice in ranges&#39;</span>,</span>
+<span id="cb5-31"><a href="study-methodology.html#cb5-31"></a>  <span class="st">&#39;Yes / No &#39;</span>,</span>
+<span id="cb5-32"><a href="study-methodology.html#cb5-32"></a>  <span class="st">&#39;Multiple choice in ranges&#39;</span>)</span>
+<span id="cb5-33"><a href="study-methodology.html#cb5-33"></a>) </span>
+<span id="cb5-34"><a href="study-methodology.html#cb5-34"></a></span>
+<span id="cb5-35"><a href="study-methodology.html#cb5-35"></a><span class="cf">if</span>(knitr<span class="op">::</span><span class="kw">is_latex_output</span>()){</span>
+<span id="cb5-36"><a href="study-methodology.html#cb5-36"></a>  questions <span class="op">%&gt;%</span></span>
+<span id="cb5-37"><a href="study-methodology.html#cb5-37"></a><span class="st">    </span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Survey Questionnaire Summary&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;latex&quot;</span>)  <span class="op">%&gt;%</span></span>
+<span id="cb5-38"><a href="study-methodology.html#cb5-38"></a><span class="st">    </span><span class="kw">kable_styling</span>() <span class="op">%&gt;%</span></span>
+<span id="cb5-39"><a href="study-methodology.html#cb5-39"></a><span class="st">    </span><span class="kw">column_spec</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">latex_column_spec =</span> <span class="st">&quot;p{0.4</span><span class="ch">\\\\</span><span class="st">textwidth}&quot;</span>)</span>
+<span id="cb5-40"><a href="study-methodology.html#cb5-40"></a>} <span class="cf">else</span> {</span>
+<span id="cb5-41"><a href="study-methodology.html#cb5-41"></a>  questions <span class="op">%&gt;%</span></span>
+<span id="cb5-42"><a href="study-methodology.html#cb5-42"></a><span class="st">    </span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Survey Questionnaire Summary&quot;</span>)  <span class="op">%&gt;%</span></span>
+<span id="cb5-43"><a href="study-methodology.html#cb5-43"></a><span class="st">    </span><span class="kw">kable_styling</span>()</span>
+<span id="cb5-44"><a href="study-methodology.html#cb5-44"></a>}</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:survey-questions">Table 2.2: </span>Survey Questionnaire Summary
+<span id="tab:survey-questions">Table 2.1: </span>Survey Questionnaire Summary
 </caption>
 <thead>
 <tr>
