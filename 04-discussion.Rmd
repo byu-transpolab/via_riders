@@ -22,7 +22,7 @@ patterns that either match or contradict the initial findings of this research.
 In discussing the responses to the question of what mode microtransit passengers
 would have used were the service not available, we suggested there is anecdotal
 evidence that commercial TNC rides are the primary competition. There are still
-questions, however, of how use of this service might affect conventional transit
+questions, however, of how use of this microtransit service might affect conventional transit
 services. Table \@ref(tab:uta-ridership) shows the average weekday ridership
 during November, December, and January for the period the microtransit service
 was operating as well as the same three months in the two prior years
@@ -95,8 +95,24 @@ been deployed in the recent past. This paper presented initial findings from a
 quick response survey aimed at learning who was most willing to use the new
 service within weeks of the system launch. These initial findings suggest first
 that younger adults are most willing to consider using microtransit services,
-and that these services compete most directly with commercial TNC ridehail
-offerings rather than conventional transit.
+especially in larger households. Additionally, these services compete most
+directly with commercial TNC ridehail offerings in addition to fixed-route
+transit services.
+
+Though preliminary, it is worth considering how these findings might transfer
+to projects in other cities. The spatial and infrastructure context of the
+region had played an important role in the UTA On-Demand's overall
+success. A low-density but rapidly developing suburban region
+bracketed by multiple high-frequency and high-capacity rail lines provides an 
+ideal environment to test microtransit's potential as a first-/last-mile 
+access technology. The results of this study specifically suggest that younger
+adults and those with larger households express a higher willingness to use
+microtransit services. Salt Lake County and Utah more generally has a large
+population that matches this description, with a high share of young adults and
+a high birth rate relative to the United States average [@utahHealth]. Planners
+considering implementing microtransit services to support station access might
+consider the demographic characteristics of the population in their target areas
+to maximize the project's success.
 
 Transit passenger intercept surveys are an important method to determine who is
 and who is not using a microtransit service, paired with demographic

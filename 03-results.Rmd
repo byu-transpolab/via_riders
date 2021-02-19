@@ -164,7 +164,7 @@ availability and household income. The joint distribution of reported likeliness
 and household size suggests there could be some dependence, with members of
 smaller households more frequently expressing reluctance to use microtransit.
 This finding, if it could be verified, would be somewhat counter to the \emph{a
-priori} expectations of UTA. A Fisher test of independence between these
+priori} expectations of UTA. A Fisher test of independence between 
 household size and expressed likeliness still fails to conclusively reject the
 null hypothesis but given the small sample size and counter-intuitive results,
 future investigation is warranted. This is particularly true given that
@@ -230,7 +230,8 @@ variables:
   - Frequency of Using UTA (as categories)
 
 The datasets were generated via chained equations using classification and
-regression tree methods encoded in the `mice` package for R [@mice2011; @R-base]. We
+regression tree methods encoded in the `mice` package for R [@mice2011; @R-base].
+The imputed datasets each increase the number of available observations to 130. We
 are primarily interested in exploring the validity of the results we had already
 that had been suggested with the incomplete dataset: specifically, the relationship
 between reported likeliness and age, household size, and frequency of using UTA.
@@ -274,7 +275,7 @@ in Table \@ref(tab:mi-fishers-table) alongside the original, non-imputed
 $p$-values. In the imputed data, there appears to be a clearer relationship
 between likeliness and household size, sufficient to reject the null hypothesis
 of independence at a standard significance level. The relationship between age
-and likeliness is weakened, but still would be considered significant. There
+and likeliness is weakened relative to the , but still would be considered significant. There
 remains no evidence that expressed likeliness to use microtransit is correlated
 in any way with the frequency of using transit.  
 
@@ -285,7 +286,8 @@ tibble(
   "Imputed p" = c(NA, lr_size, NA, NA, lr_age, lr_freq)
 ) %>%
   filter(!is.na(`Imputed p`)) %>%
-  kbl(caption = "Fisher Exact p-value with Imputation", booktabs = TRUE) %>%
+  kbl(caption = "Fisher Exact p-value with Imputation", booktabs = TRUE, 
+      digits = 4) %>%
   kable_styling()
 ```
 
