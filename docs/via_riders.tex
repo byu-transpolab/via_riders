@@ -120,11 +120,13 @@ clear relationship between current transit access mode and expressed
 willingness to use microtransit, though some responses from new riders
 indicate the novel service competes most directly with commercial
 transportation network company operations. The survey responses also reveal
-younger passengers express more than expected willingness to use microtransit,
+younger passengers express a more than expected willingness to use microtransit,
 middle-aged passengers a less than expected willingness, and older passengers
-neutral or no expressed opinion. The effect of other user characteristics
-including income and automobile availability is less statistically clear and
-requires further research.}
+neutral or no expressed opinion. Results suggest additional relationships
+between household size and transit use frequency, but further research is
+necessary. The effect of other user characteristics including income and
+automobile availability is less statistically clear and also requires further
+research.}
 
 % Keywords
 \keyword{on-demand transit; microtransit}
@@ -171,7 +173,7 @@ mobility options \citep{Graehler2019, Mallett2018}. These new mobility options -
 including bikeshare, e-scooters, and ridehailing through Transportation Network
 Companies (TNCs) -- might also play an important role in supporting transit
 operations if the relative strengths of transit and modern mobility systems can
-be successfully partnered.
+be successfully partnered \citep{Shaheen2016, OOSTENDORP201872, ShivThesis}.
 
 One particular area where a partnership between high-capacity, fixed-route
 transit and TNC operations has been desired is in supporting first mile / last
@@ -190,11 +192,11 @@ how users perceive the effectiveness and convenience of these systems.
 In this paper we report the results of a survey conducted immediately before and
 several weeks after the November 2019 launch of a microtransit service in south
 Salt Lake County, Utah by the Utah Transit Authority (UTA). The surveys were
-designed to understand first the awareness of the on-demand system in the
+primarily designed to understand the awareness of the on-demand system in the
 transit passenger community. The surveys also consider the stated and revealed
 likeliness of individuals to use the microtransit service, and how the
-characteristics of these individuals -- particularly age and household size --
-influence these preferences.
+characteristics of these individuals ---- particularly age, transit use frequency,
+and household size --- influence these preferences.
 
 The remainder of this section contains a brief review of previous and ongoing
 studies relevant to the question of demand for and use of microtransit services.
@@ -221,7 +223,7 @@ system was used by a wide variety of individuals for a wide variety of trip
 purposes, and the typical trip length suggested it was being used less like a
 taxi service and more to supplement last-mile transit access. In many cases, it
 appeared as though Kutsuplus replaced walking and bicycle trips. The
-\citet{weckstrom2018} research also asked respondents why they continued or
+\citet{weckstrom2018} research also asked respondents why they may have continued or
 discontinued using the service, revealing strong differences in response among
 different income groups. High-income individuals were more likely to cite long
 response times, while lower income groups were more likely to cite the fare or
@@ -244,20 +246,36 @@ trips (60\%) taken on RideAustin could have been completed with a single-seat
 transit ride. \citet{Wenzel2019} additionally used the same dataset to estimate the
 level of deadheading and concomitant energy expenditure on the system. Though
 these findings are important in terms of understanding the risks of microtransit
-services, it should be stressed that the RideAustin was not explicitly designed
+services, it should be stressed that the RideAustin service was not explicitly designed
 to support transit operations. And although the RideAustin dataset does identify
 unique individual riders through a persistent mobile device ID, it does not
 disclose any demographic information on the riders and therefore cannot support
 an analysis of their characteristics or preferences.
+
+\citet{KONIG2020954} present a survey focused on determining preferences and
+attitudes towards demand-responsive transit use in two rural regions in
+Germany. A structural equations model of expressed preferences suggests that
+users' attitudes are most powerfully driven by the expected performance of the
+system in terms of wait and travel time, and less materially by attitudes
+towards other public transit systems or social perspectives. This is valuable
+insight, but attitudes such as these are difficult to forecast for a population,
+and therefore difficult to incorporate into service planning exercises. The
+authors collected demographic characteristics of the survey respondents, but did
+not consider these characteristics in the statistical models.
 
 The literature to this point has been greatly aided by the use of so-called Big
 Data: GPS records, rider transaction data, and the like. These data are
 well-suited to important research questions such as where and when the services
 pick up and drop off riders, the wait times experienced by the riders, and in
 some cases even the ability to construct multiple trip tours. But the literature
-to this point is somewhat limited in its exploration of the actual users of
+is somewhat limited in its exploration of the actual users of
 these systems: who they are, why they are traveling, and why they chose to use
-this service.
+this service. This information is critical when planning and forecasting the
+potential success or failure of these systems, in contrast to reporting observed
+service characteristics for a service already in operation. In this paper, we
+present the results of a rider survey designed to answer these questions in the
+periods immediately before and after the launch of a
+microtransit service.
 
 \hypertarget{study-methodology}{%
 \section{Study Methodology}\label{study-methodology}}
@@ -266,40 +284,41 @@ this service.
 \subsection{System Description}\label{system-description}}
 
 In November 2019, the Utah Transit Authority (UTA) launched an on-demand
-microtransit service in the southern part of Salt Lake County. This region --
-illustrated in Figure \ref{fig:via-map} -- has primarily low-density suburban
+microtransit service in the southern part of Salt Lake County. This region ----
+illustrated in Figure \ref{fig:via-map} ---- has primarily low-density suburban
 development but also hosts stations for UTA's extensive rail transit network:
 the FrontRunner commuter rail operates between Provo and Ogden via downtown Salt
 Lake City on 30 minute peak headways; and the Blue and Red TRAX light rail lines
 connect to downtown Salt Lake City, the University of Utah, and Salt Lake
 International Airport (via transfer) on 15 minute peak headways. There are
 existing fixed route and route deviation services in the region, as well as park
-and ride facilities at most rail stations. UTA is interested in improving the
-quality of service for passengers in the region as well as reducing
-per-passenger operating costs.
+and ride facilities at most rail stations. UTA launched the microtransit service
+in an effort to improve the quality of service for passengers in the region,
+expand the effective accessibility of the rail transit stations, and reduce transit
+operating costs by potentially eliminating or reallocating fixed-route bus lines.
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/service_area} \caption{UTA on-demand microtransit service area. Image by the authors}\label{fig:via-map}
+\includegraphics[width=1\linewidth]{images/via-map} \caption{UTA on-demand microtransit service area. Image courtesy UTA.}\label{fig:via-map}
 \end{figure}
 
 In establishing the on-demand microtransit service UTA partnered with Via, a
 commercial mobility provider with new and ongoing operations in several US
-cities. Passengers request rides using the VIA mobile application or calling a
+cities. Passengers request rides using the VIA mobile application or by calling a
 designated service line and await the vehicle at a pickup point near to their
 origin. Passengers share rides based on the availability of vehicles and the
 compatibility of paths, as determined by algorithms embedded in the VIA service.
 The vehicle will drop the passenger off near their destination or at TRAX or
 FrontRunner stations; both the pickup and drop-off points must lie within the
 service area shown in Figure \ref{fig:via-map}. The regular adult one-way fare
-is \$2.50 and includes a limited transfer to the UTA fixed route transit system.
-By the end of February 2020, the microtransit system was carrying about 316
-passenger trips per weekday with an average wait time of 11 minutes per trip
-\citet{uta2020}.
+is \$2.50 (the same as a regular base transit fare) and includes a limited
+transfer to the UTA fixed route transit system. By the end of February 2020, the
+microtransit system was carrying about 316 passenger trips per weekday with an
+average wait time of 11 minutes per trip \citep{uta2020}.
 
 \hypertarget{survey-design}{%
 \subsection{Survey Design}\label{survey-design}}
 
-UTA's primary goal in executing this survey was to understand the effectiveness
+UTA's primary goal in executing a microtransit rider survey was to understand the effectiveness
 of its marketing campaign to raise awareness and information of the new service.
 This survey also provided an opportunity to inform additional riders and to
 evaluate rider perceptions and characteristics both before and immediately after
@@ -310,30 +329,10 @@ stations as well as the Draper Town Center TRAX station. The second tranche was
 collected on several weekdays between January 10th and March 4th, 2020, and was
 collected through on-platform intercept interviews at the same stations in
 addition to the Daybreak Parkway TRAX station and at designated microtransit
-pick-up points near the aforementioned rail stations; a limited number of
+pick-up points near the aforementioned rail stations. A limited number of
 interviews were also conducted on board the microtransit vehicles. Interviews
 were conducted throughout the day, but with a focus on the PM peak commute
-period. The number of interviews conducted during each time period for each
-tranche is shown in Table \ref{tab:survey-times}.
-
-\begin{table}
-
-\caption{\label{tab:survey-times}Distribution of Surveys by Time of Day}
-\centering
-\begin{tabular}[t]{llllll}
-\toprule
-\multicolumn{2}{c}{ } & \multicolumn{2}{c}{Before (N=55)} & \multicolumn{2}{c}{After (N=75)} \\
-\cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
-  &    & N & \% & N  & \% \\
-\midrule
-Period & Night & 0 & 0.0 & 0 & 0.0\\
- & AM (6-10) & 7 & 5.4 & 6 & 4.6\\
- & Mid-Day (10-4) & 13 & 10.0 & 26 & 20.0\\
- & PM (4-7) & 33 & 25.4 & 43 & 33.1\\
- & Evening (7-Midnight) & 2 & 1.5 & 0 & 0.0\\
-\bottomrule
-\end{tabular}
-\end{table}
+period; approximately 60\% of the surveys in both tranches were collected between 4 and 7 PM.
 
 The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
@@ -389,7 +388,7 @@ tranche is given in Table \ref{tab:survey-respondents}; as outlined in the
 Methodology section, the decision to include income level in the survey was made
 between the tranches and therefore the ``Before'' tranche contains no income
 information. The number of respondents who declined to answer the other
-demographic questions is also relatively high.
+demographic questions is also high.
 
 \begin{table}
 
@@ -404,7 +403,7 @@ demographic questions is also relatively high.
 Smartphone & No & 3 & 2.3 & 2 & 1.5\\
  & Yes & 42 & 32.3 & 48 & 36.9\\
  & (Missing) & 10 & 7.7 & 25 & 19.2\\
-Household Size & 1 & 0 & 0.0 & 4 & 3.1\\
+Household size & 1 & 0 & 0.0 & 4 & 3.1\\
  & 2 & 0 & 0.0 & 10 & 7.7\\
  & 3 & 0 & 0.0 & 7 & 5.4\\
  & 4+ & 0 & 0.0 & 29 & 22.3\\
@@ -425,6 +424,9 @@ Income & Less than \textbackslash{}\$44,999 & 0 & 0.0 & 8 & 6.2\\
  & \textbackslash{}\$45,000 to \textbackslash{}\$100,000 & 0 & 0.0 & 17 & 13.1\\
  & Over \textbackslash{}\$100,000 & 0 & 0.0 & 17 & 13.1\\
  & (Missing) & 55 & 42.3 & 33 & 25.4\\
+Weekly transit use & One day or less frequently & 8 & 6.2 & 13 & 10.0\\
+ & Two to four days & 22 & 16.9 & 37 & 28.5\\
+ & Five days or more & 25 & 19.2 & 25 & 19.2\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -453,11 +455,12 @@ respondent is willing to use it.
 
 The sample is too small to conduct meaningful statistical inference on the role
 that access mode plays in these opinions, but some discussion of these
-observations is still worthwhile. The apparent turning of bicycle users against
+observations is still worthwhile. The apparent reluctance of bicyclists to use
 the service is likely statistical noise, though it should also be noted that the
 ``After'' tranche was collected in January and February, when Utah is typically
 cold with snow on the ground. Perhaps individuals who are still cycling at those
-times will persist in doing so. It is also interesting to note that there
+times will persist in doing so. Additionally, the microtransit vehicles are not
+equipped with bicycle racks. It is also interesting to note that there
 appears to be little overall correlation between access mode and expressed
 willingness to use the service, unless the UTA On Demand service attracts people
 who would not have used the service otherwise. Of these individuals who
@@ -488,7 +491,7 @@ three-category likeliness response. In this test the null hypothesis is that the
 two distributions are independent with the alternative being there is some
 dependence between the characteristic and the response. A \(p\)-value less than a
 given critical threshold indicates that the null hypothesis has a low
-probability and should be rejected. A conventional value of the critical value
+probability and may be rejected. A conventional value of the critical value
 is \(\alpha=0.05\), though given the small sample sizes in this survey other
 critical values may be suggestive of the need for future evaluation.
 
@@ -507,7 +510,7 @@ critical values may be suggestive of the need for future evaluation.
 \hspace{1em} & Yes & 41 & 8 & 30\\
 
 \addlinespace[0.3em]
-\multicolumn{5}{l}{\textbf{Household Size; Fisher p-value: 0.2068}}\\
+\multicolumn{5}{l}{\textbf{Household size; Fisher p-value: 0.2068}}\\
 \hspace{1em} & 1 & 2 & 0 & 2\\
 
 \hspace{1em} & 2 & 8 & 0 & 1\\
@@ -517,7 +520,7 @@ critical values may be suggestive of the need for future evaluation.
 \hspace{1em} & 4+ & 14 & 3 & 11\\
 
 \addlinespace[0.3em]
-\multicolumn{5}{l}{\textbf{Auto Availablity; Fisher p-value: 0.6593}}\\
+\multicolumn{5}{l}{\textbf{Auto availablity; Fisher p-value: 0.6593}}\\
 \hspace{1em} & 0 & 1 & 0 & 3\\
 
 \hspace{1em} & 1 & 22 & 3 & 10\\
@@ -547,6 +550,14 @@ critical values may be suggestive of the need for future evaluation.
 \hspace{1em} & 45-64 & 7 & 5 & 3\\
 
 \hspace{1em} & Over 65 & 1 & 0 & 0\\
+
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Weekly transit use; Fisher p-value: 0.2937}}\\
+\hspace{1em} & One day or less frequently & 11 & 3 & 4\\
+
+\hspace{1em} & Two to four days & 18 & 4 & 22\\
+
+\hspace{1em} & Five days or more & 20 & 3 & 18\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -559,7 +570,7 @@ availability and household income. The joint distribution of reported likeliness
 and household size suggests there could be some dependence, with members of
 smaller households more frequently expressing reluctance to use microtransit.
 This finding, if it could be verified, would be somewhat counter to the \emph{a
-priori} expectations of UTA. A Fisher test of independence between these
+priori} expectations of UTA. A Fisher test of independence between
 household size and expressed likeliness still fails to conclusively reject the
 null hypothesis but given the small sample size and counter-intuitive results,
 future investigation is warranted. This is particularly true given that
@@ -567,7 +578,9 @@ automobile availability and household size go hand-in-hand: a household with
 more individuals, particularly driving-age individuals, will be more constrained
 in their driving behavior even with multiple household automobiles. Considering
 these two variables together will be important for future research but cannot be
-attempted here.
+attempted here. There is also a suggestive relationship between transit use
+frequency and the responded willingness, with more frequent users having
+somewhat more willingness to use microtransit.
 
 A clear statistical result is shown, however, between the reported willingness
 to use microtransit and the age of the respondent. This significant result
@@ -601,6 +614,56 @@ Over 65 & 0.4699 & -0.1205 & -0.3494\\
 \end{tabular}
 \end{table}
 
+\hypertarget{multiple-imputation}{%
+\subsection{Multiple Imputation}\label{multiple-imputation}}
+
+The attitudinal survey analysis presented by \citet{KONIG2020954} included an
+unreported fraction of incomplete records that were filled via hot-deck
+imputation. The applicability of missing variable imputation to the present situation
+is potentially inappropriate, given both the degree of missingness in some
+variables as well as the potential for these variables to not be missing at
+random. Nevertheless, the suggestive results on the age, frequency of transit
+use, and household size variable indicates that such an analysis might be
+illuminating, if not conclusive.
+
+We generated 20 multiple imputed complete datasets with the
+following variables: available autos, age, household size, income, and the
+frequency of using transit. The imputed datasets were generated via chained
+equations using classification and regression tree methods encoded in the \texttt{mice}
+package for R \citep{mice2011, R-base}. Each imputed dataset contains 130 completed
+observations.
+
+We computed the Fisher exact test of an independent relationship
+between willingness to use microtransit and the significant and suggestive
+variables on each imputed dataset: household size, age, and frequency of transit
+use. The Fisher test does not have a test statistic and generates \(p\)-values via
+simulation; we therefore pool the \(p\)-values from the 20 tests
+using a methodology proposed by \citet{LichtThesis}.
+
+The pooled \(p\)-values obtained through the multiply imputed data sets are given
+in Table \ref{tab:mi-fishers-table} alongside the original, non-imputed
+\(p\)-values. In the imputed data, there appears to be a clearer relationship
+between likeliness and household size, sufficient to reject the null hypothesis
+of independence at a standard significance level. The relationship between age
+and likeliness is weakened relative to the non-imputed data, but still would be
+considered significant. There remains no evidence that expressed likeliness to
+use microtransit is correlated in any way with the frequency of using transit.
+
+\begin{table}
+
+\caption{\label{tab:mi-fishers-table}Fisher Exact p-value with Imputation}
+\centering
+\begin{tabular}[t]{lrr}
+\toprule
+Variable & Original p & Imputed p\\
+\midrule
+Household size & 0.2068 & 0.0366\\
+Age & 0.0036 & 0.0062\\
+Weekly transit use & 0.2937 & 0.3454\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
@@ -613,24 +676,25 @@ multiple grouping dimensions. Finally, the survey collected self-reported
 responses with no verification or validation of any kind.
 
 Most survey responses were collected on fixed rail transit station platforms.
-Passengers waiting for UTA trains were expected to be both more available to
-respond to survey questions, as well as more likely to use the microtransit
-service than the general population. Additionally, UTA is interested in
-supporting its fixed rail transit investments in the service area. There is,
-however, no requirement that microtransit passengers use other UTA services;
-data supplied by the microtransit provider but not included in this study
-suggest that only 58\% percent of microtransit trips began or ended within 500
-feet of a UTA rail transit station. This population might have preferences or
-patterns that either match or contradict the initial findings of this research.
+Passengers of UTA rail services were assumed to be the primary audience for
+the microtransit service, and these riders were presumably more likely to be
+available to complete a survey while waiting for a train.
+Additionally, UTA is interested in supporting its fixed rail transit investments
+in the service area. There is, however, no requirement that microtransit
+passengers use other UTA services; data supplied by the microtransit provider
+but not included in this study suggest that only 58\% percent of microtransit
+trips began or ended within 500 feet of a UTA rail transit station. This
+population might have preferences or patterns that either match or contradict
+the initial findings of this research.
 
 In discussing the responses to the question of what mode microtransit passengers
 would have used were the service not available, we suggested there is anecdotal
 evidence that commercial TNC rides are the primary competition. There are still
-questions, however, of how use of this service might affect conventional transit
+questions, however, of how use of this microtransit service might affect conventional transit
 services. Table \ref{tab:uta-ridership} shows the average weekday ridership
 during November, December, and January for the period the microtransit service
 was operating as well as the same three months in the two prior years
-\citet{uta2020boardings}. Total system ridership was remarkably stable during
+\citep{uta2020boardings}. Total system ridership was remarkably stable during
 these three periods. The microtransit service area -- in this case defined by
 ridership on routes F514, 218, 526, F504, F518, F534, F546, and F547 -- was
 declining before the microtransit service began, though the decline accelerated
@@ -656,7 +720,7 @@ Year & Avg. Weekday Boardings & \% Change & Avg. Weekday Boardings & \% Change\\
 \end{tabular}
 \end{table}
 
-Another limitation of these findings that is particularly relevant is the onset
+Another limitation of these findings is the onset
 of the COVID-19 pandemic. Government-imposed shutdowns and voluntary work
 stoppages related to the pandemic did not begin in Utah until the week of March
 15th, after data collection for this project had completed. As such, the survey
@@ -672,11 +736,27 @@ should ``normal'' operations resume.
 Microtransit services are regularly put forward as means to support last-mile /
 first-mile trips on fixed route transit systems, and several such systems have
 been deployed in the recent past. This paper presented initial findings from a
-quick response survey aimed at learning who was most willing to use the new
+quick response survey aimed at learning who was most willing to use a new
 service within weeks of the system launch. These initial findings suggest first
 that younger adults are most willing to consider using microtransit services,
-and that these services compete most directly with commercial TNC ridehail
-offerings rather than conventional transit.
+especially in larger households. Additionally, these services compete most
+directly with commercial TNC ridehail offerings in addition to fixed-route
+transit services.
+
+Though preliminary, it is worth considering how these findings might transfer
+to projects in other cities. The spatial and infrastructure context of the
+region has played an important role in the UTA On-Demand's overall
+success. A low-density but rapidly developing suburban region
+bracketed by multiple high-frequency and high-capacity rail lines provides an
+ideal environment to test the potential of microtransit as a first-/last-mile
+access technology. The results of this study specifically suggest that younger
+adults and those with larger households express a higher willingness to use
+microtransit services. Salt Lake County and Utah more generally has a large
+population that matches this description, with a high share of young adults and
+a high birth rate relative to the United States average \citep{utahHealth}. Planners
+considering implementing microtransit services to support station access might
+consider the demographic characteristics of the population in their target areas
+to maximize the project's success.
 
 Transit passenger intercept surveys are an important method to determine who is
 and who is not using a microtransit service, paired with demographic

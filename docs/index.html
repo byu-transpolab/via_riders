@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-01-08" />
+<meta name="date" content="2021-02-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -60,8 +60,6 @@ div.abstract{
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -155,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
-<li class="chapter" data-level="3.0.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.0.1</b> Multiple Imputation</a></li>
+<li class="chapter" data-level="3.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.1</b> Multiple Imputation</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
 <li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
@@ -187,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Christian Hunter</em></p>
 <p class="author"><em>Austin Martinez</em></p>
 <p class="author"><em>Elizabeth Smith</em></p>
-<p class="date"><em>2021-01-08</em></p>
+<p class="date"><em>2021-02-19</em></p>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 <p>On-demand microtransit services are frequently seen as an important tool in
@@ -202,11 +200,13 @@ clear relationship between current transit access mode and expressed
 willingness to use microtransit, though some responses from new riders
 indicate the novel service competes most directly with commercial
 transportation network company operations. The survey responses also reveal
-younger passengers express more than expected willingness to use microtransit,
+younger passengers express a more than expected willingness to use microtransit,
 middle-aged passengers a less than expected willingness, and older passengers
-neutral or no expressed opinion. The effect of other user characteristics
-including income and automobile availability is less statistically clear and
-requires further research.</p>
+neutral or no expressed opinion. Results suggest additional relationships
+between household size and transit use frequency, but further research is
+necessary. The effect of other user characteristics including income and
+automobile availability is less statistically clear and also requires further
+research.</p>
 </div>
 </div>
 <div id="intro" class="section level1">
@@ -217,7 +217,7 @@ mobility options <span class="citation">(Graehler, Mucci, and Erhardt <a href="#
 including bikeshare, e-scooters, and ridehailing through Transportation Network
 Companies (TNCs) – might also play an important role in supporting transit
 operations if the relative strengths of transit and modern mobility systems can
-be successfully partnered .</p>
+be successfully partnered <span class="citation">(Shaheen and Chan <a href="#ref-Shaheen2016" role="doc-biblioref">2016</a>; Oostendorp and Gebhardt <a href="#ref-OOSTENDORP201872" role="doc-biblioref">2018</a>; Shiv <a href="#ref-ShivThesis" role="doc-biblioref">2018</a>)</span>.</p>
 <p>One particular area where a partnership between high-capacity, fixed-route
 transit and TNC operations has been desired is in supporting first mile / last
 mile operations in low-density suburban regions <span class="citation">(Shaheen and Chan <a href="#ref-Shaheen2016" role="doc-biblioref">2016</a>; Alonso-González et al. <a href="#ref-alonso2018" role="doc-biblioref">2018</a>; Kang and Hamidi <a href="#ref-Kang2020" role="doc-biblioref">2020</a>)</span>. TNC operators are incentivized to operate in dense areas where many
@@ -234,11 +234,11 @@ how users perceive the effectiveness and convenience of these systems.</p>
 <p>In this paper we report the results of a survey conducted immediately before and
 several weeks after the November 2019 launch of a microtransit service in south
 Salt Lake County, Utah by the Utah Transit Authority (UTA). The surveys were
-designed to understand first the awareness of the on-demand system in the
+primarily designed to understand the awareness of the on-demand system in the
 transit passenger community. The surveys also consider the stated and revealed
 likeliness of individuals to use the microtransit service, and how the
-characteristics of these individuals – particularly age and household size –
-influence these preferences.</p>
+characteristics of these individuals –– particularly age, transit use frequency,
+and household size — influence these preferences.</p>
 <p>The remainder of this section contains a brief review of previous and ongoing
 studies relevant to the question of demand for and use of microtransit services.
 We then describe the survey methodology for this study, including both the
@@ -261,7 +261,7 @@ system was used by a wide variety of individuals for a wide variety of trip
 purposes, and the typical trip length suggested it was being used less like a
 taxi service and more to supplement last-mile transit access. In many cases, it
 appeared as though Kutsuplus replaced walking and bicycle trips. The
-<span class="citation">Weckström et al. (<a href="#ref-weckstrom2018" role="doc-biblioref">2018</a>)</span> research also asked respondents why they continued or
+<span class="citation">Weckström et al. (<a href="#ref-weckstrom2018" role="doc-biblioref">2018</a>)</span> research also asked respondents why they may have continued or
 discontinued using the service, revealing strong differences in response among
 different income groups. High-income individuals were more likely to cite long
 response times, while lower income groups were more likely to cite the fare or
@@ -282,20 +282,34 @@ trips (60%) taken on RideAustin could have been completed with a single-seat
 transit ride. <span class="citation">Wenzel et al. (<a href="#ref-Wenzel2019" role="doc-biblioref">2019</a>)</span> additionally used the same dataset to estimate the
 level of deadheading and concomitant energy expenditure on the system. Though
 these findings are important in terms of understanding the risks of microtransit
-services, it should be stressed that the RideAustin was not explicitly designed
+services, it should be stressed that the RideAustin service was not explicitly designed
 to support transit operations. And although the RideAustin dataset does identify
 unique individual riders through a persistent mobile device ID, it does not
 disclose any demographic information on the riders and therefore cannot support
 an analysis of their characteristics or preferences.</p>
-
+<p><span class="citation">König and Grippenkoven (<a href="#ref-KONIG2020954" role="doc-biblioref">2020</a>)</span> present a survey focused on determining preferences and
+attitudes towards demand-responsive transit use in two rural regions in
+Germany. A structural equations model of expressed preferences suggests that
+users’ attitudes are most powerfully driven by the expected performance of the
+system in terms of wait and travel time, and less materially by attitudes
+towards other public transit systems or social perspectives. This is valuable
+insight, but attitudes such as these are difficult to forecast for a population,
+and therefore difficult to incorporate into service planning exercises. The
+authors collected demographic characteristics of the survey respondents, but did
+not consider these characteristics in the statistical models.</p>
 <p>The literature to this point has been greatly aided by the use of so-called Big
 Data: GPS records, rider transaction data, and the like. These data are
 well-suited to important research questions such as where and when the services
 pick up and drop off riders, the wait times experienced by the riders, and in
 some cases even the ability to construct multiple trip tours. But the literature
-to this point is somewhat limited in its exploration of the actual users of
+is somewhat limited in its exploration of the actual users of
 these systems: who they are, why they are traveling, and why they chose to use
-this service. </p>
+this service. This information is critical when planning and forecasting the
+potential success or failure of these systems, in contrast to reporting observed
+service characteristics for a service already in operation. In this paper, we
+present the results of a rider survey designed to answer these questions in the
+periods immediately before and after the launch of a
+microtransit service.</p>
 
 </div>
 </div>
@@ -319,14 +333,23 @@ this service. </p>
 <div id="ref-Komanduri2018">
 <p>Komanduri, Anurag, Zeina Wafa, Kimon Proussaloglou, and Simon Jacobs. 2018. “Assessing the Impact of App-Based Ride Share Systems in an Urban Context: Findings from Austin.” <em>Transportation Research Record</em> 2672 (7): 34–46. <a href="https://doi.org/10.1177/0361198118796025">https://doi.org/10.1177/0361198118796025</a>.</p>
 </div>
+<div id="ref-KONIG2020954">
+<p>König, Alexandra, and Jan Grippenkoven. 2020. “The Actual Demand Behind Demand-Responsive Transport: Assessing Behavioral Intention to Use Drt Systems in Two Rural Areas in Germany.” <em>Case Studies on Transport Policy</em> 8 (3): 954–62. <a href="https://doi.org/https://doi.org/10.1016/j.cstp.2020.04.011">https://doi.org/https://doi.org/10.1016/j.cstp.2020.04.011</a>.</p>
+</div>
 <div id="ref-Mallett2018">
 <p>Mallet, William J. 2018. “Trends in Public Transportation Ridership: Implications for Federal Policy.” Congressional Research Service. <a href="https://fas.org/sgp/crs/misc/R45144.pdf">https://fas.org/sgp/crs/misc/R45144.pdf</a>.</p>
+</div>
+<div id="ref-OOSTENDORP201872">
+<p>Oostendorp, Rebekka, and Laura Gebhardt. 2018. “Combining Means of Transport as a Users’ Strategy to Optimize Traveling in an Urban Context: Empirical Results on Intermodal Travel Behavior from a Survey in Berlin.” <em>Journal of Transport Geography</em> 71: 72–83. <a href="https://doi.org/https://doi.org/10.1016/j.jtrangeo.2018.07.006">https://doi.org/https://doi.org/10.1016/j.jtrangeo.2018.07.006</a>.</p>
 </div>
 <div id="ref-Ronald2017">
 <p>Ronald, Nicole, Russell Thompson, and Stephan Winter. 2017. “Simulating Ad-Hoc Demand-Responsive Transportation: A Comparison of Three Approaches.” <em>Transportation Planning and Technology</em> 40 (3): 340–58. <a href="https://doi.org/10.1080/03081060.2017.1283159">https://doi.org/10.1080/03081060.2017.1283159</a>.</p>
 </div>
 <div id="ref-Shaheen2016">
 <p>Shaheen, Susan, and Nelson Chan. 2016. “Mobility and the Sharing Economy: Potential to Facilitate the First-and Last-Mile Public Transit Connections.” <em>Built Environment</em> 42 (4): 573–88. <a href="https://doi.org/10.2148/benv.42.4.573">https://doi.org/10.2148/benv.42.4.573</a>.</p>
+</div>
+<div id="ref-ShivThesis">
+<p>Shiv, Anant. 2018. “Analysis of Last Mile Transport Pilot: Implementation of the Model and Its Adaptation Among Local Citizens.” Masters Thesis, Aalto University. <a href="http://urn.fi/URN:NBN:fi:aalto-201804032022">http://urn.fi/URN:NBN:fi:aalto-201804032022</a>.</p>
 </div>
 <div id="ref-weckstrom2018">
 <p>Weckström, Christoffer, Miloš N. Mladenović, Waqar Ullah, John D. Nelson, Moshe Givoni, and Sebastian Bussman. 2018. “User Perspectives on Emerging Mobility Services: Ex Post Analysis of Kutsuplus Pilot.” <em>Research in Transportation Business and Management</em> 27 (June): 84–97. <a href="https://doi.org/10.1016/j.rtbm.2018.06.003">https://doi.org/10.1016/j.rtbm.2018.06.003</a>.</p>

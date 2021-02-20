@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-01-08" />
+<meta name="date" content="2021-02-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -60,8 +60,6 @@ div.abstract{
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
@@ -155,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
-<li class="chapter" data-level="3.0.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.0.1</b> Multiple Imputation</a></li>
+<li class="chapter" data-level="3.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.1</b> Multiple Imputation</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
 <li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
@@ -191,7 +189,7 @@ tranche is given in Table <a href="results.html#tab:survey-respondents">3.1</a>;
 Methodology section, the decision to include income level in the survey was made
 between the tranches and therefore the “Before” tranche contains no income
 information. The number of respondents who declined to answer the other
-demographic questions is also relatively high.</p>
+demographic questions is also high.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="results.html#cb6-1"></a><span class="kw">datasummary_balance</span>(</span>
 <span id="cb6-2"><a href="results.html#cb6-2"></a>    <span class="op">~</span><span class="st"> </span>tranche, </span>
 <span id="cb6-3"><a href="results.html#cb6-3"></a>    survey_data <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -711,25 +709,6 @@ Over $100,000
 Weekly transit use
 </td>
 <td style="text-align:left;">
-Five days or more
-</td>
-<td style="text-align:left;">
-25
-</td>
-<td style="text-align:left;">
-19.2
-</td>
-<td style="text-align:left;">
-25
-</td>
-<td style="text-align:left;">
-19.2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
 One day or less frequently
 </td>
 <td style="text-align:left;">
@@ -764,6 +743,25 @@ Two to four days
 28.5
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Five days or more
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+19.2
+</td>
+</tr>
 </tbody>
 </table>
 <p>A primary motivation for the survey was to understand awareness of the
@@ -788,11 +786,12 @@ opinion as to whether the service should exist, merely whether the particular
 respondent is willing to use it.</p>
 <p>The sample is too small to conduct meaningful statistical inference on the role
 that access mode plays in these opinions, but some discussion of these
-observations is still worthwhile. The apparent turning of bicycle users against
+observations is still worthwhile. The apparent reluctance of bicyclists to use
 the service is likely statistical noise, though it should also be noted that the
 “After” tranche was collected in January and February, when Utah is typically
 cold with snow on the ground. Perhaps individuals who are still cycling at those
-times will persist in doing so. It is also interesting to note that there
+times will persist in doing so. Additionally, the microtransit vehicles are not
+equipped with bicycle racks. It is also interesting to note that there
 appears to be little overall correlation between access mode and expressed
 willingness to use the service, unless the UTA On Demand service attracts people
 who would not have used the service otherwise. Of these individuals who
@@ -832,7 +831,7 @@ three-category likeliness response. In this test the null hypothesis is that the
 two distributions are independent with the alternative being there is some
 dependence between the characteristic and the response. A <span class="math inline">\(p\)</span>-value less than a
 given critical threshold indicates that the null hypothesis has a low
-probability and should be rejected. A conventional value of the critical value
+probability and may be rejected. A conventional value of the critical value
 is <span class="math inline">\(\alpha=0.05\)</span>, though given the small sample sizes in this survey other
 critical values may be suggestive of the need for future evaluation.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="results.html#cb8-1"></a>expected.table &lt;-<span class="st"> </span><span class="cf">function</span>(tab){</span>
@@ -941,7 +940,7 @@ Yes
 </tr>
 <tr>
 <td style="text-align:left;vertical-align: middle !important;" rowspan="4">
-Household Size; Fisher p-value: 0.2068
+Household size; Fisher p-value: 0.2068
 </td>
 <td style="text-align:left;">
 1
@@ -1000,7 +999,7 @@ Household Size; Fisher p-value: 0.2068
 </tr>
 <tr>
 <td style="text-align:left;vertical-align: middle !important;" rowspan="5">
-Auto Availablity; Fisher p-value: 0.6593
+Auto availablity; Fisher p-value: 0.6593
 </td>
 <td style="text-align:left;">
 0
@@ -1189,6 +1188,51 @@ Over 65
 0
 </td>
 </tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="3">
+Weekly transit use; Fisher p-value: 0.2937
+</td>
+<td style="text-align:left;">
+One day or less frequently
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Two to four days
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Five days or more
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
 </tbody>
 </table>
 <p>Smartphone use appears to not be a contributing factor in the likeliness of
@@ -1198,7 +1242,7 @@ independence between the likeliness to use microtransit and both auto
 availability and household income. The joint distribution of reported likeliness
 and household size suggests there could be some dependence, with members of
 smaller households more frequently expressing reluctance to use microtransit.
-This finding, if it could be verified, would be somewhat counter to the  expectations of UTA. A Fisher test of independence between these
+This finding, if it could be verified, would be somewhat counter to the  expectations of UTA. A Fisher test of independence between
 household size and expressed likeliness still fails to conclusively reject the
 null hypothesis but given the small sample size and counter-intuitive results,
 future investigation is warranted. This is particularly true given that
@@ -1206,7 +1250,9 @@ automobile availability and household size go hand-in-hand: a household with
 more individuals, particularly driving-age individuals, will be more constrained
 in their driving behavior even with multiple household automobiles. Considering
 these two variables together will be important for future research but cannot be
-attempted here.</p>
+attempted here. There is also a suggestive relationship between transit use
+frequency and the responded willingness, with more frequent users having
+somewhat more willingness to use microtransit.</p>
 <p>A clear statistical result is shown, however, between the reported willingness
 to use microtransit and the age of the respondent. This significant result
 persists when we recombine the age categories as well as discard neutral
@@ -1316,44 +1362,40 @@ Over 65
 </tr>
 </tbody>
 </table>
-<div id="multiple-imputation" class="section level3">
-<h3><span class="header-section-number">3.0.1</span> Multiple Imputation</h3>
+<div id="multiple-imputation" class="section level2">
+<h2><span class="header-section-number">3.1</span> Multiple Imputation</h2>
 <p>The attitudinal survey analysis presented by <span class="citation">König and Grippenkoven (<a href="#ref-KONIG2020954" role="doc-biblioref">2020</a>)</span> included an
 unreported fraction of incomplete records that were filled via hot-deck
 imputation. The applicability of missing variable imputation to the present situation
 is potentially inappropriate, given both the degree of missingness in some
 variables as well as the potential for these variables to not be missing at
-random. Nevertheless, the suggestive results on the age and household size
-variable indicates that such an analysis might be instructive, if not conclusive.</p>
+random. Nevertheless, the suggestive results on the age, frequency of transit
+use, and household size variable indicates that such an analysis might be
+illuminating, if not conclusive.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="results.html#cb11-1"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb11-2"><a href="results.html#cb11-2"></a>n_imputations &lt;-<span class="st"> </span><span class="dv">20</span></span>
 <span id="cb11-3"><a href="results.html#cb11-3"></a></span>
 <span id="cb11-4"><a href="results.html#cb11-4"></a>sd_mice &lt;-<span class="st"> </span>survey_data <span class="op">%&gt;%</span></span>
 <span id="cb11-5"><a href="results.html#cb11-5"></a><span class="st">  </span><span class="kw">transmute</span>(tranche, likeliness, likeliness_f,</span>
-<span id="cb11-6"><a href="results.html#cb11-6"></a>            <span class="dt">autos =</span> <span class="kw">as_factor</span>(autos), age, size_cat, income, frequency_cat) <span class="op">%&gt;%</span></span>
-<span id="cb11-7"><a href="results.html#cb11-7"></a><span class="st">  </span><span class="kw">mice</span>(<span class="dt">m =</span> n_imputations, <span class="dt">method =</span> <span class="st">&quot;cart&quot;</span>, <span class="dt">printFlag =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<pre><code>## Warning: Number of logged events: 201</code></pre>
-<p>We generated 20 multiple imputed complete datasets with the following
-variables:</p>
-<ul>
-<li>Available autos
-<ul>
-<li>Age</li>
-<li>Household Size</li>
-<li>Income</li>
-<li>Frequency of Using UTA (as categories)</li>
-</ul></li>
-</ul>
-<p>The datasets were generated via chained equations using classification and
-regression tree methods encoded in the <code>mice</code> package for R <span class="citation">(<span class="citeproc-not-found" data-reference-id="mice"><strong>???</strong></span>; R Core Team <a href="#ref-R-base" role="doc-biblioref">2020</a>)</span>. We
-are primarily interested in exploring the validity of the results we had already
-that had been suggested with the incomplete dataset: specifically, the relationship
-between reported likeliness and age, household size, and frequency of using UTA.
-We computed the Fisher exact test of an independent relationship between these
-variables on each imputed dataset. The Fisher test does not have a test
-statistic and generates <span class="math inline">\(p\)</span>-values via simulation; we therefore pool the
-<span class="math inline">\(p\)</span>-values from the 20 tests using a methodology proposed by
-<span class="citation">Licht (<a href="#ref-LichtThesis" role="doc-biblioref">2010</a>)</span>.</p>
+<span id="cb11-6"><a href="results.html#cb11-6"></a>            <span class="dt">autos =</span> <span class="kw">as_factor</span>(autos), </span>
+<span id="cb11-7"><a href="results.html#cb11-7"></a>            <span class="dt">age =</span> <span class="kw">fct_relevel</span>(age, <span class="st">&quot;25-44&quot;</span>), </span>
+<span id="cb11-8"><a href="results.html#cb11-8"></a>            <span class="dt">size_cat =</span> <span class="kw">fct_relevel</span>(size_cat, <span class="st">&quot;2&quot;</span>), </span>
+<span id="cb11-9"><a href="results.html#cb11-9"></a>            income, </span>
+<span id="cb11-10"><a href="results.html#cb11-10"></a>            <span class="dt">frequency_cat =</span> <span class="kw">fct_relevel</span>(frequency_cat, <span class="st">&quot;One day or less frequently&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb11-11"><a href="results.html#cb11-11"></a><span class="st">  </span><span class="kw">mice</span>(<span class="dt">m =</span> n_imputations, <span class="dt">method =</span> <span class="st">&quot;cart&quot;</span>, <span class="dt">printFlag =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning: Number of logged events: 200</code></pre>
+<p>We generated 20 multiple imputed complete datasets with the
+following variables: available autos, age, household size, income, and the
+frequency of using transit. The imputed datasets were generated via chained
+equations using classification and regression tree methods encoded in the <code>mice</code>
+package for R <span class="citation">(van Buuren and Groothuis-Oudshoorn <a href="#ref-mice2011" role="doc-biblioref">2011</a>; R Core Team <a href="#ref-R-base" role="doc-biblioref">2020</a>)</span>. Each imputed dataset contains 130 completed
+observations.</p>
+<p>We computed the Fisher exact test of an independent relationship
+between willingness to use microtransit and the significant and suggestive
+variables on each imputed dataset: household size, age, and frequency of transit
+use. The Fisher test does not have a test statistic and generates <span class="math inline">\(p\)</span>-values via
+simulation; we therefore pool the <span class="math inline">\(p\)</span>-values from the 20 tests
+using a methodology proposed by <span class="citation">Licht (<a href="#ref-LichtThesis" role="doc-biblioref">2010</a>)</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="results.html#cb13-1"></a><span class="co"># methods in Christine Licht&#39;s dissertation, coded by Stef Van Buuren:</span></span>
 <span id="cb13-2"><a href="results.html#cb13-2"></a><span class="co"># https://stats.stackexchange.com/a/73573/10026</span></span>
 <span id="cb13-3"><a href="results.html#cb13-3"></a>lichtrubin &lt;-<span class="st"> </span><span class="cf">function</span>(fit){</span>
@@ -1380,22 +1422,23 @@ statistic and generates <span class="math inline">\(p\)</span>-values via simula
 <span id="cb13-24"><a href="results.html#cb13-24"></a>lr_size &lt;-<span class="st"> </span><span class="kw">lichtrubin</span>(size_fishers)</span>
 <span id="cb13-25"><a href="results.html#cb13-25"></a>lr_age &lt;-<span class="st"> </span><span class="kw">lichtrubin</span>(age_fishers)</span>
 <span id="cb13-26"><a href="results.html#cb13-26"></a>lr_freq &lt;-<span class="st"> </span><span class="kw">lichtrubin</span>(freq_fishers)</span></code></pre></div>
-<p>The pooled <span class="math inline">\(p\)</span>-values obtained through the multiply imputed data sets are give
+<p>The pooled <span class="math inline">\(p\)</span>-values obtained through the multiply imputed data sets are given
 in Table <a href="results.html#tab:mi-fishers-table">3.4</a> alongside the original, non-imputed
 <span class="math inline">\(p\)</span>-values. In the imputed data, there appears to be a clearer relationship
 between likeliness and household size, sufficient to reject the null hypothesis
 of independence at a standard significance level. The relationship between age
-and likeliness is weakened, but still would be considered significant. There
-remains no evidence that expressed likeliness to use microtransit is correlated
-in any way with the frequency of using transit.</p>
+and likeliness is weakened relative to the non-imputed data, but still would be
+considered significant. There remains no evidence that expressed likeliness to
+use microtransit is correlated in any way with the frequency of using transit.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="results.html#cb14-1"></a><span class="kw">tibble</span>(</span>
 <span id="cb14-2"><a href="results.html#cb14-2"></a>  <span class="st">&quot;Variable&quot;</span> =<span class="st"> </span>fisher_tests<span class="op">$</span>variable,</span>
 <span id="cb14-3"><a href="results.html#cb14-3"></a>  <span class="st">&quot;Original p&quot;</span> =<span class="st"> </span>fisher_tests<span class="op">$</span>p.value,</span>
 <span id="cb14-4"><a href="results.html#cb14-4"></a>  <span class="st">&quot;Imputed p&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>, lr_size, <span class="ot">NA</span>, <span class="ot">NA</span>, lr_age, lr_freq)</span>
 <span id="cb14-5"><a href="results.html#cb14-5"></a>) <span class="op">%&gt;%</span></span>
 <span id="cb14-6"><a href="results.html#cb14-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(<span class="st">`</span><span class="dt">Imputed p</span><span class="st">`</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb14-7"><a href="results.html#cb14-7"></a><span class="st">  </span><span class="kw">kbl</span>(<span class="dt">caption =</span> <span class="st">&quot;Fisher Exact p-value with Imputation&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-8"><a href="results.html#cb14-8"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<span id="cb14-7"><a href="results.html#cb14-7"></a><span class="st">  </span><span class="kw">kbl</span>(<span class="dt">caption =</span> <span class="st">&quot;Fisher Exact p-value with Imputation&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb14-8"><a href="results.html#cb14-8"></a>      <span class="dt">digits =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span></span>
+<span id="cb14-9"><a href="results.html#cb14-9"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:mi-fishers-table">Table 3.4: </span>Fisher Exact p-value with Imputation
@@ -1419,10 +1462,10 @@ Imputed p
 Household size
 </td>
 <td style="text-align:right;">
-0.2068077
+0.2068
 </td>
 <td style="text-align:right;">
-0.0374068
+0.0366
 </td>
 </tr>
 <tr>
@@ -1430,10 +1473,10 @@ Household size
 Age
 </td>
 <td style="text-align:right;">
-0.0036430
+0.0036
 </td>
 <td style="text-align:right;">
-0.0131557
+0.0062
 </td>
 </tr>
 <tr>
@@ -1441,40 +1484,18 @@ Age
 Weekly transit use
 </td>
 <td style="text-align:right;">
-0.2937006
+0.2937
 </td>
 <td style="text-align:right;">
-0.3454466
+0.3454
 </td>
 </tr>
 </tbody>
 </table>
-<p>With a multiply imputed dataset, it is possible to evaluate some of the corss</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="results.html#cb15-1"></a>mi_models &lt;-<span class="st"> </span><span class="kw">with</span>(sd_mice, <span class="kw">lm</span>(likeliness <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>size_cat <span class="op">+</span><span class="st"> </span>frequency_cat))</span>
-<span id="cb15-2"><a href="results.html#cb15-2"></a><span class="kw">pool</span>(mi_models)</span></code></pre></div>
-<pre><code>## Class: mipo    m = 20 
-##                                       term  m   estimate       ubar          b
-## 1                              (Intercept) 20  2.6207494 0.94613873 0.51085450
-## 2                                 age18-24 20  0.8577208 0.76352112 0.24328810
-## 3                                 age25-44 20  0.6506297 0.70497800 0.21395920
-## 4                                 age45-64 20  0.6881297 0.78057856 0.11477719
-## 5                               ageOver 65 20 -0.9904314 2.87116549 0.61794943
-## 6                                size_cat2 20 -1.1601036 0.33279003 0.30872640
-## 7                                size_cat3 20 -0.9455102 0.38790440 0.56957952
-## 8                               size_cat4+ 20 -0.1072315 0.25505709 0.20513735
-## 9  frequency_catOne day or less frequently 20 -0.2829342 0.17242226 0.03402026
-## 10           frequency_catTwo to four days 20  0.2998938 0.09520344 0.02794277
-##            t dfcom       df       riv    lambda       fmi
-## 1  1.4825359   120 49.59470 0.5669330 0.3618106 0.3860788
-## 2  1.0189736   120 68.43190 0.3345716 0.2506959 0.2716754
-## 3  0.9296352   120 70.20364 0.3186726 0.2416616 0.2623802
-## 4  0.9010946   120 93.28013 0.1543932 0.1337441 0.1517385
-## 5  3.5200124   120 82.14404 0.2259873 0.1843309 0.2034906
-## 6  0.6569528   120 33.85570 0.9740758 0.4934338 0.5209230
-## 7  0.9859629   120 24.45210 1.5417678 0.6065730 0.6352358
-## 8  0.4704513   120 37.51271 0.8444942 0.4578459 0.4846106
-## 9  0.2081435   120 84.91699 0.2071732 0.1716185 0.1904631
-## 10 0.1245433   120 71.41510 0.3081812 0.2355799 0.2561247</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="results.html#cb15-1"></a><span class="co"># multivariate regression on the imputed datasets: not used</span></span>
+<span id="cb15-2"><a href="results.html#cb15-2"></a>mi_models &lt;-<span class="st"> </span><span class="kw">with</span>(sd_mice, <span class="kw">lm</span>(likeliness <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>size_cat <span class="op">+</span><span class="st"> </span>frequency_cat))</span>
+<span id="cb15-3"><a href="results.html#cb15-3"></a>mi_pooled &lt;-<span class="st"> </span><span class="kw">pool</span>(mi_models)</span>
+<span id="cb15-4"><a href="results.html#cb15-4"></a><span class="kw">modelsummary</span>(mi_pooled, <span class="dt">statistic_vertical =</span> <span class="ot">FALSE</span>, <span class="dt">stars =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -1488,6 +1509,9 @@ Weekly transit use
 </div>
 <div id="ref-R-base">
 <p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-mice2011">
+<p>van Buuren, Stef, and Karin Groothuis-Oudshoorn. 2011. “mice: Multivariate Imputation by Chained Equations in R.” <em>Journal of Statistical Software</em> 45 (3): 1–67. <a href="https://www.jstatsoft.org/v45/i03/">https://www.jstatsoft.org/v45/i03/</a>.</p>
 </div>
 </div>
             </section>
