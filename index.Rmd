@@ -45,11 +45,13 @@ abstract: |
   willingness to use microtransit, though some responses from new riders
   indicate the novel service competes most directly with commercial
   transportation network company operations. The survey responses also reveal
-  younger passengers express more than expected willingness to use microtransit,
+  younger passengers express a more than expected willingness to use microtransit,
   middle-aged passengers a less than expected willingness, and older passengers
-  neutral or no expressed opinion. The effect of other user characteristics
-  including income and automobile availability is less statistically clear and
-  requires further research.
+  neutral or no expressed opinion. Results suggest additional relationships
+  between household size and transit use frequency, but further research is 
+  necessary. The effect of other user characteristics including income and
+  automobile availability is less statistically clear and also requires further
+  research.
 authorcontributions: |
   Data curation, Christian Hunter, Austin Martinez and Elizabeth Smith;
   Investigation, Christian Hunter, Austin Martinez and Elizabeth Smith;
@@ -102,11 +104,11 @@ how users perceive the effectiveness and convenience of these systems.
 In this paper we report the results of a survey conducted immediately before and
 several weeks after the November 2019 launch of a microtransit service in south
 Salt Lake County, Utah by the Utah Transit Authority (UTA). The surveys were
-designed to understand first the awareness of the on-demand system in the
+primarily designed to understand the awareness of the on-demand system in the
 transit passenger community. The surveys also consider the stated and revealed
 likeliness of individuals to use the microtransit service, and how the
-characteristics of these individuals – particularly age and household size –
-influence these preferences.
+characteristics of these individuals –-- particularly age, transit use frequency, 
+and household size --- influence these preferences.
 
 The remainder of this section contains a brief review of previous and ongoing
 studies relevant to the question of demand for and use of microtransit services.
@@ -133,7 +135,7 @@ system was used by a wide variety of individuals for a wide variety of trip
 purposes, and the typical trip length suggested it was being used less like a
 taxi service and more to supplement last-mile transit access. In many cases, it
 appeared as though Kutsuplus replaced walking and bicycle trips. The
-@weckstrom2018 research also asked respondents why they continued or
+@weckstrom2018 research also asked respondents why they may have continued or
 discontinued using the service, revealing strong differences in response among
 different income groups. High-income individuals were more likely to cite long
 response times, while lower income groups were more likely to cite the fare or
@@ -156,7 +158,7 @@ trips (60\%) taken on RideAustin could have been completed with a single-seat
 transit ride. @Wenzel2019 additionally used the same dataset to estimate the
 level of deadheading and concomitant energy expenditure on the system. Though
 these findings are important in terms of understanding the risks of microtransit
-services, it should be stressed that the RideAustin was not explicitly designed
+services, it should be stressed that the RideAustin service was not explicitly designed
 to support transit operations. And although the RideAustin dataset does identify
 unique individual riders through a persistent mobile device ID, it does not
 disclose any demographic information on the riders and therefore cannot support
@@ -178,10 +180,11 @@ Data: GPS records, rider transaction data, and the like. These data are
 well-suited to important research questions such as where and when the services
 pick up and drop off riders, the wait times experienced by the riders, and in
 some cases even the ability to construct multiple trip tours. But the literature
-to this point is somewhat limited in its exploration of the actual users of
+is somewhat limited in its exploration of the actual users of
 these systems: who they are, why they are traveling, and why they chose to use
 this service. This information is critical when planning and forecasting the
 potential success or failure of these systems, in contrast to reporting observed
-service characteristics in a service already in operation. In this paper, we
+service characteristics for a service already in operation. In this paper, we
 present the results of a rider survey designed to answer these questions in the
-periods immediately before and after the launch of this kind of system.
+periods immediately before and after the launch of a 
+microtransit service.

@@ -23,35 +23,36 @@ if(knitr::is_latex_output()){
 
 ## System Description
 In November 2019, the Utah Transit Authority (UTA) launched an on-demand
-microtransit service in the southern part of Salt Lake County. This region –
-illustrated in Figure \@ref(fig:via-map) – has primarily low-density suburban
+microtransit service in the southern part of Salt Lake County. This region –--
+illustrated in Figure \@ref(fig:via-map) --– has primarily low-density suburban
 development but also hosts stations for UTA's extensive rail transit network:
 the FrontRunner commuter rail operates between Provo and Ogden via downtown Salt
 Lake City on 30 minute peak headways; and the Blue and Red TRAX light rail lines
 connect to downtown Salt Lake City, the University of Utah, and Salt Lake
 International Airport (via transfer) on 15 minute peak headways. There are
 existing fixed route and route deviation services in the region, as well as park
-and ride facilities at most rail stations. UTA is interested in improving the
-quality of service for passengers in the region as well as reducing
-per-passenger operating costs.
+and ride facilities at most rail stations. UTA launched the microtransit service
+in an effort to improve the quality of service for passengers in the region, 
+expand the effective accessibility of the rail transit stations, and reduce transit
+operating costs by potentially eliminating or reallocating fixed-route bus lines.
 
-```{r via-map, out.width = '100%', fig.cap="UTA on-demand microtransit service area. Image by the authors"}
-knitr::include_graphics("images/service_area.png", auto_pdf = TRUE)
+```{r via-map, out.width = '100%', fig.cap="UTA on-demand microtransit service area. Image courtesy UTA."}
+knitr::include_graphics("images/via-map.png", auto_pdf = TRUE)
 ```
 
 In establishing the on-demand microtransit service UTA partnered with Via, a
 commercial mobility provider with new and ongoing operations in several US
-cities. Passengers request rides using the VIA mobile application or calling a
+cities. Passengers request rides using the VIA mobile application or by calling a
 designated service line and await the vehicle at a pickup point near to their
 origin. Passengers share rides based on the availability of vehicles and the
 compatibility of paths, as determined by algorithms embedded in the VIA service.
 The vehicle will drop the passenger off near their destination or at TRAX or
 FrontRunner stations; both the pickup and drop-off points must lie within the
 service area shown in Figure \@ref(fig:via-map). The regular adult one-way fare
-is \$2.50 and includes a limited transfer to the UTA fixed route transit system.
-By the end of February 2020, the microtransit system was carrying about 316
-passenger trips per weekday with an average wait time of 11 minutes per trip
-@uta2020.
+is \$2.50 (the same as a regular base transit fare) and includes a limited
+transfer to the UTA fixed route transit system. By the end of February 2020, the
+microtransit system was carrying about 316 passenger trips per weekday with an
+average wait time of 11 minutes per trip [@uta2020].
 
 ## Survey Design
 
@@ -155,13 +156,15 @@ survey_data <- tibble(
     frequency_cat = case_when(
       frequency_n >= 5 ~ "Five days or more", 
       frequency_n <= 1 ~ "One day or less frequently", 
-      TRUE ~ "Two to four days", 
-    )
+      TRUE ~ "Two to four days",
+    ),
+    frequency_cat = factor(frequency_cat, levels = c(
+      "One day or less frequently", "Two to four days" , "Five days or more"))
   )
 ```
 
 
-UTA’s primary goal in executing this survey was to understand the effectiveness
+UTA’s primary goal in executing a microtransit rider survey was to understand the effectiveness
 of its marketing campaign to raise awareness and information of the new service.
 This survey also provided an opportunity to inform additional riders and to
 evaluate rider perceptions and characteristics both before and immediately after
@@ -172,7 +175,7 @@ stations as well as the Draper Town Center TRAX station. The second tranche was
 collected on several weekdays between January 10th and March 4th, 2020, and was
 collected through on-platform intercept interviews at the same stations in
 addition to the Daybreak Parkway TRAX station and at designated microtransit
-pick-up points near the aforementioned rail stations; a limited number of
+pick-up points near the aforementioned rail stations. A limited number of
 interviews were also conducted on board the microtransit vehicles. Interviews
 were conducted throughout the day, but with a focus on the PM peak commute
 period; approximately 60\% of the surveys in both tranches were collected between 4 and 7 PM.

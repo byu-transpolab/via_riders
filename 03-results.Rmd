@@ -8,7 +8,7 @@ tranche is given in Table \@ref(tab:survey-respondents); as outlined in the
 Methodology section, the decision to include income level in the survey was made
 between the tranches and therefore the “Before” tranche contains no income
 information. The number of respondents who declined to answer the other
-demographic questions is also relatively high.
+demographic questions is also high.
 
 ```{r survey-respondents}
 datasummary_balance(
@@ -52,11 +52,12 @@ respondent is willing to use it.
 
 The sample is too small to conduct meaningful statistical inference on the role
 that access mode plays in these opinions, but some discussion of these
-observations is still worthwhile. The apparent turning of bicycle users against
+observations is still worthwhile. The apparent reluctance of bicyclists to use
 the service is likely statistical noise, though it should also be noted that the
 “After” tranche was collected in January and February, when Utah is typically
 cold with snow on the ground. Perhaps individuals who are still cycling at those
-times will persist in doing so. It is also interesting to note that there
+times will persist in doing so. Additionally, the microtransit vehicles are not
+equipped with bicycle racks. It is also interesting to note that there
 appears to be little overall correlation between access mode and expressed
 willingness to use the service, unless the UTA On Demand service attracts people
 who would not have used the service otherwise. Of these individuals who
@@ -95,7 +96,7 @@ three-category likeliness response. In this test the null hypothesis is that the
 two distributions are independent with the alternative being there is some
 dependence between the characteristic and the response. A $p$-value less than a
 given critical threshold indicates that the null hypothesis has a low
-probability and should be rejected. A conventional value of the critical value
+probability and may be rejected. A conventional value of the critical value
 is $\alpha=0.05$, though given the small sample sizes in this survey other
 critical values may be suggestive of the need for future evaluation.
 
@@ -154,8 +155,6 @@ kbl(fisher_table, caption = "Distribution of Rider Characteristics by Reported L
                   row_group_label_fonts = list(italic = TRUE, bold = FALSE))
 ```
 
-
-
 Smartphone use appears to not be a contributing factor in the likeliness of
 using microtransit, as almost all respondents use a smartphone regardless of
 their reported likeliness. We also fail to reject the null hypothesis of
@@ -172,7 +171,9 @@ automobile availability and household size go hand-in-hand: a household with
 more individuals, particularly driving-age individuals, will be more constrained
 in their driving behavior even with multiple household automobiles. Considering
 these two variables together will be important for future research but cannot be
-attempted here.
+attempted here. There is also a suggestive relationship between transit use
+frequency and the responded willingness, with more frequent users having 
+somewhat more willingness to use microtransit.
 
 A clear statistical result is shown, however, between the reported willingness
 to use microtransit and the age of the respondent. This significant result
@@ -220,26 +221,19 @@ sd_mice <- survey_data %>%
   mice(m = n_imputations, method = "cart", printFlag = FALSE)
 ```
 
-We generated `r n_imputations` multiple imputed complete datasets with the following
-variables: 
+We generated `r n_imputations` multiple imputed complete datasets with the
+following variables:  available autos, age, household size, income, and the 
+frequency of using transit.  The imputed datasets were generated via chained
+equations using classification and regression tree methods encoded in the `mice`
+package for R [@mice2011; @R-base]. Each imputed dataset contains 130 completed
+observations.
 
-  - Available autos
-  - Age
-  - Household Size
-  - Income
-  - Frequency of Using UTA (as categories)
-
-The datasets were generated via chained equations using classification and
-regression tree methods encoded in the `mice` package for R [@mice2011; @R-base].
-The imputed datasets each increase the number of available observations to 130. We
-are primarily interested in exploring the validity of the results we had already
-that had been suggested with the incomplete dataset: specifically, the relationship
-between reported likeliness and age, household size, and frequency of using UTA.
-We computed the Fisher exact test of an independent relationship between these
-variables on each imputed dataset. The Fisher test does not have a test
-statistic and generates $p$-values via simulation; we therefore pool the
-$p$-values from the `r n_imputations` tests using a methodology proposed by
-@LichtThesis.
+We computed the Fisher exact test of an independent relationship
+between willingness to use microtransit and the significant and suggestive
+variables on each imputed dataset: household size, age, and frequency of transit
+use. The Fisher test does not have a test statistic and generates $p$-values via
+simulation; we therefore pool the $p$-values from the `r n_imputations` tests
+using a methodology proposed by @LichtThesis.
 
 ```{r mi_fishers}
 # methods in Christine Licht's dissertation, coded by Stef Van Buuren:
@@ -275,9 +269,9 @@ in Table \@ref(tab:mi-fishers-table) alongside the original, non-imputed
 $p$-values. In the imputed data, there appears to be a clearer relationship
 between likeliness and household size, sufficient to reject the null hypothesis
 of independence at a standard significance level. The relationship between age
-and likeliness is weakened relative to the , but still would be considered significant. There
-remains no evidence that expressed likeliness to use microtransit is correlated
-in any way with the frequency of using transit.  
+and likeliness is weakened relative to the non-imputed data, but still would be
+considered significant. There remains no evidence that expressed likeliness to
+use microtransit is correlated in any way with the frequency of using transit.
 
 ```{r mi-fishers-table}
 tibble(
