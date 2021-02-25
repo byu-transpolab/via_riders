@@ -24,7 +24,9 @@ In spite of these limitations, the findings of this research suggest some
 potential paths for transit agencies considering the deployment of a transportation mode
 of this kind. First, the negative result with respect to income is somewhat
 promising: an inability to reach out to low-income individuals was a factor in
-the failure of Kutsusplus [@weckstrom2018]. The significant findings --- a 
+the failure of Kutsusplus [@weckstrom2018]. At the same time, this finding could 
+have been influenced by the reduced fare durint the initial rollout period. 
+The significant findings --- a 
 relationship with age in the original data and also with household size in the 
 multiply-imputed data --- also hold meaning for transit providers. Of particular 
 note is the absence of a middle ground or neutral opinion on the service for
