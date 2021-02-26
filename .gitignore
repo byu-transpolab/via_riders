@@ -3,6 +3,11 @@
 .RData
 .Ruserdata
 
+*.bbl
+*.blg
+*.fdb_latexmk
+*.out
+*.fls
 *.aux
 *.log
 *.spl
