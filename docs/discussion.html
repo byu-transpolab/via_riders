@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-02-25" />
+<meta name="date" content="2021-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,9 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="study-methodology.html"><a href="study-methodology.html#system-description"><i class="fa fa-check"></i><b>2.1</b> System Description</a></li>
 <li class="chapter" data-level="2.2" data-path="study-methodology.html"><a href="study-methodology.html#survey-design"><i class="fa fa-check"></i><b>2.2</b> Survey Design</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
-<li class="chapter" data-level="3.1" data-path="results.html"><a href="results.html#multiple-imputation"><i class="fa fa-check"></i><b>3.1</b> Multiple Imputation</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a></li>
 <li class="chapter" data-level="4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a><ul>
 <li class="chapter" data-level="4.1" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>4.1</b> Conclusion</a></li>
 </ul></li>
@@ -189,46 +187,42 @@ have substantial statistical power, particularly in statistics calculated on
 multiple grouping dimensions. Finally, the survey collected self-reported
 responses with no verification or validation of any kind.</p>
 <p>Most survey responses were collected on fixed rail transit station platforms.
-Passengers of UTA rail services were assumed to be the primary audience for
-the microtransit service, and these riders were presumably more likely to be
-available to complete a survey while waiting for a train.
-Additionally, UTA is interested in supporting its fixed rail transit investments
-in the service area. There is, however, no requirement that microtransit
-passengers use other UTA services; data supplied by the microtransit provider
-but not included in this study suggest that only 58% percent of microtransit
-trips began or ended within 500 feet of a UTA rail transit station. This
-population might have preferences or patterns that either match or contradict
-the initial findings of this research.</p>
-<p>In spite of these limitations, the findings of this research suggest some
-potential paths for transit agencies considering the deployment of a transportation mode
-of this kind. First, the negative result with respect to income is somewhat
-promising: an inability to reach out to low-income individuals was a factor in
-the failure of Kutsusplus <span class="citation">(Weckström et al. <a href="#ref-weckstrom2018" role="doc-biblioref">2018</a>)</span>. The significant findings — a
-relationship with age in the original data and also with household size in the
-multiply-imputed data — also hold meaning for transit providers. Of particular
-note is the absence of a middle ground or neutral opinion on the service for
-the largest age group in the survey, those individuals between 25 and 44 years old.
-In the next older group (45 to 64 years old), a neutral opinion is considerably
-<em>overrepresented</em>. Does this mean that members of this older group could be a
-target of successful marketing efforts? How much of these attitudes are actually
-tied up in covarying household conditions such as vehicle availability and
-household size? More research is necessary.</p>
+Passengers of UTA rail services were assumed to be the primary audience for the
+microtransit service, and these riders were presumably more likely to be
+available to complete a survey while waiting for a train. Additionally, UTA is
+interested in supporting its fixed rail transit investments in the service area.
+There is, however, no requirement that microtransit passengers use other UTA
+services; data supplied by the microtransit provider but not included in this
+study suggest that only 58% percent of microtransit trips began or ended within
+500 feet of a UTA rail transit station. This population might have preferences
+or patterns that either match or contradict the initial findings of this
+research.</p>
+<p>A final limitation of these findings is the onset of the COVID-19 pandemic.
+Government-imposed shutdowns and voluntary work stoppages related to the
+pandemic did not begin in Utah until the week of March 15th, after data
+collection for this project had completed. As such, the survey responses are
+likely unaffected by changes in behavior related to the pandemic. However, the
+pandemic has drastically affected the subsequent operations of both UTA and Via
+and is likely to change many of the stated behaviors and attitudes reported in
+this study. Many findings of this study will need to be reconsidered should
+“normal” operations resume.</p>
 <p>In discussing the responses to the question of what mode microtransit passengers
 would have used were the service not available, we suggested there is anecdotal
 evidence that commercial TNC rides are the primary competition. There are still
-questions, however, of how use of this microtransit service might affect conventional transit
-services. Table <a href="discussion.html#tab:uta-ridership">4.1</a> shows the average weekday ridership
-during November, December, and January for the period the microtransit service
-was operating as well as the same three months in the two prior years
-<span class="citation">(“UTA Route-Level Boardings, Monthly Counts” <a href="#ref-uta2020boardings" role="doc-biblioref">2020</a>)</span>. Total system ridership was remarkably stable during
-these three periods. The microtransit service area – in this case defined by
-ridership on routes F514, 218, 526, F504, F518, F534, F546, and F547 – was
-declining before the microtransit service began, though the decline accelerated
-during the first three months of the service’s operation. By comparison, the
-microtransit service carried approximately 316 passengers per day during its
-first three months, more than compensating for the recent observed decline in
-transit ridership were this to be identified as a major contributing factor.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="discussion.html#cb16-1"></a>ridership &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/UTA_Route-Level_Boardings%2C_Monthly_Counts.csv&quot;</span>) </span></code></pre></div>
+questions, however, of how use of this microtransit service might affect
+conventional transit services. Table <a href="discussion.html#tab:uta-ridership">4.1</a> shows the average
+weekday ridership during November, December, and January for the period the
+microtransit service was operating as well as the same three months in the two
+prior years [uta2020boardings}. Total system ridership was remarkably stable
+during these three periods. The microtransit service area – in this case
+defined by ridership on routes F514, 218, 526, F504, F518, F534, F546, and F547
+– was declining before the microtransit service began, though the decline
+accelerated during the first three months of the service’s operation. By
+comparison, the microtransit service carried approximately 316 passengers per
+day during its first three months, more than compensating for the recent
+observed decline in transit ridership were this to be identified as a major
+contributing factor.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="discussion.html#cb11-1"></a>ridership &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/UTA_Route-Level_Boardings%2C_Monthly_Counts.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Mode = col_character(),
@@ -241,44 +235,44 @@ transit ridership were this to be identified as a major contributing factor.</p>
 ##   County = col_character(),
 ##   ObjectId = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="discussion.html#cb18-1"></a>lines &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F514&quot;</span>, <span class="st">&quot;218&quot;</span>, <span class="st">&quot;526&quot;</span>, <span class="st">&quot;F504&quot;</span>, <span class="st">&quot;F518&quot;</span>, <span class="st">&quot;F534&quot;</span>, <span class="st">&quot;F546&quot;</span>, <span class="st">&quot;F547&quot;</span>)</span>
-<span id="cb18-2"><a href="discussion.html#cb18-2"></a></span>
-<span id="cb18-3"><a href="discussion.html#cb18-3"></a>rdf &lt;-<span class="st"> </span>ridership <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb18-4"><a href="discussion.html#cb18-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb18-5"><a href="discussion.html#cb18-5"></a>    <span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">as_date</span>(<span class="kw">str_c</span>(Year, Month, <span class="st">&quot;01&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)),</span>
-<span id="cb18-6"><a href="discussion.html#cb18-6"></a>    <span class="dt">area =</span> <span class="kw">ifelse</span>(LineAbbr <span class="op">%in%</span><span class="st"> </span>lines, <span class="st">&quot;area&quot;</span>, <span class="st">&quot;other&quot;</span>)</span>
-<span id="cb18-7"><a href="discussion.html#cb18-7"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb18-8"><a href="discussion.html#cb18-8"></a><span class="st">  </span><span class="kw">filter</span>(ServiceType <span class="op">==</span><span class="st"> &quot;WKD&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb18-9"><a href="discussion.html#cb18-9"></a><span class="st">  </span><span class="kw">filter</span>(Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>, <span class="st">&quot;January&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb18-10"><a href="discussion.html#cb18-10"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb18-11"><a href="discussion.html#cb18-11"></a>    <span class="dt">period =</span> <span class="kw">ifelse</span>( Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>),  Year <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, Year )</span>
-<span id="cb18-12"><a href="discussion.html#cb18-12"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb18-13"><a href="discussion.html#cb18-13"></a><span class="st">  </span><span class="kw">filter</span>(period <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
-<span id="cb18-14"><a href="discussion.html#cb18-14"></a><span class="st">  </span><span class="kw">group_by</span>(period, area, LineAbbr) <span class="op">%&gt;%</span></span>
-<span id="cb18-15"><a href="discussion.html#cb18-15"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AvgBoardings =</span> <span class="kw">mean</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
-<span id="cb18-16"><a href="discussion.html#cb18-16"></a><span class="st">  </span><span class="kw">group_by</span>(area, period) <span class="op">%&gt;%</span></span>
-<span id="cb18-17"><a href="discussion.html#cb18-17"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">br =</span> <span class="kw">sum</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
-<span id="cb18-18"><a href="discussion.html#cb18-18"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ch =</span> (br <span class="op">-</span><span class="st"> </span><span class="kw">lag</span>(br)) <span class="op">/</span><span class="st"> </span><span class="kw">lag</span>(br) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) </span>
-<span id="cb18-19"><a href="discussion.html#cb18-19"></a></span>
-<span id="cb18-20"><a href="discussion.html#cb18-20"></a>uta_ridership &lt;-<span class="st"> </span>rdf <span class="op">%&gt;%</span></span>
-<span id="cb18-21"><a href="discussion.html#cb18-21"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> count, <span class="dt">value =</span> value, <span class="op">-</span>area, <span class="op">-</span>period) <span class="op">%&gt;%</span></span>
-<span id="cb18-22"><a href="discussion.html#cb18-22"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;key&quot;</span>, area, count) <span class="op">%&gt;%</span></span>
-<span id="cb18-23"><a href="discussion.html#cb18-23"></a><span class="st">    </span><span class="kw">spread</span>(key, value) <span class="op">%&gt;%</span></span>
-<span id="cb18-24"><a href="discussion.html#cb18-24"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">period =</span>  <span class="kw">c</span>(<span class="st">&quot;2017-2018&quot;</span>, <span class="st">&quot;2018-2019&quot;</span>, <span class="st">&quot;2019-2020&quot;</span>))</span>
-<span id="cb18-25"><a href="discussion.html#cb18-25"></a></span>
-<span id="cb18-26"><a href="discussion.html#cb18-26"></a><span class="cf">if</span>(knitr<span class="op">::</span><span class="kw">is_latex_output</span>()){</span>
-<span id="cb18-27"><a href="discussion.html#cb18-27"></a>    <span class="kw">kable</span>(uta_ridership,</span>
-<span id="cb18-28"><a href="discussion.html#cb18-28"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
-<span id="cb18-29"><a href="discussion.html#cb18-29"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>,</span>
-<span id="cb18-30"><a href="discussion.html#cb18-30"></a>          <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;latex&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb18-31"><a href="discussion.html#cb18-31"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</span>
-<span id="cb18-32"><a href="discussion.html#cb18-32"></a>} <span class="cf">else</span> {</span>
-<span id="cb18-33"><a href="discussion.html#cb18-33"></a>    <span class="kw">kable</span>(uta_ridership,</span>
-<span id="cb18-34"><a href="discussion.html#cb18-34"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
-<span id="cb18-35"><a href="discussion.html#cb18-35"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb18-36"><a href="discussion.html#cb18-36"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb18-37"><a href="discussion.html#cb18-37"></a><span class="st">    </span><span class="kw">kable_styling</span>() </span>
-<span id="cb18-38"><a href="discussion.html#cb18-38"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="discussion.html#cb13-1"></a>lines &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F514&quot;</span>, <span class="st">&quot;218&quot;</span>, <span class="st">&quot;526&quot;</span>, <span class="st">&quot;F504&quot;</span>, <span class="st">&quot;F518&quot;</span>, <span class="st">&quot;F534&quot;</span>, <span class="st">&quot;F546&quot;</span>, <span class="st">&quot;F547&quot;</span>)</span>
+<span id="cb13-2"><a href="discussion.html#cb13-2"></a></span>
+<span id="cb13-3"><a href="discussion.html#cb13-3"></a>rdf &lt;-<span class="st"> </span>ridership <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-4"><a href="discussion.html#cb13-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb13-5"><a href="discussion.html#cb13-5"></a>    <span class="dt">date =</span> lubridate<span class="op">::</span><span class="kw">as_date</span>(<span class="kw">str_c</span>(Year, Month, <span class="st">&quot;01&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)),</span>
+<span id="cb13-6"><a href="discussion.html#cb13-6"></a>    <span class="dt">area =</span> <span class="kw">ifelse</span>(LineAbbr <span class="op">%in%</span><span class="st"> </span>lines, <span class="st">&quot;area&quot;</span>, <span class="st">&quot;other&quot;</span>)</span>
+<span id="cb13-7"><a href="discussion.html#cb13-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb13-8"><a href="discussion.html#cb13-8"></a><span class="st">  </span><span class="kw">filter</span>(ServiceType <span class="op">==</span><span class="st"> &quot;WKD&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-9"><a href="discussion.html#cb13-9"></a><span class="st">  </span><span class="kw">filter</span>(Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>, <span class="st">&quot;January&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb13-10"><a href="discussion.html#cb13-10"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb13-11"><a href="discussion.html#cb13-11"></a>    <span class="dt">period =</span> <span class="kw">ifelse</span>( Month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>),  Year <span class="op">+</span><span class="st"> </span><span class="dv">1</span>, Year )</span>
+<span id="cb13-12"><a href="discussion.html#cb13-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb13-13"><a href="discussion.html#cb13-13"></a><span class="st">  </span><span class="kw">filter</span>(period <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-14"><a href="discussion.html#cb13-14"></a><span class="st">  </span><span class="kw">group_by</span>(period, area, LineAbbr) <span class="op">%&gt;%</span></span>
+<span id="cb13-15"><a href="discussion.html#cb13-15"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AvgBoardings =</span> <span class="kw">mean</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
+<span id="cb13-16"><a href="discussion.html#cb13-16"></a><span class="st">  </span><span class="kw">group_by</span>(area, period) <span class="op">%&gt;%</span></span>
+<span id="cb13-17"><a href="discussion.html#cb13-17"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">br =</span> <span class="kw">sum</span>(AvgBoardings)) <span class="op">%&gt;%</span></span>
+<span id="cb13-18"><a href="discussion.html#cb13-18"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ch =</span> (br <span class="op">-</span><span class="st"> </span><span class="kw">lag</span>(br)) <span class="op">/</span><span class="st"> </span><span class="kw">lag</span>(br) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) </span>
+<span id="cb13-19"><a href="discussion.html#cb13-19"></a></span>
+<span id="cb13-20"><a href="discussion.html#cb13-20"></a>uta_ridership &lt;-<span class="st"> </span>rdf <span class="op">%&gt;%</span></span>
+<span id="cb13-21"><a href="discussion.html#cb13-21"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> count, <span class="dt">value =</span> value, <span class="op">-</span>area, <span class="op">-</span>period) <span class="op">%&gt;%</span></span>
+<span id="cb13-22"><a href="discussion.html#cb13-22"></a><span class="st">    </span><span class="kw">unite</span>(<span class="st">&quot;key&quot;</span>, area, count) <span class="op">%&gt;%</span></span>
+<span id="cb13-23"><a href="discussion.html#cb13-23"></a><span class="st">    </span><span class="kw">spread</span>(key, value) <span class="op">%&gt;%</span></span>
+<span id="cb13-24"><a href="discussion.html#cb13-24"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">period =</span>  <span class="kw">c</span>(<span class="st">&quot;2017-2018&quot;</span>, <span class="st">&quot;2018-2019&quot;</span>, <span class="st">&quot;2019-2020&quot;</span>))</span>
+<span id="cb13-25"><a href="discussion.html#cb13-25"></a></span>
+<span id="cb13-26"><a href="discussion.html#cb13-26"></a><span class="cf">if</span>(knitr<span class="op">::</span><span class="kw">is_latex_output</span>()){</span>
+<span id="cb13-27"><a href="discussion.html#cb13-27"></a>    <span class="kw">kable</span>(uta_ridership,</span>
+<span id="cb13-28"><a href="discussion.html#cb13-28"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
+<span id="cb13-29"><a href="discussion.html#cb13-29"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>,</span>
+<span id="cb13-30"><a href="discussion.html#cb13-30"></a>          <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;latex&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-31"><a href="discussion.html#cb13-31"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</span>
+<span id="cb13-32"><a href="discussion.html#cb13-32"></a>} <span class="cf">else</span> {</span>
+<span id="cb13-33"><a href="discussion.html#cb13-33"></a>    <span class="kw">kable</span>(uta_ridership,</span>
+<span id="cb13-34"><a href="discussion.html#cb13-34"></a>          <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Avg. Weekday Boardings&quot;</span>, <span class="st">&quot;% Change&quot;</span>), <span class="dv">2</span>)), </span>
+<span id="cb13-35"><a href="discussion.html#cb13-35"></a>          <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Weekday Ridership, November through January&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-36"><a href="discussion.html#cb13-36"></a><span class="st">    </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;Microtransit Service Area&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Other UTA Services&quot;</span> =<span class="st"> </span><span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb13-37"><a href="discussion.html#cb13-37"></a><span class="st">    </span><span class="kw">kable_styling</span>() </span>
+<span id="cb13-38"><a href="discussion.html#cb13-38"></a>}</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:uta-ridership">Table 4.1: </span>Average Weekday Ridership, November through January
@@ -368,15 +362,21 @@ Avg. Weekday Boardings
 </tr>
 </tbody>
 </table>
-<p>A final limitation of these findings is the onset
-of the COVID-19 pandemic. Government-imposed shutdowns and voluntary work
-stoppages related to the pandemic did not begin in Utah until the week of March
-15th, after data collection for this project had completed. As such, the survey
-responses are likely unaffected by changes in behavior related to the pandemic.
-However, the pandemic has drastically affected the subsequent operations of both
-UTA and Via and is likely to change many of the stated behaviors and attitudes
-reported in this study. Many findings of this study will need to be reconsidered
-should “normal” operations resume.</p>
+<p>In spite of these limitations, the findings of this research suggest potential
+paths for transit agencies considering the deployment of a transportation mode
+of this kind. First, the negative result with respect to income is somewhat
+promising: an inability to reach out to low-income individuals was a factor in
+the failure of Kutsusplus <span class="citation">(Weckström et al. <a href="#ref-weckstrom2018" role="doc-biblioref">2018</a>)</span>. The significant findings — a
+relationship with age in the original data and suggestive relationships with
+also with household size and transit frequency — also hold meaning for transit
+providers. Of particular note is the absence of a middle ground or neutral
+opinion on the service for the largest age group in the survey, those
+individuals between 25 and 44 years old. In the next older group (45 to 64 years
+old), a neutral opinion is considerably <em>overrepresented</em>. Does this mean
+that members of this older group could be a target of successful marketing
+efforts? How much of these attitudes are actually tied up in covarying household
+conditions such as vehicle availability and household size? More research is
+necessary.</p>
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">4.1</span> Conclusion</h2>
 <p>Microtransit services are regularly put forward as means to support last-mile /
@@ -421,9 +421,6 @@ priority for the service operators and their agency partners.</p>
 <div id="refs" class="references">
 <div id="ref-utahHealth">
 <p>Utah Department of Health. 2020. “Complete Health Indicator Report of Utah Population Characteristics: Age Distribution of the Population.” <a href="https://ibis.health.utah.gov/ibisph-view/indicator/complete_profile/AgeDistPop.html">https://ibis.health.utah.gov/ibisph-view/indicator/complete_profile/AgeDistPop.html</a>.</p>
-</div>
-<div id="ref-uta2020boardings">
-<p>“UTA Route-Level Boardings, Monthly Counts.” 2020. <a href="https://data-rideuta.opendata.arcgis.com/datasets/rideuta::uta-route-level-boardings-monthly-counts/">https://data-rideuta.opendata.arcgis.com/datasets/rideuta::uta-route-level-boardings-monthly-counts/</a>.</p>
 </div>
 <div id="ref-weckstrom2018">
 <p>Weckström, Christoffer, Miloš N. Mladenović, Waqar Ullah, John D. Nelson, Moshe Givoni, and Sebastian Bussman. 2018. “User Perspectives on Emerging Mobility Services: Ex Post Analysis of Kutsuplus Pilot.” <em>Research in Transportation Business and Management</em> 27 (June): 84–97. <a href="https://doi.org/10.1016/j.rtbm.2018.06.003">https://doi.org/10.1016/j.rtbm.2018.06.003</a>.</p>
