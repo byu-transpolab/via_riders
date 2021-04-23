@@ -164,7 +164,7 @@ survey_data <- tibble(
 ```
 
 
-UTA’s primary goal in executing a microtransit rider survey was to understand the effectiveness
+UTA’s primary goal in collecting a microtransit rider survey was to understand the effectiveness
 of its marketing campaign to raise awareness and information of the new service.
 This survey also provided an opportunity to inform additional riders and to
 evaluate rider perceptions and characteristics both before and immediately after
@@ -184,7 +184,10 @@ The surveys were administered via electronic tablet using a questionnaire
 developed in a web-based survey software. The survey questions were developed
 with the help of UTA staff and an external consulting team. The relevant
 variables and source questions for this study are shown in Table
-\@ref(tab:survey-questions), in the order in which the questions were asked. After
+\@ref(tab:survey-questions), in the order in which the questions were asked. The 
+interviewers approached subjects on the platform, identified themselves as conducting
+an informational survey on behalf of UTA, and informed the subjects that participation 
+in the survey was anonymous and voluntary. After
 asking the respondent about their awareness of the system, the interviewer would
 give a brief explanation of the service before asking about the respondent’s
 likeliness to use the system. The questionnaire for the second tranche included
@@ -244,4 +247,19 @@ if(knitr::is_latex_output()){
 }
 
 ```
+
+To determine the significance of the relationship between the demographic
+characteristics presented in Table \@ref(tab:survey-summary) and expressed
+willingness to use the on-demand microtransit service, we employ the Fisher
+"exact" test of independence in contingency tables [@fisherExact].  In this
+test the null hypothesis is that the two distributions are independent with the
+alternative being there is some dependence between the characteristic and the
+response. A \(p\)-value less than a given critical threshold indicates that the
+null hypothesis has a low probability and may be rejected. A conventional value
+of the critical value is \(\alpha=0.05\), though given the small sample sizes in
+this survey other critical values may be suggestive of the need for future
+evaluation. An attempt to use multiply-imputed datasets following the
+methodology of @mice2011 and @LichtThesis was abandoned due to the
+missingness in the data, and the likelihood that the data were not missing at
+random [@jakobsen2017].
 

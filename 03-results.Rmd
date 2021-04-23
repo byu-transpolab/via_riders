@@ -92,13 +92,7 @@ distribution of these characteristics differs between individuals who are or are
 not likely to use the service. These distributions are shown in Table
 \@ref(tab:fisher-table), along with the result of a two-sided Fisher exact test of
 independence between the indicated characteristic distribution and the
-three-category likeliness response. In this test the null hypothesis is that the
-two distributions are independent with the alternative being there is some
-dependence between the characteristic and the response. A $p$-value less than a
-given critical threshold indicates that the null hypothesis has a low
-probability and may be rejected. A conventional value of the critical value
-is $\alpha=0.05$, though given the small sample sizes in this survey other
-critical values may be suggestive of the need for future evaluation.
+three-category likeliness response.
 
 ```{r fisher_tests}
 expected.table <- function(tab){
@@ -194,103 +188,6 @@ positive willingness to use transit.
 kbl(fisher_tests$diff[[5]], digits = 4, booktabs = T,
     caption = "Difference of observed and expected frequencies for age and likeliness") %>%
     kable_styling()
-```
-
-## Multiple Imputation
-
-The attitudinal survey analysis presented by @KONIG2020954 included an
-unreported  fraction of incomplete records that were filled via hot-deck
-imputation. The applicability of missing variable imputation to the present situation
-is potentially inappropriate, given both the degree of missingness in some 
-variables as well as the potential for these variables to not be missing at
-random. Nevertheless, the suggestive results on the age, frequency of transit
-use, and household size variable indicates that such an analysis might be
-illuminating, if not conclusive.
-
-```{r sd_mice}
-set.seed(42)
-n_imputations <- 20
-
-sd_mice <- survey_data %>%
-  transmute(tranche, likeliness, likeliness_f,
-            autos = as_factor(autos), 
-            age = fct_relevel(age, "25-44"), 
-            size_cat = fct_relevel(size_cat, "2"), 
-            income, 
-            frequency_cat = fct_relevel(frequency_cat, "One day or less frequently")) %>%
-  mice(m = n_imputations, method = "cart", printFlag = FALSE)
-```
-
-We generated `r n_imputations` multiple imputed complete datasets with the
-following variables:  available autos, age, household size, income, and the 
-frequency of using transit.  The imputed datasets were generated via chained
-equations using classification and regression tree methods encoded in the `mice`
-package for R [@mice2011; @R-base]. Each imputed dataset contains 130 completed
-observations.
-
-We computed the Fisher exact test of an independent relationship
-between willingness to use microtransit and the significant and suggestive
-variables on each imputed dataset: household size, age, and frequency of transit
-use. The Fisher test does not have a test statistic and generates $p$-values via
-simulation; we therefore pool the $p$-values from the `r n_imputations` tests
-using a methodology proposed by @LichtThesis.
-
-```{r mi_fishers}
-# methods in Christine Licht's dissertation, coded by Stef Van Buuren:
-# https://stats.stackexchange.com/a/73573/10026
-lichtrubin <- function(fit){
-    ## pools the p-values of a one-sided test according to the Licht-Rubin method
-    ## this method pools p-values in the z-score scale, and then transforms back 
-    ## the result to the 0-1 scale
-    ## Licht C, Rubin DB (2011) unpublished
-    if (!is.mira(fit)) stop("Argument 'fit' is not an object of class 'mira'.")
-    fitlist <- fit$analyses
-        if (!inherits(fitlist[[1]], "htest")) stop("Object fit$analyses[[1]] is not an object of class 'htest'.")
-    m <- length(fitlist)
-    p <- rep(NA, length = m)
-    for (i in 1:m) p[i] <- fitlist[[i]]$p.value
-    z <- qnorm(p)  # transform to z-scale
-    num <- mean(z)
-    den <- sqrt(1 + var(z))
-    pnorm( num / den) # average and transform back
-}
-
-size_fishers  <- with(sd_mice, fisher.test(table(size_cat, likeliness_f)))
-age_fishers   <- with(sd_mice, fisher.test(table(age, likeliness_f)))
-freq_fishers  <- with(sd_mice, fisher.test(table(frequency_cat, likeliness_f)))
-
-lr_size <- lichtrubin(size_fishers)
-lr_age <- lichtrubin(age_fishers)
-lr_freq <- lichtrubin(freq_fishers)
-```
-
-The pooled $p$-values obtained through the multiply imputed data sets are given
-in Table \@ref(tab:mi-fishers-table) alongside the original, non-imputed
-$p$-values. In the imputed data, there appears to be a clearer relationship
-between likeliness and household size, sufficient to reject the null hypothesis
-of independence at a standard significance level. The relationship between age
-and likeliness is weakened relative to the non-imputed data, but still would be
-considered significant. There remains no evidence that expressed likeliness to
-use microtransit is correlated in any way with the frequency of using transit.
-
-```{r mi-fishers-table}
-tibble(
-  "Variable" = fisher_tests$variable,
-  "Original p" = fisher_tests$p.value,
-  "Imputed p" = c(NA, lr_size, NA, NA, lr_age, lr_freq)
-) %>%
-  filter(!is.na(`Imputed p`)) %>%
-  kbl(caption = "Fisher Exact p-value with Imputation", booktabs = TRUE, 
-      digits = 4) %>%
-  kable_styling()
-```
-
-
-```{r mi_models, eval=FALSE}
-# multivariate regression on the imputed datasets: not used
-mi_models <- with(sd_mice, lm(likeliness ~ age + size_cat + frequency_cat))
-mi_pooled <- pool(mi_models)
-modelsummary(mi_pooled, statistic_vertical = FALSE, stars = TRUE)
 ```
 
 

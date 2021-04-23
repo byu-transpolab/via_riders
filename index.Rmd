@@ -84,7 +84,9 @@ mobility options [@Graehler2019; @Mallett2018]. These new mobility options –
 including bikeshare, e-scooters, and ridehailing through Transportation Network
 Companies (TNCs) – might also play an important role in supporting transit
 operations if the relative strengths of transit and modern mobility systems can
-be successfully partnered [@Shaheen2016; @OOSTENDORP201872; @ShivThesis].
+be successfully partnered [@Shaheen2016; @OOSTENDORP201872; @ShivThesis]. This 
+may lead to reduced dependence on automobiles and associated environmental 
+benefits [@hoehne2017greenhouse].
 
 One particular area where a partnership between high-capacity, fixed-route
 transit and TNC operations has been desired is in supporting first mile / last
@@ -101,14 +103,13 @@ permanent offerings, there is an important opportunity to observe and evaluate
 who is using the service and for what reasons. It is also valuable to understand
 how users perceive the effectiveness and convenience of these systems.
 
-In this paper we report the results of a survey conducted immediately before and
+This paper presents an analysis of a preferences survey conducted immediately before and
 several weeks after the November 2019 launch of a microtransit service in south
-Salt Lake County, Utah by the Utah Transit Authority (UTA). The surveys were
-primarily designed to understand the awareness of the on-demand system in the
-transit passenger community. The surveys also consider the stated and revealed
-likeliness of individuals to use the microtransit service, and how the
-characteristics of these individuals –-- particularly age, transit use frequency, 
-and household size --- influence these preferences.
+Salt Lake County, Utah by the Utah Transit Authority (UTA). Respondents to the 
+survey indicated their awareness of and willingness ot use the microtransit service. 
+This paper investigates the relationship between this expressed willingness
+and the demographic characteristics of these individuals –-- particularly age,
+transit use frequency, and household size --- influence these preferences.
 
 The remainder of this section contains a brief review of previous and ongoing
 studies relevant to the question of demand for and use of microtransit services.
@@ -116,7 +117,7 @@ We then describe the survey methodology for this study, including both the
 context of the UTA microtransit service as well as the survey instrument and
 collection strategy. The survey results in several dimensions are followed by a
 discussion of the limitations of the findings and associated opportunities for
-future research.
+future research. 
 
 
 ## Findings from Other Systems
@@ -125,7 +126,8 @@ In the last few years a number of on-demand microtransit services have begun
 operations in many cities around the world. Given the dynamic nature of this
 space, the literature is not mature and numerous projects are under evaluation
 at the moment. However, some findings from early systems are available and are
-worthy of discussion.
+worthy of discussion. These articles were identified through a search of academic 
+databases focusing on transportation research studies.
 
 A microtransit service in Helsinki, Finland known as “Kutsuplus” operated from
 2012 to 2015 and has been the subject of a number of studies. @weckstrom2018 and
