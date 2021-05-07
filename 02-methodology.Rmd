@@ -249,7 +249,7 @@ if(knitr::is_latex_output()){
 ```
 
 To determine the significance of the relationship between the demographic
-characteristics presented in Table \@ref(tab:survey-summary) and expressed
+characteristics presented in Table \@ref(tab:survey-questions) and expressed
 willingness to use the on-demand microtransit service, we employ the Fisher
 "exact" test of independence in contingency tables [@fisherExact].  In this
 test the null hypothesis is that the two distributions are independent with the
