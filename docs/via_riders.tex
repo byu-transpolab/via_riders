@@ -160,6 +160,20 @@ research.}
 
 
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -214,8 +228,11 @@ In the last few years a number of on-demand microtransit services have begun
 operations in many cities around the world. Given the dynamic nature of this
 space, the literature is not mature and numerous projects are under evaluation
 at the moment. However, some findings from early systems are available and are
-worthy of discussion. These articles were identified through a search of academic
-databases focusing on transportation research studies.
+worthy of discussion. These articles were identified through a search of
+academic databases --- particularly TRID \citep{trid}, Scopus \citep{scopus},
+and Google Scholar \citep{googlescholar} --- using
+keywords including ``microtransit'' and ``on-demand transit.'' Citations within
+the returned articles were investigated as well.
 
 A microtransit service in Helsinki, Finland known as ``Kutsuplus'' operated from
 2012 to 2015 and has been the subject of a number of studies. \citet{weckstrom2018} and
@@ -383,7 +400,7 @@ Age & What is your age? & Multiple choice in ranges\\
 \end{table}
 
 To determine the significance of the relationship between the demographic
-characteristics presented in Table \ref{tab:survey-summary} and expressed
+characteristics presented in Table \ref{tab:survey-questions} and expressed
 willingness to use the on-demand microtransit service, we employ the Fisher
 ``exact'' test of independence in contingency tables \citep{fisherExact}. In this
 test the null hypothesis is that the two distributions are independent with the
@@ -468,7 +485,7 @@ appears to be a polarization in opinions after the service commenced operations.
 Although there are some strong feelings against and for the service in the
 ``Before'' tranche, the neutral opinions have comparatively disappeared in the
 ``After'' tranche. This likely reflects the increasing awareness of the service
-discussed above and a hardening of engrained or newly learned habits. It is
+discussed above and a hardening of ingrained or newly learned habits. It is
 important also to stress that the question will not necessarily elicit an
 opinion as to whether the service should exist, merely whether the particular
 respondent is willing to use it.
@@ -829,4 +846,3 @@ UTA & Utah Transit Authority \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
-
