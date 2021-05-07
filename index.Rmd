@@ -29,7 +29,7 @@ documentclass: article
 journal: smartcities
 status: submit
 type: article
-bibliography: ["book.bib", "packages.bib"]
+bibliography: ["book.bib"]
 always_allow_html: true
 link-citations: yes
 abstract: |
@@ -126,8 +126,11 @@ In the last few years a number of on-demand microtransit services have begun
 operations in many cities around the world. Given the dynamic nature of this
 space, the literature is not mature and numerous projects are under evaluation
 at the moment. However, some findings from early systems are available and are
-worthy of discussion. These articles were identified through a search of academic 
-databases focusing on transportation research studies.
+worthy of discussion. These articles were identified through a search of
+academic databases --- particularly TRID [@trid], Scopus [@scopus], 
+and Google Scholar [@googlescholar] --- using
+keywords including "microtransit" and "on-demand transit." Citations within
+the returned articles were investigated as well.
 
 A microtransit service in Helsinki, Finland known as “Kutsuplus” operated from
 2012 to 2015 and has been the subject of a number of studies. @weckstrom2018 and
